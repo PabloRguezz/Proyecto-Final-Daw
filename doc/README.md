@@ -1,3 +1,4 @@
+<div align="justify">
 <hr>
 
 ![Bandera de España](https://flagcdn.com/24x18/es.png) **Español**
@@ -23,3 +24,4 @@ In this repository, you will find all the necessary documentation to understand 
 - [:technologist: Use Case Diagram](english/use-case-diagram.md)
 
 <hr>
+</div>
