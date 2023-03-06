@@ -48,4 +48,5 @@ Para la realización del proyecto usaremos las siguientes tecnologías:
 <img src="../screenshots/Boceto.png" />
 </div>
 
+[← Volver a la documentación](../../doc)
 </div>
