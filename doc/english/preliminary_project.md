@@ -50,4 +50,6 @@ We will use the following technologies for the project:
 <img src="../screenshots/Boceto.png" />
 </div>
 
+ [← Return to the documentation](../../doc)
+  
 </div>
