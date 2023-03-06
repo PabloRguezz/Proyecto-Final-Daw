@@ -11,7 +11,7 @@ En este repositorio encontrarás toda la documentación necesaria para entender 
 
 - [:technologist: Diagrama de Casos de Uso](español/diagrama-casos-uso.md)
 
-[← Volver al inicio del proyecto](../../../)
+- [:house: Volver al inicio del proyecto](../../../)
 
 <hr>
 
@@ -25,7 +25,7 @@ In this repository, you will find all the necessary documentation to understand 
 
 - [:technologist: Use Case Diagram](english/use-case-diagram.md)
 
-[← Back to project homepage](../../../)
+- [:house: Back to project homepage](../../../)
 
 <hr>
 
