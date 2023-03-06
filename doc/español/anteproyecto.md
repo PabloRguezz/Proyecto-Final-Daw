@@ -11,15 +11,15 @@
 
 Después de una búsqueda preliminar por la red hemos encontrado varias aplicaciones similares, sin embargo, en su gran mayoría estás aplicaciones solo ofrecen la posibilidad de realizar reservas a un servicio en concreto, como podremos comprobar en las siguientes imágenes.
 
-<img src="screenshots/TheFork.png">
+<img src="../screenshots/TheFork.png">
   
 [The Fork](https://www.thefork.es/)
 
-<img src="screenshots/treatwell.png">
+<img src="../screenshots/treatwell.png">
   
 [Treatwell](https://www.treatwell.es/)
   
-<img src="screenshots/pidecita.png">
+<img src="../screenshots/pidecita.png">
   
 [PideCita](https://www.pidecita.com/)
   
@@ -45,7 +45,7 @@ Para la realización del proyecto usaremos las siguientes tecnologías:
 
 ### Boceto de la solución
 <div align="center">
-<img src="screenshots/Boceto.png" />
+<img src="../screenshots/Boceto.png" />
 </div>
 
 </div>
