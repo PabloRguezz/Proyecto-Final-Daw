@@ -208,4 +208,66 @@ En el presente documento se realiza la especificación de los diferentes actores
 | Fecha | 09/03/2023 |
   
 <hr>
+
+## Iniciar Sesión
+
+| Caso de Uso CU | Iniciar Sesion |
+| --- | --- |
+| Actor | Administrador |
+| Descripción | El administrador podrá iniciar sesión en la aplicación |
+| Flujo básico | Tras haberse registrado anteriormente iniciará sesión en la aplicación |
+| Pre-condiciones | Estar registrado |
+| Post-condiciones |  |
+| Requerimientos | Estar registrado |
+| Notas |  |
+| Autor | Pablo Rodríguez de la Sierra García |
+| Fecha | 09/03/2023 |
+  
+## Dar de Baja
+
+| Caso de Uso CU | Dar de Baja |
+| --- | --- |
+| Actor | Administrador |
+| Descripción | El administrador podrá dar de baja a un usuario en la aplicación |
+| Flujo básico | Tras haberse sido registrado anteriormente el usuario, el administrador, podrá dar de baja a un usuario |
+| Pre-condiciones | Estar el usuario registrado |
+| Post-condiciones |  |
+| Requerimientos | Estar el usuario registrado |
+| Notas |  |
+| Autor | Pablo Rodríguez de la Sierra García |
+| Fecha | 09/03/2023 |
+
+## Dar de Alta
+
+| Caso de Uso CU | Dar de Alta |
+| --- | --- |
+| Actor | Administrador |
+| Descripción | El administrador podrá dar de alta a un usuario en la aplicación |
+| Flujo básico | El administrador podrá dar de alta a un usuario |
+| Pre-condiciones | No estar el usuario registrado |
+| Post-condiciones |  |
+| Requerimientos | No estar el usuario registrado |
+| Notas |  |
+| Autor | Pablo Rodríguez de la Sierra García |
+| Fecha | 09/03/2023 |
+  
+## Resolver Dudas/Problemas
+
+| Caso de Uso CU | Resolver Dudas/Problemas |
+| --- | --- |
+| Actor | Administrador |
+| Descripción | El administrador resolver dudas o problemas expuestos por usuarios |
+| Flujo básico | El administrador podrá dudas o problemas expuestos por usuarios |
+| Pre-condiciones |  |
+| Post-condiciones |  |
+| Requerimientos |  |
+| Notas |  |
+| Autor | Pablo Rodríguez de la Sierra García |
+| Fecha | 09/03/2023 |
+  
+<hr>
+  
+[← Volver a la documentación](../../doc)
+  
+<hr>
 </div>
