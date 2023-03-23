@@ -18,7 +18,6 @@ USE `bookme` ;
 -- -----------------------------------------------------
 -- Table `bookme`.`Usuario`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookme`.`Usuario` ;
 
 CREATE TABLE IF NOT EXISTS `bookme`.`Usuario` (
   `id_usuario` INT NOT NULL,
@@ -32,7 +31,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `bookme`.`Servicios`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookme`.`Servicios` ;
 
 CREATE TABLE IF NOT EXISTS `bookme`.`Servicios` (
   `id_servicio` INT NOT NULL,
@@ -46,7 +44,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `bookme`.`Calificaciones`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookme`.`Calificaciones` ;
 
 CREATE TABLE IF NOT EXISTS `bookme`.`Calificaciones` (
   `id_Calificacion` INT NOT NULL,
@@ -73,7 +70,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `bookme`.`Reserva`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookme`.`Reserva` ;
 
 CREATE TABLE IF NOT EXISTS `bookme`.`Reserva` (
   `id_Reserva` INT NOT NULL,
@@ -100,7 +96,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `bookme`.`Empresa`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookme`.`Empresa` ;
 
 CREATE TABLE IF NOT EXISTS `bookme`.`Empresa` (
   `cif_Empresa` VARCHAR(9) NOT NULL,
@@ -117,7 +112,6 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 -- Table `bookme`.`Empresa_has_Servicios`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `bookme`.`Empresa_has_Servicios` ;
 
 CREATE TABLE IF NOT EXISTS `bookme`.`Empresa_has_Servicios` (
   `cif_Empresa` VARCHAR(9) NOT NULL,
