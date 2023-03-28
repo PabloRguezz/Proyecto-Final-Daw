@@ -1,0 +1,60 @@
+@media (max-width:320px) {
+    html{
+    background-color: #009DFF;
+    background-image: url("../../assets/imgs/reserva.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    }
+    #rowTam{
+        margin-top:250px; width:320px; text-align: center;
+    }
+}
+@media (max-width:575px) and (min-width:321px) {
+    html{
+    background-color: #009DFF;
+    background-image: url("../../assets/imgs/reserva.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    }
+    #rowTam{
+        margin-top:250px; width:300px; text-align: center;margin-left: 50px;
+    }
+}
+@media (max-width:991px) and (min-width:768px){
+    html{
+    background-color: #009DFF;
+    background-image: url("./../../assets/imgs/reserva.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    }
+    #rowTam{
+        margin-top:300px;margin-left:50px; width:600px; text-align: center;
+    }
+    
+}
+@media (max-width:1199px) and (min-width:992px){
+    html{
+    background-color: #009DFF;
+    background-image: url("./../../assets/imgs/reserva.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    }
+    #rowTam{
+        margin-top:300px;margin-left:100px; width:700px; text-align: center;
+    }
+    
+}
+@media (min-width:1200px) {
+    html{
+    background-color: #009DFF;
+    background-image: url("./../../assets/imgs/reserva.png");
+    background-position: center top;
+    background-repeat: no-repeat;
+    }
+    #rowTam{
+        margin-top:300px;margin-left:140px; width:1020px; text-align: center;
+    }
+}
+a:link, a:visited, a:active {
+    text-decoration:none;
+}
