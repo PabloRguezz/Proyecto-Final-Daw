@@ -1,7 +1,9 @@
 #!/bin/bash
 
-cd ../../src/cliente/Angular
+cd /home/pablo/Proyecto-Final-Daw/src/cliente/Angular
 
-ng serve
+npm install
+
+ng serve --port=3000
 
 
