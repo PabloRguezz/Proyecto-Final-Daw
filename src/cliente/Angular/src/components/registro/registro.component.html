@@ -1,44 +1,66 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Registrarse</title>
+	<meta charset="UTF-8">
+	<meta name="viewport"
+		content="width=device-width,
+						initial-scale=1.0">
+	<title>BookMe</title>
 </head>
+
 <body>
-    <div class="containter-fluid" style="background-color:#009DFF;">
-        <div class="container" style="background-color: #009DFF;">
-            <div class="row d-flex justify-content-between" id="rowTam">
-                <form>
-                    <h1>Registro</h1>
-                    <div class="form-floating mb-3">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-                        <label for="floatingInput">Correo Electrónico</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="Nombre">
-                        <label for="floatingInput">Nombre</label>
-                    </div>
-                    <div class="form-floating mb-3">
-                        <input type="text" class="form-control" id="floatingInput" placeholder="Nombre">
-                        <label for="floatingInput">Apellidos</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-                        <label for="floatingPassword">Contraseña</label>
-                    </div>
-                    <div class="d-flex justify-content-around" style="margin-top: 20px; margin-bottom: 20px;">
-                        <button type="submit"  class="btn btn-dark text-light"><a href="../index.html" style="color: white;">Volver al Inicio</a></button>
-                        <button type="submit" class="btn btn-dark ">Registrarse</button>
-                    </div>
-                    <p><strong>¿Ya estás registrado? Iniciar Sesión</strong></p>
-                  </form>
-            </div>
-        </div>
-    </div>
-        
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+	<header>
+		<h1 class="heading">BookMe</h1>
+	</header>
+	<div class="container">
+		<div class="slider"></div>
+		<div class="btn">
+			<button class="login">Cliente</button>
+			<button class="signup">Empresa</button>
+		</div>
+		<div class="form-section">
+			<div class="login-box">
+                <form action="" method="post" >
+                    <input class="input" type="text" name="nombre" id="nombre" placeholder="Nombre" required=""> 
+                    <input class="input" type="email" name="email" id="email" placeholder="Email" required=""> 
+                    <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required=""> 
+                    <button type="button" class="btn btn-dark" routerLink="">Volver al login</button> 
+                    <button type="submit" class="btn btn-dark">Registrarse</button>
+                </form>
+			</div>
+			<div class="signup-box">
+                <form class="empresa">
+                    <input class="input" type="text" name="nombre"
+                    id="nombre" placeholder="Nombre de la empresa" required=""> 
+                    <input class="input" type="text" name="cif" id="cif"
+                    placeholder="CIF Empresa" required=""> 
+                    <input class="input" type="tel" name="telefono" id="telefono"
+                    placeholder="Telefono de Contacto" required="">
+                    <label for="lunes">Lunes:</label>
+                    <input type="time" id="lunesInicio" name="lunesInicio"> - <input type="time" id="lunesFin"
+                    name="lunesFin"><br>
+                    <label for="martes">Martes:</label> <input type="time" id="martesInicio" name="martesInicio"> - <input type="time"
+                        id="martesFin" name="martesFin"><br>
+                    <label for="miercoles">Miércoles:</label> <input type="time" id="miercolesInicio" name="miercolesInicio"> - <input
+                        type="time" id="miercolesFin" name="miercolesFin"><br>
+                    <label for="jueves">Jueves:</label> <input type="time" id="juevesInicio" name="juevesInicio"> - <input type="time"
+                        id="juevesFin" name="juevesFin"><br>
+                    <label for="viernes">Viernes:</label> <input type="time" id="viernesInicio" name="viernesInicio"> - <input type="time"
+                        id="viernesFin" name="viernesFin"><br>
+                    <label for="sabado">Sábado:</label> <input type="time" id="sabadoInicio" name="sabadoInicio"> - <input type="time"
+                        id="sabadoFin" name="sabadoFin"><br>
+                    <label for="domingo">Domingo:</label> <input type="time" id="domingoInicio" name="domingoInicio"> - <input type="time"
+                    id="domingoFin" name="domingoFin"> <br>
+                    <input class="input" type="text" name="ubicacion" id="ubicacion" placeholder="Ubicacion" required=""> 
+                    <input class="input" type="text" name="descripcion" id="descripcion" placeholder="Descripcion" required=""> 
+                    <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required=""> 
+                    <button type="button" class="btn btn-dark" routerLink="">Volver al login</button>
+                    <button type="submit" class="btn btn-dark">Registrarse</button>
+                </form>
+			</div>
+		</div>
+	</div>
 </body>
+
 </html>

@@ -89,10 +89,15 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/components/registro/index.js"
+            ]
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "3a213b67-324d-4f4f-a862-d6f85f95e1ba"
   }
 }
