@@ -5,4 +5,7 @@
   
   <img src="../screenshots/DiagramaClases.png">
   
+  <hr>
+  
+  [← Volver a la documentación](../../doc)
 </div>
