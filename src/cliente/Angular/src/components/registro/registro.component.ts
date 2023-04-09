@@ -9,7 +9,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class RegistroComponent {
   constructor(private http: HttpClient) {}
-  formularioRegistro = {
+  formularioRegistro: any = {
     nombre: '',
     email: '',
     password: ''
