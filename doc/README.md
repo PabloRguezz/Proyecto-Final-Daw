@@ -11,6 +11,8 @@ En este repositorio encontrarás toda la documentación necesaria para entender 
 
 - [:technologist: Diagrama de Casos de Uso](español/diagrama-casos-uso.md)
 
+- [📚 Diagrama de Clases](español/diagrama-clases.md)
+
 - [:house: Volver al inicio del proyecto](../../../)
 
 <hr>
@@ -24,6 +26,8 @@ In this repository, you will find all the necessary documentation to understand 
 - [:card_index_dividers: Entity/Relationship Diagram](english/entity-relationship-diagram.md)
 
 - [:technologist: Use Case Diagram](english/use-case-diagram.md)
+
+- [📚 Class diagram](english/class-diagram.md)
 
 - [:house: Back to project homepage](../../../)
 
