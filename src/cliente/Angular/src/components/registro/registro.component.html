@@ -21,13 +21,14 @@
 		</div>
 		<div class="form-section">
 			<div class="login-box">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <input class="input" type="text" name="nombre" id="nombre" placeholder="Nombre" required=""> 
-                    <input class="input" type="email" name="email" id="email" placeholder="Email" required=""> 
-                    <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required=""> 
+                <form (submit)="onSubmit(formularioRegistro.value)">
+                    <input class="input" type="text" name="nombre" id="nombre" placeholder="Nombre" required="" [(ngModel)]="formularioRegistro.nombre"> 
+                    <input class="input" type="email" name="email" id="email" placeholder="Email" required="" [(ngModel)]="formularioRegistro.email"> 
+                    <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required="" [(ngModel)]="formularioRegistro.password"> 
                     <button type="button" class="btn btn-dark" routerLink="">Volver al login</button> 
                     <button type="submit" class="btn btn-dark">Registrarse</button>
-                </form>
+                  </form>
+                  
 			</div>
 			<div class="signup-box">
                 <form class="empresa">
