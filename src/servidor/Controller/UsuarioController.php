@@ -1,116 +1,101 @@
 <?php
-class UsuarioController {
-  private $conn;
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: *');
 
-  public function __construct($conn) {
-    $this->conn = $conn;
+require_once '../Model/Conexion.php';
+$conn = Conexion::connection();
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+  // Check for GET request with a specific id_Usuario
+  if (isset($_GET['id_Usuario'])) {
+    $id_Usuario = $_GET['id_Usuario'];
+    $sql = "SELECT * FROM Usuario WHERE id_Usuario = '$id_Usuario'";
+  } else {
+    $sql = "SELECT * FROM Usuario";
   }
 
-  public function handle() {
-    switch ($_SERVER['REQUEST_METHOD']) {
-      case 'GET':
-        $this->handleGet();
-        break;
-
-      case 'POST':
-        $this->handlePost();
-        break;
-
-      case 'PUT':
-        $this->handlePut();
-        break;
-
-      case 'DELETE':
-        $this->handleDelete();
-        break;
-
-      default:
-        http_response_code(405);
-        echo "Método no permitido";
-    }
+  // Check for GET request with a specific email and password to verify login credentials
+  if (isset($_GET['email']) && isset($_GET['password'])) {
+    $email = $_GET['email'];
+    $password = $_GET['password'];
+    $sql = "SELECT * FROM Usuario WHERE email = '$email' AND password = '$password'";
   }
+  
+  // Run query
+  $result = mysqli_query($conn, $sql);
 
-  private function handleGet() {
-    if (isset($_GET['id'])) {
-      $stmt = $this->conn->prepare("SELECT * FROM Usuario WHERE id_usuario = ?");
-      $stmt->bind_param("i", $_GET['id']);
-    } else {
-      $stmt = $this->conn->prepare("SELECT * FROM Usuario");
-    }
+  if (mysqli_num_rows($result) > 0) {
+    //mysqli_fetch_all gives us the data in 2D array format.
+    // It's second parameter decide whether its assoc array or indexed. Or maybe both
+    $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
 
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    $usuarios = [];
-    while ($row = $result->fetch_assoc()) {
-      $usuarios[] = $row;
-    }
-
-    echo json_encode($usuarios);
+    echo json_encode($data);
+  } else {
+    echo json_encode(['msg' => 'No Data!', 'status' => false]);
   }
-
-  private function handlePost() {
-    $data = json_decode(file_get_contents("php://input"), true);
-
-    if (!$data || !isset($data['email']) || !isset($data['password']) || !isset($data['nombre'])) {
-      http_response_code(400);
-      echo "Petición incorrecta";
-      return;
-    }
-
-    $stmt = $this->conn->prepare("INSERT INTO Usuario (email, password, nombre) VALUES (?, ?, ?)");
-    $stmt->bind_param("sss", $data['email'], $data['password'], $data['nombre']);
-
-    if (!$stmt->execute()) {
-      http_response_code(500);
-      echo "Error al crear usuario";
-      return;
-    }
-
-    $usuarioId = $stmt->insert_id;
-    $usuario = ['id_usuario' => $usuarioId, 'email' => $data['email'], 'nombre' => $data['nombre']];
-    echo json_encode($usuario);
-  }
-  private function handlePut() {
-    $data = json_decode(file_get_contents("php://input"), true);
-
-    if (!isset($data['id'])) {
-      http_response_code(400);
-      echo "El campo 'id' es obligatorio";
-      return;
-    }
-
-    $stmt = $this->conn->prepare("UPDATE Usuario SET email = ?, password = ?, nombre = ? WHERE id_usuario = ?");
-    $stmt->bind_param("sssi", $data['email'], $data['password'], $data['nombre'], $data['id']);
-    $stmt->execute();
-
-    if ($stmt->affected_rows == 0) {
-      http_response_code(404);
-      echo "El usuario con id " . $data['id'] . " no existe";
-    } else {
-      http_response_code(204);
-    }
-  }
-
-  private function handleDelete() {
-    $data = json_decode(file_get_contents("php://input"), true);
-
-    if (!isset($data['id'])) {
-      http_response_code(400);
-      echo "El campo 'id' es obligatorio";
-      return;
-    }
-
-    $stmt = $this->conn->prepare("DELETE FROM Usuario WHERE id_usuario = ?");
-    $stmt->bind_param("i", $data['id']);
-    $stmt->execute();
-
-    if ($stmt->affected_rows == 0) {
-      http_response_code(404);
-      echo "El usuario con id " . $data['id'] . " no existe";
-    } else {
-      http_response_code(204);
-    }
-  }
-
 }
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // Check for POST request with 'insert' parameter to add a new user
+  if (isset($_POST['insert'])) {
+    $nombre = $_POST['nombre'];
+    $apellido = $_POST['apellido'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $telefono = $_POST['telefono'];
+    $direccion = $_POST['direccion'];
+
+    $sql = "INSERT INTO Usuario (nombre, apellido, email, password, telefono, direccion) 
+            VALUES ('$nombre', '$apellido', '$email', '$password', '$telefono', '$direccion')";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+      echo json_encode(['msg' => 'User created successfully!', 'status' => true]);
+    } else {
+      echo json_encode(['msg' => 'Error creating user!', 'status' => false]);
+    }
+  }
+
+  // Check for PUT request with 'update' parameter to update an existing user
+  if (isset($_PUT['update'])) {
+    $id_Usuario = $_PUT['id_Usuario'];
+    $nombre = $_PUT['nombre'];
+    $apellido = $_PUT['apellido'];
+    $email = $_PUT['email'];
+    $password = $_PUT['password'];
+    $telefono = $_PUT['telefono'];
+    $direccion = $_PUT['direccion'];
+
+    $sql = "UPDATE Usuario 
+            SET nombre='$nombre', apellido='$apellido', email='$email', password='$password', 
+                telefono='$telefono', direccion='$direccion' 
+            WHERE id_Usuario = '$id_Usuario'";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ($result) {
+        echo json_encode(['msg' => 'User updated successfully!', 'status' => true]);
+    } else {
+        echo json_encode(['msg' => 'Error updating user!', 'status' => false]);
+    }
+  }
+
+// Check for DELETE request with 'delete' parameter to delete an existing user
+if (isset($_DELETE['delete'])) {
+  $id_Usuario = $_DELETE['id_Usuario'];
+
+  $sql = "DELETE FROM Usuario WHERE id_Usuario = '$id_Usuario'";
+
+  $result = mysqli_query($conn, $sql);
+
+  if ($result) {
+    echo json_encode(['msg' => 'User deleted successfully!', 'status' => true]);
+  } else {
+    echo json_encode(['msg' => 'Error deleting user!', 'status' => false]);
+  }
+}
+} 
+
+mysqli_close($conn);
+?>
