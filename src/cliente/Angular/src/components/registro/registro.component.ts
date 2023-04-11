@@ -9,23 +9,24 @@ import { Router } from '@angular/router';
 })
 export class RegistroComponent {
   constructor(private http: HttpClient,private router: Router) {}
-  formularioRegistro: any = {
-    nombre: '',
-    email: '',
-    password: ''
-  };
-  onSubmit(data :any) {
-    const url = 'http://api.bookme.alu6852.arkania.es/usuarios';
-    this.http.post(url, data).subscribe(
-      (res: any) => {
-        console.log(res);
-        // Redireccionar al usuario a la página de inicio de sesión o mostrar un mensaje de éxito.
-      },
-      (err: any) => {
-        console.error(err);
-        // Mostrar un mensaje de error.
-      }
-    );
+  nombre: string;
+  email: string;
+  password: string;
+  registrarCliente() {
+    const nuevoCliente = {
+      nombre: this.nombre,
+      email: this.email,
+      password: this.password
+    };
+
+    this.http.post('https://api.nombre.alu6852.arkania.es', nuevoCliente)
+      .toPromise()
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
   }
   ngOnInit(){
     let signup = document.querySelector(".signup");

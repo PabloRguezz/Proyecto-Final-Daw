@@ -39,14 +39,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Check for POST request with 'insert' parameter to add a new user
   if (isset($_POST['insert'])) {
     $nombre = $_POST['nombre'];
-    $apellido = $_POST['apellido'];
     $email = $_POST['email'];
     $password = $_POST['password'];
-    $telefono = $_POST['telefono'];
-    $direccion = $_POST['direccion'];
 
-    $sql = "INSERT INTO Usuario (nombre, apellido, email, password, telefono, direccion) 
-            VALUES ('$nombre', '$apellido', '$email', '$password', '$telefono', '$direccion')";
+    $sql = "INSERT INTO Usuario (nombre, email, password) 
+            VALUES ('$nombre', '$email', '$password')";
 
     $result = mysqli_query($conn, $sql);
 
@@ -61,15 +58,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (isset($_PUT['update'])) {
     $id_Usuario = $_PUT['id_Usuario'];
     $nombre = $_PUT['nombre'];
-    $apellido = $_PUT['apellido'];
     $email = $_PUT['email'];
     $password = $_PUT['password'];
-    $telefono = $_PUT['telefono'];
-    $direccion = $_PUT['direccion'];
 
     $sql = "UPDATE Usuario 
-            SET nombre='$nombre', apellido='$apellido', email='$email', password='$password', 
-                telefono='$telefono', direccion='$direccion' 
+            SET nombre='$nombre', email='$email', password='$password'
             WHERE id_Usuario = '$id_Usuario'";
 
     $result = mysqli_query($conn, $sql);

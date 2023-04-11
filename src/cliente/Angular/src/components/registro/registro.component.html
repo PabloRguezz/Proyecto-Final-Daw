@@ -21,7 +21,7 @@
 		</div>
 		<div class="form-section">
 			<div class="login-box">
-                <form (submit)="onSubmit(formularioRegistro.value)">
+                <form (submit)="registrarCliente()">
                     <input class="input" type="text" name="nombre" id="nombre" placeholder="Nombre" required="" [(ngModel)]="formularioRegistro.nombre"> 
                     <input class="input" type="email" name="email" id="email" placeholder="Email" required="" [(ngModel)]="formularioRegistro.email"> 
                     <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required [(ngModel)]="formularioRegistro.password">
