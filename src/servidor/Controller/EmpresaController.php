@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Check for POST request with 'insert' parameter to add a new company
-  if (isset($_POST['insert'])) {
     $cif_Empresa = $_POST['cif_Empresa'];
     $nombre = $_POST['nombre'];
     $tlf_contacto = $_POST['tlf_contacto'];
@@ -57,9 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo json_encode(['msg' => 'Error creating company!', 'status' => false]);
     }
   }
-
 // Check for PUT request with 'update' parameter to update an existing company
-if (isset($_PUT['update'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
   $cif_Empresa = $_PUT['cif_Empresa'];
   $nombre = $_PUT['nombre'];
   $tlf_contacto = $_PUT['tlf_contacto'];
@@ -83,7 +81,7 @@ if (isset($_PUT['update'])) {
 }
 
 // Check for DELETE request with 'delete' parameter to delete an existing company
-if (isset($_DELETE['delete'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
   $cif_Empresa = $_DELETE['cif_Empresa'];
 
   $sql = "DELETE FROM Empresa WHERE cif_Empresa = '$cif_Empresa'";
@@ -96,8 +94,6 @@ if (isset($_DELETE['delete'])) {
       echo json_encode(['msg' => 'Error deleting company!', 'status' => false]);
   }
 }
-} 
-
   mysqli_close($conn);
 
 ?>

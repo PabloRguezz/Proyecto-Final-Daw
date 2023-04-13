@@ -37,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Check for POST request with 'insert' parameter to add a new user
-  if (isset($_POST['insert'])) {
     $nombre = $_POST['nombre'];
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -52,10 +51,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
       echo json_encode(['msg' => 'Error creating user!', 'status' => false]);
     }
-  }
 
   // Check for PUT request with 'update' parameter to update an existing user
-  if (isset($_PUT['update'])) {
+  if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $id_Usuario = $_PUT['id_Usuario'];
     $nombre = $_PUT['nombre'];
     $email = $_PUT['email'];
@@ -75,7 +73,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
 // Check for DELETE request with 'delete' parameter to delete an existing user
-if (isset($_DELETE['delete'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
   $id_Usuario = $_DELETE['id_Usuario'];
 
   $sql = "DELETE FROM Usuario WHERE id_Usuario = '$id_Usuario'";
