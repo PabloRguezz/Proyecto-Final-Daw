@@ -36,29 +36,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Check for POST request with 'insert' parameter to add a new user
-    $nombre = $_POST['nombre'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+  $nombre = $_POST['nombre'];
+  $email = $_POST['email'];
+  $password = $_POST['password'];
 
-    $sql = "INSERT INTO Usuario (nombre, email, password) VALUES ('$nombre', '$email', '$password')";
+  // Check if the email already exists in the database
+  $checkEmailSql = "SELECT * FROM Usuario WHERE email = '$email'";
+  $checkEmailResult = mysqli_query($conn, $checkEmailSql);
 
-    $result = mysqli_query($conn, $sql);
+  if (mysqli_num_rows($checkEmailResult) > 0) {
+    echo json_encode(['msg' => 'Email already exists!', 'status' => false]);
+  } else {
+    $insertSql = "INSERT INTO Usuario (nombre, email, password) VALUES ('$nombre', '$email', '$password')";
+    $insertResult = mysqli_query($conn, $insertSql);
 
-    if ($result) {
+    if ($insertResult) {
       echo json_encode(['msg' => 'User created successfully!', 'status' => true]);
     } else {
       echo json_encode(['msg' => 'Error creating user!', 'status' => false]);
     }
-} elseif ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-  // Check for PUT request with 'update' parameter to update an existing user
-  parse_str(file_get_contents("php://input"),$put_vars);
-  $id_Usuario = $put_vars['id_Usuario'];
-  $nombre = $put_vars['nombre'];
-  $email = $put_vars['email'];
-  $password = $put_vars['password'];
+  }
+}
 
-  $sql = "UPDATE Usuario 
-          SET nombre='$nombre', email='$email', password='$password' WHERE id_Usuario = '$id_Usuario'";
+if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+  // Check for PUT request with 'update' parameter to update an existing user
+  $id_Usuario = $_GET['id_Usuario'];
+  $nombre = $_GET['nombre'];
+  $email = $_GET['email'];
+  $password = $_GET['password'];
+
+  $sql = "UPDATE Usuario SET nombre='$nombre', email='$email', password='$password' WHERE id_Usuario = '$id_Usuario'";
 
   $result = mysqli_query($conn, $sql);
 
@@ -67,18 +74,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } else {
       echo json_encode(['msg' => 'Error updating user!', 'status' => false]);
   }
-} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+} 
+if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
   // Check for DELETE request with 'delete' parameter to delete an existing use
-    $id_Usuario = intval($_REQUEST['id_Usuario']);
-    $sql = "DELETE FROM Usuario WHERE id_Usuario = '$id_Usuario'";
-    $result = mysqli_query($conn, $sql);
-
-    if ($result) {
-      echo json_encode(['msg' => 'User deleted successfully!', 'status' => true]);
+    $id_Usuario = intval($_GET['id_Usuario']);
+    $sql_check = "SELECT * FROM Usuario WHERE id_Usuario = '$id_Usuario'";
+    $result_check = mysqli_query($conn, $sql_check);
+    if (mysqli_num_rows($result_check) > 0) {
+        $sql = "DELETE FROM Usuario WHERE id_Usuario = '$id_Usuario'";
+        $result = mysqli_query($conn, $sql);
+        if ($result) {
+          echo json_encode(['msg' => 'User deleted successfully!', 'status' => true]);
+        } else {
+          echo json_encode(['msg' => 'Error deleting user!', 'status' => false]);
+        }
     } else {
-      echo json_encode(['msg' => 'Error deleting user!', 'status' => false]);
+        echo json_encode(['msg' => 'User with specified ID does not exist!', 'status' => false]);
     }
-  }
-  }
-
 }
+
