@@ -34,7 +34,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     echo json_encode(['msg' => 'No Data!', 'status' => false]);
   }
 }
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Check for POST request with 'insert' parameter to add a new user
     $nombre = $_POST['nombre'];
@@ -51,30 +50,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
       echo json_encode(['msg' => 'Error creating user!', 'status' => false]);
     }
-  }
+} elseif ($_SERVER['REQUEST_METHOD'] === 'PUT') {
   // Check for PUT request with 'update' parameter to update an existing user
-  if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-    $id_Usuario = $_PUT['id_Usuario'];
-    $nombre = $_PUT['nombre'];
-    $email = $_PUT['email'];
-    $password = $_PUT['password'];
+  parse_str(file_get_contents("php://input"),$put_vars);
+  $id_Usuario = $put_vars['id_Usuario'];
+  $nombre = $put_vars['nombre'];
+  $email = $put_vars['email'];
+  $password = $put_vars['password'];
 
-    $sql = "UPDATE Usuario 
-            SET nombre='$nombre', email='$email', password='$password'
-            WHERE id_Usuario = '$id_Usuario'";
+  $sql = "UPDATE Usuario 
+          SET nombre='$nombre', email='$email', password='$password'
+          WHERE id_Usuario = '$id_Usuario'";
 
-    $result = mysqli_query($conn, $sql);
+  $result = mysqli_query($conn, $sql);
 
-    if ($result) {
-        echo json_encode(['msg' => 'User updated successfully!', 'status' => true]);
-    } else {
-        echo json_encode(['msg' => 'Error updating user!', 'status' => false]);
-    }
+  if ($result) {
+      echo json_encode(['msg' => 'User updated successfully!', 'status' => true]);
+  } else {
+      echo json_encode(['msg' => 'Error updating user!', 'status' => false]);
   }
-
-// Check for DELETE request with 'delete' parameter to delete an existing user
-if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-  $id_Usuario = $_DELETE['id_Usuario'];
+} elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
+  // Check for DELETE request with 'delete' parameter to delete an existing user
+  parse_str(file_get_contents("php://input"),$delete_vars);
+  $id_Usuario = $delete_vars['id_Usuario'];
 
   $sql = "DELETE FROM Usuario WHERE id_Usuario = '$id_Usuario'";
 
@@ -86,7 +84,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     echo json_encode(['msg' => 'Error deleting user!', 'status' => false]);
   }
 }
-
-
-mysqli_close($conn);
-?>
