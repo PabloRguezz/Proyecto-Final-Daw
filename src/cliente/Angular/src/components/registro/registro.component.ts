@@ -1,32 +1,25 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import { UsuarioServiceService } from 'src/app/service/usuario-service.service';
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent {
-  constructor(private http: HttpClient,private router: Router) {}
-  nombre: string;
-  email: string;
-  password: string;
+  constructor(private http: HttpClient,private router: Router,private usuarioService: UsuarioServiceService) {}
+  formularioRegistro = {
+    nombre: '',
+    email: '',
+    password: ''
+  };
   registrarCliente() {
-    const nuevoCliente = {
-      nombre: this.nombre,
-      email: this.email,
-      password: this.password
-    };
-
-    this.http.post('https://api.nombre.alu6852.arkania.es', nuevoCliente)
-      .toPromise()
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.error(error);
-      });
+    const { nombre, email, password } = this.formularioRegistro;
+    this.usuarioService.registrarUsuario(nombre, email, password).subscribe(response => {
+      console.log(response);
+      // Aquí podemos hacer algo con la respuesta de la API, como redirigir al usuario a otra página
+    });
   }
   ngOnInit(){
     let signup = document.querySelector(".signup");

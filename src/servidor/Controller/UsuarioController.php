@@ -49,7 +49,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   } else {
     $insertSql = "INSERT INTO Usuario (nombre, email, password) VALUES ('$nombre', '$email', '$password')";
     $insertResult = mysqli_query($conn, $insertSql);
-
     if ($insertResult) {
       echo json_encode(['msg' => 'User created successfully!', 'status' => true]);
     } else {
