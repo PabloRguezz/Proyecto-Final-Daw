@@ -40,8 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    $sql = "INSERT INTO Usuario (nombre, email, password) 
-            VALUES ('$nombre', '$email', '$password')";
+    $sql = "INSERT INTO Usuario (nombre, email, password) VALUES ('$nombre', '$email', '$password')";
 
     $result = mysqli_query($conn, $sql);
 
@@ -59,8 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $password = $put_vars['password'];
 
   $sql = "UPDATE Usuario 
-          SET nombre='$nombre', email='$email', password='$password'
-          WHERE id_Usuario = '$id_Usuario'";
+          SET nombre='$nombre', email='$email', password='$password' WHERE id_Usuario = '$id_Usuario'";
 
   $result = mysqli_query($conn, $sql);
 
@@ -70,17 +68,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo json_encode(['msg' => 'Error updating user!', 'status' => false]);
   }
 } elseif ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
-  // Check for DELETE request with 'delete' parameter to delete an existing user
-  parse_str(file_get_contents("php://input"),$delete_vars);
-  $id_Usuario = $delete_vars['id_Usuario'];
+  // Check for DELETE request with 'delete' parameter to delete an existing use
+    $id_Usuario = intval($_REQUEST['id_Usuario']);
+    $sql = "DELETE FROM Usuario WHERE id_Usuario = '$id_Usuario'";
+    $result = mysqli_query($conn, $sql);
 
-  $sql = "DELETE FROM Usuario WHERE id_Usuario = '$id_Usuario'";
-
-  $result = mysqli_query($conn, $sql);
-
-  if ($result) {
-    echo json_encode(['msg' => 'User deleted successfully!', 'status' => true]);
-  } else {
-    echo json_encode(['msg' => 'Error deleting user!', 'status' => false]);
+    if ($result) {
+      echo json_encode(['msg' => 'User deleted successfully!', 'status' => true]);
+    } else {
+      echo json_encode(['msg' => 'Error deleting user!', 'status' => false]);
+    }
   }
+  }
+
 }
