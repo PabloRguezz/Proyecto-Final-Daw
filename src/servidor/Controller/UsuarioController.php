@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
       echo json_encode(['msg' => 'Error creating user!', 'status' => false]);
     }
-
+  }
   // Check for PUT request with 'update' parameter to update an existing user
   if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $id_Usuario = $_PUT['id_Usuario'];
@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     echo json_encode(['msg' => 'Error deleting user!', 'status' => false]);
   }
 }
-} 
+
 
 mysqli_close($conn);
 ?>
