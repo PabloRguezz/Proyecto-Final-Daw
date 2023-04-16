@@ -16,9 +16,14 @@ export class RegistroComponent {
   };
   registrarCliente() {
     const { nombre, email, password } = this.formularioRegistro;
+    
+    if (!nombre) {
+      alert('El campo "nombre" es obligatorio');
+      return null;
+    }
+    
     this.usuarioService.registrarUsuario(nombre, email, password).subscribe(response => {
       console.log(response);
-      // Aquí podemos hacer algo con la respuesta de la API, como redirigir al usuario a otra página
     });
   }
   ngOnInit(){
