@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UsuarioServiceService } from 'src/app/service/usuario-service.service';
-import { Swal } from 'sweetalert2';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -18,7 +18,7 @@ export class LoginComponent {
   this.usuarioService.iniciarSesion(this.email, this.password).subscribe(
     (usuario: any) => {
       if (usuario && usuario.length > 0) {
-        console.log('Inicio de sesión exitoso');
+        this.router.navigate(['usuario']);
       } else {
         Swal.fire('Inicio de sesión fallido');
       }

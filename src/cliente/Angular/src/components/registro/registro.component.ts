@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UsuarioServiceService } from 'src/app/service/usuario-service.service';
+import Swal from 'sweetalert2';
+
 @Component({
   selector: 'app-registro',
   templateUrl: './registro.component.html',
@@ -23,7 +25,7 @@ export class RegistroComponent {
     }
     
     this.usuarioService.registrarUsuario(nombre, email, password).subscribe(response => {
-      console.log(response);
+      Swal.fire(response['msg']);
     });
   }
   ngOnInit(){
