@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsuarioServiceService {
 
-  private apiUrl = 'http://api.usuario.alu6852.arkania.es';
+  private apiUrl = 'https://api.usuario.alu6852.arkania.es';
 
   constructor(private http: HttpClient) { }
 
