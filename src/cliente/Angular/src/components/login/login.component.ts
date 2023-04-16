@@ -18,7 +18,7 @@ export class LoginComponent {
   this.usuarioService.iniciarSesion(this.email, this.password).subscribe(
     (usuario: any) => {
       if (usuario && usuario.length > 0) {
-        this.router.navigate(['usuario']);
+        this.router.navigate(['/usuario']);
       } else {
         Swal.fire('Inicio de sesión fallido');
       }
