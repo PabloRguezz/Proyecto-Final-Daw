@@ -37,10 +37,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   }
 }
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Check for POST request with 'insert' parameter to add a new user
-  $nombre = $_POST['nombre'];
-  $email = $_POST['email'];
-  $password = $_POST['password'];
+  // Get JSON object from request body
+  $json_str = file_get_contents('php://input');
+  $json_obj = json_decode($json_str);
+
+  // Check if all required fields are present in JSON object
+  if (!isset($json_obj->nombre) || !isset($json_obj->email) || !isset($json_obj->password)) {
+    echo json_encode(['msg' => 'Missing fields!', 'status' => false]);
+    exit;
+  }
+
+  // Extract data from JSON object
+  $nombre = $json_obj->nombre;
+  $email = $json_obj->email;
+  $password = $json_obj->password;
 
   // Check if the email already exists in the database
   $checkEmailSql = "SELECT * FROM Usuario WHERE email = '$email'";
@@ -58,6 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
   }
 }
+
 
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
   // Check for PUT request with 'update' parameter to update an existing user
