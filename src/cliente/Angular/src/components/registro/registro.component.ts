@@ -18,14 +18,30 @@ export class RegistroComponent {
   };
   registrarCliente() {
     const { nombre, email, password } = this.formularioRegistro;
-    
-    if (!nombre) {
-      alert('El campo "nombre" es obligatorio');
-      return null;
-    }
-    
-    this.usuarioService.registrarUsuario(nombre, email, password).subscribe(response => {
-      Swal.fire(response['msg']);
+    this.usuarioService.registrarUsuario(nombre, email, password).subscribe(
+      (response) => {
+      if (response['status']) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response['msg'],
+          showConfirmButton: false,
+          timer: 1500
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: response['msg'],
+        })
+      }
+
+    },
+    (error) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ha habido un error registrando el usuario',
+      })
     });
   }
   ngOnInit(){

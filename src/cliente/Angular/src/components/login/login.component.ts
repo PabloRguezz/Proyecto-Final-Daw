@@ -20,11 +20,20 @@ export class LoginComponent {
       if (usuario && usuario.length > 0) {
         this.router.navigate(['/usuario']);
       } else {
-        Swal.fire('Inicio de sesión fallido');
+        Swal.fire({
+          icon: 'error',
+          title: '!Cuidado!',
+          text: 'Datos incorrectos',
+          footer: '<a href="registro">Desea registrarse?</a>'
+        })
       }
     },
     (error) => {
-      Swal.fire('Inicio de sesión fallido');      
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Error iniciando sesion',
+      })    
     }
   );
 }

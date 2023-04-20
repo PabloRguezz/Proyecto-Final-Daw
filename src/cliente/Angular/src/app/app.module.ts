@@ -6,12 +6,14 @@ import { LoginComponent } from '../components/login/login.component';
 import { RegistroComponent } from '../components/registro/registro.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeUsuarioComponent } from 'src/components/home-usuario/home-usuario.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    RegistroComponent
+    RegistroComponent,
+    HomeUsuarioComponent
   ],
   imports: [
     BrowserModule,
