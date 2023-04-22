@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { UsuarioServiceService } from 'src/app/service/usuario-service.service';
+import { UsuarioServiceService } from 'src/service/usuario/usuario-service.service';
 import Swal from 'sweetalert2';
+import { EmpresaService } from 'src/service/empresa/empresa.service';
 
 @Component({
   selector: 'app-registro',
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent {
-  constructor(private http: HttpClient,private router: Router,private usuarioService: UsuarioServiceService) {}
+  constructor(private http: HttpClient,private router: Router,private usuarioService: UsuarioServiceService, private empresaService : EmpresaService) {}
   formularioRegistro = {
     nombre: '',
     email: '',
@@ -44,6 +45,8 @@ export class RegistroComponent {
       })
     });
   }
+  
+    
   ngOnInit(){
     let signup = document.querySelector(".signup");
     let login = document.querySelector(".login");

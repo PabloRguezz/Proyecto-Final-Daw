@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { UsuarioServiceService } from 'src/app/service/usuario-service.service';
+import { UsuarioServiceService } from 'src/service/usuario/usuario-service.service';
 import Swal from 'sweetalert2';
 
 
