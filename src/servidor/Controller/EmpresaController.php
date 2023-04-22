@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   if (isset($_GET['cif_Empresa']) && isset($_GET['password'])) {
     $cif_Empresa = $_GET['cif_Empresa'];
     $password = $_GET['password'];
-    $sql = "SELECT * FROM Empresa WHERE cif_Empresa = '$cif_Empresa' AND password = '$password'";
+    $sql = "SELECT password FROM Empresa WHERE cif_Empresa = '$cif_Empresa'";
   }
   
   // Run query
@@ -28,8 +28,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     //mysqli_fetch_all gives us the data in 2D array format.
     // It's second parameter decide whether its assoc array or indexed. Or maybe both
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    echo json_encode($data);
+    $verify = password_verify($password, $data[0]);
+    if ($verify) {
+      echo json_encode($data);
+    } else {
+      echo json_encode(['msg' => 'No Data!', 'status' => false]);
+    }
   } else {
     echo json_encode(['msg' => 'No Data!', 'status' => false]);
   }
@@ -42,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   // Check if all required fields are present in JSON object
   if (!isset($json_obj->cif_Empresa) || !isset($json_obj->nombre) || !isset($json_obj->tlf_contacto) || !isset($json_obj->password) || !isset($json_obj->horario) || !isset($json_obj->ubicacion) || !isset($json_obj->descripcion)) {
-    echo json_encode(['msg' => 'Missing fields!', 'status' => false]);
+    echo json_encode(['msg' => 'Faltan Datos', 'status' => false]);
     exit;
   }
 
@@ -50,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $cif_Empresa = $json_obj->cif_Empresa;
   $nombre = $json_obj->nombre;
   $tlf_contacto = $json_obj->tlf_contacto;
-  $password = $json_obj->password;
+  $password = password_hash($json_obj->password, PASSWORD_DEFAULT);
   $horario = $json_obj->horario;
   $ubicacion = $json_obj->ubicacion;
   $descripcion = $json_obj->descripcion;
@@ -66,27 +70,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $insertResult = mysqli_query($conn, $insertSql);
 
     if ($insertResult) {
-      echo json_encode(['msg' => 'Company created successfully!', 'status' => true]);
+      echo json_encode(['msg' => 'Empresa creada correctamente', 'status' => true]);
     } else {
-      echo json_encode(['msg' => 'Error creating company!', 'status' => false]);
+      echo json_encode(['msg' => 'Error creando empresa', 'status' => false]);
     }
   }
 }
 
 // Check for PUT request with 'update' parameter to update an existing company
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-  $cif_Empresa = $_PUT['cif_Empresa'];
-  $nombre = $_PUT['nombre'];
-  $tlf_contacto = $_PUT['tlf_contacto'];
-  $password = $_PUT['password'];
-  $horario = $_PUT['horario'];
-  $ubicacion = $_PUT['ubicacion'];
-  $descripcion = $_PUT['descripcion'];
+  $cif_Empresa = $_GET['cif_Empresa'];
+  $nombre = $_GET['nombre'];
+  $tlf_contacto = $_GET['tlf_contacto'];
+  $password = password_hash($_GET['password'], PASSWORD_DEFAULT);
+  $horario = $_GET['horario'];
+  $ubicacion = $_GET['ubicacion'];
+  $descripcion = $_GET['descripcion'];
 
-  $sql = "UPDATE Empresa 
-          SET nombre='$nombre', tlf_contacto='$tlf_contacto', password='$password', 
-              horario='$horario', ubicacion='$ubicacion', descripcion='$descripcion' 
-          WHERE cif_Empresa = '$cif_Empresa'";
+  $sql = "UPDATE Empresa SET nombre='$nombre', tlf_contacto='$tlf_contacto', password='$password', horario='$horario', ubicacion='$ubicacion', descripcion='$descripcion' WHERE cif_Empresa = '$cif_Empresa'";
 
   $result = mysqli_query($conn, $sql);
 

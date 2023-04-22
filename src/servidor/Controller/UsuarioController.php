@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   if (isset($_GET['email']) && isset($_GET['password'])) {
     $email = $_GET['email'];
     $password = $_GET['password'];
-    $sql = "SELECT * FROM Usuario WHERE email = '$email' AND password = '$password'";
+    $sql = "SELECT password FROM Usuario WHERE email = '$email' ";
   }
   // Run query
   $result = mysqli_query($conn, $sql);
@@ -29,8 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     //mysqli_fetch_all gives us the data in 2D array format.
     // It's second parameter decide whether its assoc array or indexed. Or maybe both
     $data = mysqli_fetch_all($result, MYSQLI_ASSOC);
-
-    echo json_encode($data);
+    $verify = password_verify($password, $data[0]);
+    if ($verify) {
+      echo json_encode($data);
+    } else {
+      echo json_encode(['msg' => 'No Data!', 'status' => false]);
+    }
   } else {
     echo json_encode(['msg' => 'No Data!', 'status' => false]);
   }
@@ -49,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Extract data from JSON object
   $nombre = $json_obj->nombre;
   $email = $json_obj->email;
-  $password = $json_obj->password;
+  $password = password_hash($json_obj->password, PASSWORD_DEFAULT);
 
   // Check if the email already exists in the database
   $checkEmailSql = "SELECT * FROM Usuario WHERE email = '$email'";
@@ -74,7 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
   $id_Usuario = $_GET['id_Usuario'];
   $nombre = $_GET['nombre'];
   $email = $_GET['email'];
-  $password = $_GET['password'];
+  $password = password_hash($_GET['password'], PASSWORD_DEFAULT);
 
   $sql = "UPDATE Usuario SET nombre='$nombre', email='$email', password='$password' WHERE id_Usuario = '$id_Usuario'";
 
