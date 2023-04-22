@@ -18,8 +18,27 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
   if (isset($_GET['cif_Empresa']) && isset($_GET['password'])) {
     $cif_Empresa = $_GET['cif_Empresa'];
     $password = $_GET['password'];
-    $sql = "SELECT * FROM Empresa WHERE cif_Empresa = '$cif_Empresa' AND password = '$password'";
+  
+    // Get the hashed password from the database
+    $sql = "SELECT password FROM Empresa WHERE cif_Empresa = '$cif_Empresa'";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $hashed_password = $row['password'];
+  
+    // Hash the password received in the request
+    $hashed_input_password = hash('sha256', $password);
+  
+    // Compare the two hashed passwords
+    if ($hashed_password === $hashed_input_password) {
+      // Passwords match, return data
+      $sql = "SELECT * FROM Empresa WHERE cif_Empresa = '$cif_Empresa'";
+    } else {
+      // Passwords don't match, return error message
+      echo json_encode(['msg' => 'Incorrect password!', 'status' => false]);
+      exit;
+    }
   }
+  
   
   // Run query
   $result = mysqli_query($conn, $sql);
@@ -55,6 +74,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $ubicacion = $json_obj->ubicacion;
   $descripcion = $json_obj->descripcion;
 
+  // Hash the password
+  $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
   // Check if the CIF already exists in the database
   $checkCifSql = "SELECT * FROM Empresa WHERE cif_Empresa = '$cif_Empresa'";
   $checkCifResult = mysqli_query($conn, $checkCifSql);
@@ -62,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (mysqli_num_rows($checkCifResult) > 0) {
     echo json_encode(['msg' => 'El CIF ya existe', 'status' => false]);
   } else {
-    $insertSql = "INSERT INTO Empresa (cif_Empresa, nombre, tlf_contacto, password, horario, ubicacion, descripcion) VALUES ('$cif_Empresa', '$nombre', '$tlf_contacto', '$password', '$horario', '$ubicacion', '$descripcion')";
+    $insertSql = "INSERT INTO Empresa (cif_Empresa, nombre, tlf_contacto, password, horario, ubicacion, descripcion) VALUES ('$cif_Empresa', '$nombre', '$tlf_contacto', '$hashedPassword', '$horario', '$ubicacion', '$descripcion')";
     $insertResult = mysqli_query($conn, $insertSql);
 
     if ($insertResult) {
@@ -73,18 +95,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
+
 // Check for PUT request with 'update' parameter to update an existing company
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
-  $cif_Empresa = $_PUT['cif_Empresa'];
-  $nombre = $_PUT['nombre'];
-  $tlf_contacto = $_PUT['tlf_contacto'];
-  $password = $_PUT['password'];
-  $horario = $_PUT['horario'];
-  $ubicacion = $_PUT['ubicacion'];
-  $descripcion = $_PUT['descripcion'];
+  // Get JSON object from request body
+  $json_str = file_get_contents('php://input');
+  $json_obj = json_decode($json_str);
 
+  // Check if all required fields are present in JSON object
+  if (!isset($json_obj->cif_Empresa) || !isset($json_obj->nombre) || !isset($json_obj->tlf_contacto) || !isset($json_obj->password) || !isset($json_obj->horario) || !isset($json_obj->ubicacion) || !isset($json_obj->descripcion)) {
+    echo json_encode(['msg' => 'Missing fields!', 'status' => false]);
+    exit;
+  }
+
+  // Extract data from JSON object
+  $cif_Empresa = $json_obj->cif_Empresa;
+  $nombre = $json_obj->nombre;
+  $tlf_contacto = $json_obj->tlf_contacto;
+  $password = $json_obj->password;
+  $horario = $json_obj->horario;
+  $ubicacion = $json_obj->ubicacion;
+  $descripcion = $json_obj->descripcion;
+
+  // Hash password
+  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+
+  // Update database
   $sql = "UPDATE Empresa 
-          SET nombre='$nombre', tlf_contacto='$tlf_contacto', password='$password', 
+          SET nombre='$nombre', tlf_contacto='$tlf_contacto', password='$hashed_password', 
               horario='$horario', ubicacion='$ubicacion', descripcion='$descripcion' 
           WHERE cif_Empresa = '$cif_Empresa'";
 
@@ -96,6 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
       echo json_encode(['msg' => 'Error updating company!', 'status' => false]);
   }
 }
+
 
 // Check for DELETE request with 'delete' parameter to delete an existing company
 if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
