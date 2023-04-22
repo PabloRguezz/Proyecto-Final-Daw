@@ -4,6 +4,6 @@ cd /home/pablo/Proyecto-Final-Daw/src/cliente/Angular
 
 npm install
 
-ng serve --port=3000
+ng serve --port=4200
 
 

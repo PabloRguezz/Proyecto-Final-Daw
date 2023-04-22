@@ -21,19 +21,18 @@
 		</div>
 		<div class="form-section">
 			<div class="login-box">
-                <form (submit)="onSubmit(formularioRegistro.value)">
+                <form (submit)="registrarCliente()">
                     <input class="input" type="text" name="nombre" id="nombre" placeholder="Nombre" required="" [(ngModel)]="formularioRegistro.nombre"> 
                     <input class="input" type="email" name="email" id="email" placeholder="Email" required="" [(ngModel)]="formularioRegistro.email"> 
-                    <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required="" [(ngModel)]="formularioRegistro.password"> 
+                    <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required [(ngModel)]="formularioRegistro.password">
                     <button type="button" class="btn btn-dark" routerLink="">Volver al login</button> 
                     <button type="submit" class="btn btn-dark">Registrarse</button>
-                  </form>
-                  
+                </form>
 			</div>
 			<div class="signup-box">
                 <form class="empresa">
-                    <input class="input" type="text" name="nombre"
-                    id="nombre" placeholder="Nombre de la empresa" required=""> 
+                    <input class="input" type="text" name="nombreEmpresa"
+                    id="nombreEmpresa" placeholder="Nombre de la empresa" required=""> 
                     <input class="input" type="text" name="cif" id="cif"
                     placeholder="CIF Empresa" required=""> 
                     <input class="input" type="tel" name="telefono" id="telefono"
@@ -55,7 +54,7 @@
                     id="domingoFin" name="domingoFin"> <br>
                     <input class="input" type="text" name="ubicacion" id="ubicacion" placeholder="Ubicacion" required=""> 
                     <input class="input" type="text" name="descripcion" id="descripcion" placeholder="Descripcion" required=""> 
-                    <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required=""> 
+                    <input class="input" type="password" name="password" id="password" placeholder="Contraseña" required=""> 
                     <button type="button" class="btn btn-dark" routerLink="">Volver al login</button>
                     <button type="submit" class="btn btn-dark">Registrarse</button>
                 </form>

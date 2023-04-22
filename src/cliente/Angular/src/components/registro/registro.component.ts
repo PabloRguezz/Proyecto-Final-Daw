@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { UsuarioServiceService } from 'src/app/service/usuario-service.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-registro',
@@ -7,24 +10,39 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./registro.component.css']
 })
 export class RegistroComponent {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient,private router: Router,private usuarioService: UsuarioServiceService) {}
   formularioRegistro = {
     nombre: '',
     email: '',
     password: ''
   };
-  onSubmit(data :any) {
-    const url = 'http://api.bookme.alu6852.arkania.es/usuarios';
-    this.http.post(url, data).subscribe(
-      (res: any) => {
-        console.log(res);
-        // Redireccionar al usuario a la página de inicio de sesión o mostrar un mensaje de éxito.
-      },
-      (err: any) => {
-        console.error(err);
-        // Mostrar un mensaje de error.
+  registrarCliente() {
+    const { nombre, email, password } = this.formularioRegistro;
+    this.usuarioService.registrarUsuario(nombre, email, password).subscribe(
+      (response) => {
+      if (response['status']) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: response['msg'],
+          showConfirmButton: false,
+          timer: 1500
+        })
+      } else {
+        Swal.fire({
+          icon: 'error',
+          title: response['msg'],
+        })
       }
-    );
+
+    },
+    (error) => {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Ha habido un error registrando el usuario',
+      })
+    });
   }
   ngOnInit(){
     let signup = document.querySelector(".signup");

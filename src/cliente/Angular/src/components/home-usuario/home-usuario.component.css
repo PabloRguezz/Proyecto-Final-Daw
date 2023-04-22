@@ -1,0 +1,244 @@
+/* Estilos generales */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f9f9f9;
+  }
+  
+  a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  ul {
+    list-style: none;
+  }
+  
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Estilos para la cabecera */
+  
+  header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+  }
+  
+  nav ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 1rem;
+  }
+  
+  nav ul li {
+    margin-left: 2rem;
+  }
+  
+  nav ul li:first-child {
+    margin-left: 0;
+  }
+  
+  nav ul li a {
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  nav ul li a:hover {
+    color: #f05f40;
+  }
+  
+  /* Estilos para el hero */
+  
+  .hero {
+    background-image: url('https://via.placeholder.com/1200x800');
+    background-size: cover;
+    background-position: center center;
+    min-height: 600px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    position: relative;
+  }
+  
+  .hero:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .hero h1 {
+    font-size: 4rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1rem;
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+  }
+  
+  .btn-primary,
+  .btn-secondary {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  .btn-primary {
+    background-color: #f05f40;
+    color: #fff;
+  }
+  
+  .btn-secondary {
+    background-color: #fff;
+    color: #333;
+    border: 2px solid #f05f40;
+  }
+  
+  .btn-primary:hover,
+  .btn-secondary:hover {
+    transform: scale(1.05);
+  }
+  
+/* Estilos para destinos destacados */
+
+.featured {
+    padding: 4rem 0;
+    }
+    
+    .featured h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+    text-align: center;
+    }
+    
+    .featured .destination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    }
+    
+    .destination-card {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 1rem;
+    overflow: hidden;
+    width: 300px;
+    }
+    
+    .destination-card:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+    }
+    
+    .destination-card img {
+    object-fit: cover;
+    width: 100%;
+    height: 200px;
+    }
+    
+    .destination-card .destination-details {
+    padding: 1rem;
+    }
+    
+    .destination-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    }
+    
+    .destination-card p {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    }
+    
+    .destination-card .destination-price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    }
+    
+    .destination-card .btn {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+    text-transform: uppercase;
+    background-color: #f05f40;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    }
+    
+    .destination-card .btn:hover {
+    background-color: #fff;
+    color: #f05f40;
+    }
+    .card-group {
+      width: 80%;
+      margin: 0 auto;
+      
+    }
+    
+    .card {
+      padding: 2%;
+      width: 250px;
+    }
+    
+    
+    .glide__slides img {
+      width: 100%;
+    }
+    
+    .glide__arrows {
+      margin-top: 10px;
+    }
+    
+    .glide__arrow {
+      background: none;
+      border: none;
+      font-size: 18px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    
+    .glide__arrow:hover {
+      background-color: #ccc;
+    }
+    #myCarousel{
+      padding-left: 10%;
+    }
+    
