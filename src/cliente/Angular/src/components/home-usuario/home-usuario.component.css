@@ -207,3 +207,38 @@
     background-color: #fff;
     color: #f05f40;
     }
+    .card-group {
+      width: 80%;
+      margin: 0 auto;
+      
+    }
+    
+    .card {
+      padding: 2%;
+      width: 250px;
+    }
+    
+    
+    .glide__slides img {
+      width: 100%;
+    }
+    
+    .glide__arrows {
+      margin-top: 10px;
+    }
+    
+    .glide__arrow {
+      background: none;
+      border: none;
+      font-size: 18px;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+    
+    .glide__arrow:hover {
+      background-color: #ccc;
+    }
+    #myCarousel{
+      padding-left: 10%;
+    }
+    

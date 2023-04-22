@@ -1,76 +1,242 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plataforma de Reservas Online</title>
-</head>
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="#">Inicio</a></li>
-        <li><a href="#">Reservas</a></li>
-        <li><a href="#">Acerca de</a></li>
-        <li><a href="#">Contacto</a></li>
-        <li><a href="#">Iniciar sesión</a></li>
-      </ul>
-    </nav>
-  </header>
-  <main>
-    <section class="hero">
-      <h1>Reserva tu próximo destino con nosotros</h1>
-      <p>Encuentra las mejores opciones de alojamiento en cualquier parte del mundo</p>
-      <a href="#" class="btn-primary">Explora Ahora</a>
-    </section>
-
-    <section class="featured">
-      <h2>Destinos destacados</h2>
-      <div class="card-group">
-        <div class="card">
-          <img src="https://via.placeholder.com/400x300" alt="Destino 1">
-          <h3>Destino 1</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis, nisi quis aliquam convallis, ante enim bibendum arcu, eu rutrum sapien turpis vel metus.</p>
-          <a href="#" class="btn-secondary">Ver más</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Plataforma de Reservas Online</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <ul>
+          <li><a href="#">Inicio</a></li>
+          <li><a href="#">Reservas</a></li>
+          <li><a href="#">Acerca de</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Iniciar sesión</a></li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="hero">
+        <h1>Reserva tu próximo destino con nosotros</h1>
+        <p>
+          Encuentra las mejores opciones de alojamiento en cualquier parte del
+          mundo
+        </p>
+        <a href="#" class="btn-primary">Explora Ahora</a>
+      </section>
+      <section class="services">
+        <h2>Nuestros Servicios</h2>
+        <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="card">
+                    <img
+                      src="https://via.placeholder.com/400x300"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Servicio 1</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed iaculis, nisi quis aliquam convallis, ante enim
+                        bibendum arcu, eu rutrum sapien turpis vel metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="card">
+                    <img
+                      src="https://via.placeholder.com/400x300"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Servicio 2</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed iaculis, nisi quis aliquam convallis, ante enim
+                        bibendum arcu, eu rutrum sapien turpis vel metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="card">
+                    <img
+                      src="https://via.placeholder.com/400x300"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Servicio 3</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed iaculis, nisi quis aliquam convallis, ante enim
+                        bibendum arcu, eu rutrum sapien turpis vel metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="card">
+                    <img
+                      src="https://via.placeholder.com/400x300"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Servicio 4</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed iaculis, nisi quis aliquam convallis, ante enim
+                        bibendum arcu, eu rutrum sapien turpis vel metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="card">
+                    <img
+                      src="https://via.placeholder.com/400x300"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Servicio 5</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed iaculis, nisi quis aliquam convallis, ante enim
+                        bibendum arcu, eu rutrum sapien turpis vel metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col-md-2">
+                  <div class="card">
+                    <img
+                      src="https://via.placeholder.com/400x300"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Servicio 6</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed iaculis, nisi quis aliquam convallis, ante enim
+                        bibendum arcu, eu rutrum sapien turpis vel metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="card">
+                    <img
+                      src="https://via.placeholder.com/400x300"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Servicio 7</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed iaculis, nisi quis aliquam convallis, ante enim
+                        bibendum arcu, eu rutrum sapien turpis vel metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="card">
+                    <img
+                      src="https://via.placeholder.com/400x300"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Servicio 8</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed iaculis, nisi quis aliquam convallis, ante enim
+                        bibendum arcu, eu rutrum sapien turpis vel metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="card">
+                    <img
+                      src="https://via.placeholder.com/400x300"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Servicio 9</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed iaculis, nisi quis aliquam convallis, ante enim
+                        bibendum arcu, eu rutrum sapien turpis vel metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="card">
+                    <img
+                      src="https://via.placeholder.com/400x300"
+                      class="card-img-top"
+                      alt="..."
+                    />
+                    <div class="card-body">
+                      <h5 class="card-title">Servicio 10</h5>
+                      <p class="card-text">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                        Sed iaculis, nisi quis aliquam convallis, ante enim
+                        bibendum arcu, eu rutrum sapien turpis vel metus.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#myCarousel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
         </div>
-        <div class="card">
-          <img src="https://via.placeholder.com/400x300" alt="Destino 2">
-          <h3>Destino 2</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis, nisi quis aliquam convallis, ante enim bibendum arcu, eu rutrum sapien turpis vel metus.</p>
-          <a href="#" class="btn-secondary">Ver más</a>
-        </div>
-        <div class="card">
-          <img src="https://via.placeholder.com/400x300" alt="Destino 3">
-          <h3>Destino 3</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis, nisi quis aliquam convallis, ante enim bibendum arcu, eu rutrum sapien turpis vel metus.</p>
-          <a href="#" class="btn-secondary">Ver más</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="services">
-      <h2>Nuestros Servicios</h2>
-      <div class="card-group">
-        <div class="card">
-          <img src="https://via.placeholder.com/400x300" alt="Servicio 1">
-          <h3>Servicio 1</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis, nisi quis aliquam convallis, ante enim bibendum arcu, eu rutrum sapien turpis vel metus.</p>
-        </div>
-        <div class="card">
-          <img src="https://via.placeholder.com/400x300" alt="Servicio 2">
-          <h3>Servicio 2</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis, nisi quis aliquam convallis, ante enim bibendum arcu, eu rutrum sapien turpis vel metus.</p>
-        </div>
-        <div class="card">
-        <img src="https://via.placeholder.com/400x300" alt="Servicio 3">
-        <h3>Servicio 3</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis, nisi quis aliquam convallis, ante enim bibendum arcu, eu rutrum sapien turpis vel metus.</p>
-        </div>
-        </div>
-        </section>
-          </main>
-          <footer>
-            <p>Derechos Reservados &copy; 2023 Plataforma de Reservas Online</p>
-          </footer>
-        </body>
-        </html>
+      </section>
+    </main>
+    <footer>
+      <p>Derechos Reservados &copy; 2023 Plataforma de Reservas Online</p>
+    </footer>
+  </body>
+</html>
