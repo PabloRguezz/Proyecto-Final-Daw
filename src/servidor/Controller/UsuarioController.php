@@ -22,7 +22,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     $password = $_GET['password'];
     $sql = "SELECT * FROM Usuario WHERE email = '$email' AND password = '$password'";
   }
-  
   // Run query
   $result = mysqli_query($conn, $sql);
 
@@ -57,14 +56,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $checkEmailResult = mysqli_query($conn, $checkEmailSql);
 
   if (mysqli_num_rows($checkEmailResult) > 0) {
-    echo json_encode(['msg' => 'Email already exists!', 'status' => false]);
+    echo json_encode(['msg' => 'El email ya existe', 'status' => false]);
   } else {
     $insertSql = "INSERT INTO Usuario (nombre, email, password) VALUES ('$nombre', '$email', '$password')";
     $insertResult = mysqli_query($conn, $insertSql);
     if ($insertResult) {
-      echo json_encode(['msg' => 'User created successfully!', 'status' => true]);
+      echo json_encode(['msg' => 'Usuario creado correctamente', 'status' => true]);
     } else {
-      echo json_encode(['msg' => 'Error creating user!', 'status' => false]);
+      echo json_encode(['msg' => 'Error creando el usuario', 'status' => false]);
     }
   }
 }

@@ -36,26 +36,43 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-  // Check for POST request with 'insert' parameter to add a new company
-    $cif_Empresa = $_POST['cif_Empresa'];
-    $nombre = $_POST['nombre'];
-    $tlf_contacto = $_POST['tlf_contacto'];
-    $password = $_POST['password'];
-    $horario = $_POST['horario'];
-    $ubicacion = $_POST['ubicacion'];
-    $descripcion = $_POST['descripcion'];
+  // Get JSON object from request body
+  $json_str = file_get_contents('php://input');
+  $json_obj = json_decode($json_str);
 
-    $sql = "INSERT INTO Empresa (cif_Empresa, nombre, tlf_contacto, password, horario, ubicacion, descripcion) 
-            VALUES ('$cif_Empresa', '$nombre', '$tlf_contacto', '$password', '$horario', '$ubicacion', '$descripcion')";
+  // Check if all required fields are present in JSON object
+  if (!isset($json_obj->cif_Empresa) || !isset($json_obj->nombre) || !isset($json_obj->tlf_contacto) || !isset($json_obj->password) || !isset($json_obj->horario) || !isset($json_obj->ubicacion) || !isset($json_obj->descripcion)) {
+    echo json_encode(['msg' => 'Missing fields!', 'status' => false]);
+    exit;
+  }
 
-    $result = mysqli_query($conn, $sql);
+  // Extract data from JSON object
+  $cif_Empresa = $json_obj->cif_Empresa;
+  $nombre = $json_obj->nombre;
+  $tlf_contacto = $json_obj->tlf_contacto;
+  $password = $json_obj->password;
+  $horario = $json_obj->horario;
+  $ubicacion = $json_obj->ubicacion;
+  $descripcion = $json_obj->descripcion;
 
-    if ($result) {
+  // Check if the CIF already exists in the database
+  $checkCifSql = "SELECT * FROM Empresa WHERE cif_Empresa = '$cif_Empresa'";
+  $checkCifResult = mysqli_query($conn, $checkCifSql);
+
+  if (mysqli_num_rows($checkCifResult) > 0) {
+    echo json_encode(['msg' => 'El CIF ya existe', 'status' => false]);
+  } else {
+    $insertSql = "INSERT INTO Empresa (cif_Empresa, nombre, tlf_contacto, password, horario, ubicacion, descripcion) VALUES ('$cif_Empresa', '$nombre', '$tlf_contacto', '$password', '$horario', '$ubicacion', '$descripcion')";
+    $insertResult = mysqli_query($conn, $insertSql);
+
+    if ($insertResult) {
       echo json_encode(['msg' => 'Company created successfully!', 'status' => true]);
     } else {
       echo json_encode(['msg' => 'Error creating company!', 'status' => false]);
     }
   }
+}
+
 // Check for PUT request with 'update' parameter to update an existing company
 if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
   $cif_Empresa = $_PUT['cif_Empresa'];
@@ -94,6 +111,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
       echo json_encode(['msg' => 'Error deleting company!', 'status' => false]);
   }
 }
-  mysqli_close($conn);
+mysqli_close($conn);
 
 ?>
