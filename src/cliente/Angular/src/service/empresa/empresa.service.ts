@@ -16,4 +16,7 @@ export class EmpresaService {
     return this.http.post(this.apiUrl, empresa);
   }
 
+  iniciarSesion(email: string, password: string) {
+    return this.http.get(`${this.apiUrl}?email=${email}&password=${password}`);
+  }
 }

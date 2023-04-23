@@ -75,7 +75,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $descripcion = $json_obj->descripcion;
 
   // Hash the password
-  $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+
 
   // Check if the CIF already exists in the database
   $checkCifSql = "SELECT * FROM Empresa WHERE cif_Empresa = '$cif_Empresa'";
@@ -84,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   if (mysqli_num_rows($checkCifResult) > 0) {
     echo json_encode(['msg' => 'El CIF ya existe', 'status' => false]);
   } else {
-    $insertSql = "INSERT INTO Empresa (cif_Empresa, nombre, tlf_contacto, password, horario, ubicacion, descripcion) VALUES ('$cif_Empresa', '$nombre', '$tlf_contacto', '$hashedPassword', '$horario', '$ubicacion', '$descripcion')";
+    $insertSql = "INSERT INTO Empresa (cif_Empresa, nombre, tlf_contacto, password, horario, ubicacion, descripcion) VALUES ('$cif_Empresa', '$nombre', '$tlf_contacto', '$password', '$horario', '$ubicacion', '$descripcion')";
     $insertResult = mysqli_query($conn, $insertSql);
 
     if ($insertResult) {
@@ -117,14 +117,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
   $ubicacion = $json_obj->ubicacion;
   $descripcion = $json_obj->descripcion;
 
-  // Hash password
-  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
   // Update database
-  $sql = "UPDATE Empresa 
-          SET nombre='$nombre', tlf_contacto='$tlf_contacto', password='$hashed_password', 
-              horario='$horario', ubicacion='$ubicacion', descripcion='$descripcion' 
-          WHERE cif_Empresa = '$cif_Empresa'";
+  $sql = "UPDATE Empresa SET nombre='$nombre', tlf_contacto='$tlf_contacto', password='$password', horario='$horario', ubicacion='$ubicacion', descripcion='$descripcion' WHERE cif_Empresa = '$cif_Empresa'";
 
   $result = mysqli_query($conn, $sql);
 
