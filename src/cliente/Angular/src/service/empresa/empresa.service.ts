@@ -13,7 +13,7 @@ export class EmpresaService {
   constructor(private http: HttpClient) { }
 
   registrarEmpresa(empresa): Observable<any> {
-    return this.http.post(this.apiUrl, empresa);
+    return this.http.post(`${this.apiUrl}`, empresa);
   }
 
   iniciarSesion(email: string, password: string) {
