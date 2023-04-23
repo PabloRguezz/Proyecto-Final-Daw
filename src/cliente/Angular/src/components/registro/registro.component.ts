@@ -45,12 +45,7 @@ export class RegistroComponent {
       })
     });
   }
-  obtenerHorasDia(fecha) {
-    const dias = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
-    const horas = fecha.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-    const dia = dias[fecha.getDay()];
-    return `${dia} ${horas}`;
-  }
+  
   horarioToString(horario) {
     if (!horario || horario === " - ") {
       return "Cerrado";
