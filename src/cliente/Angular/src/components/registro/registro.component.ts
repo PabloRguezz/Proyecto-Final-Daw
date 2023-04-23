@@ -45,7 +45,7 @@ export class RegistroComponent {
       })
     });
   }
-  
+
   horarioToString(horario) {
     if (!horario || horario === " - ") {
       return "Cerrado";
@@ -106,7 +106,9 @@ export class RegistroComponent {
         descripcion: descripcion,
         password: password,
       };
+      console.log(empresa);
       this.empresaService.registrarEmpresa(empresa).subscribe(
+  
         (datos) => {
           if (datos['status']) {
             Swal.fire({
