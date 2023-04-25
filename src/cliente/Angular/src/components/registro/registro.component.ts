@@ -108,7 +108,6 @@ export class RegistroComponent {
       };
       console.log(empresa);
       this.empresaService.registrarEmpresa(empresa).subscribe(
-  
         (datos) => {
           if (datos['status']) {
             Swal.fire({
