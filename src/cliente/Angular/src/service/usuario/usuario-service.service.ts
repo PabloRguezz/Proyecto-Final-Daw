@@ -32,6 +32,7 @@ export class UsuarioServiceService {
    * password parameters.
    */
   iniciarSesion(email: string, password: string) {
+    withCredentials: true
     return this.http.get(`${this.apiUrl}?email=${email}&password=${password}`);
   }
 
