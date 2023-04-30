@@ -1,0 +1,8 @@
+{
+    "/api": {
+      "target": "https://api.usuario.alu6852.arkania.es",
+      "secure": false,
+      "changeOrigin": true
+    }
+}
+  
