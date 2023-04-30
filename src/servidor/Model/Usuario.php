@@ -1,10 +1,20 @@
 <?php
-class Usuario {
+class Usuario extends Conexion{
   private $id_usuario;
   private $email;
   private $password;
   private $nombre;
-
+  public function get_usuario(){
+    $conectar=parent::connection();
+    parent::set_name();
+  
+    $sql = "SELECT * FROM usuario WHERE id_usuario=2";
+    $sql=$conectar->prepare($sql);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+  }
+}
+  /*
   public function __construct($id_usuario, $email, $password, $nombre) {
     $this->id_usuario = $id_usuario;
     $this->email = $email;
@@ -40,3 +50,4 @@ class Usuario {
     $this->nombre = $nombre;
   }
 }
+/*
