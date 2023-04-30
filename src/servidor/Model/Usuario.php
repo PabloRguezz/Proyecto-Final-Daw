@@ -4,7 +4,7 @@ class Usuario extends Conexion{
     $conectar=parent::connection();
     parent::set_name();
   
-    $sql = "SELECT * FROM usuario";
+    $sql = "SELECT * FROM Usuario";
     $sql=$conectar->prepare($sql);
     $sql->execute();
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -13,7 +13,7 @@ class Usuario extends Conexion{
   public function get_usuario_id($email){
     $conectar=parent::connection();
     parent::set_name();
-    $sql = "SELECT * FROM usuario WHERE email=?";
+    $sql = "SELECT * FROM Usuario WHERE email=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->execute();
@@ -23,7 +23,7 @@ class Usuario extends Conexion{
   public function insert_usuario($email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name();
-    $sql = "INSERT INTO usuario(id_usuario,email,password,nombre) VALUES (NULL,?,?,?)";
+    $sql = "INSERT INTO Usuario(id_usuario,email,password,nombre) VALUES (NULL,?,?,?)";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->bindValue(2,$password);
@@ -35,7 +35,7 @@ class Usuario extends Conexion{
   public function update_usuario($id,$email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name();
-    $sql = "UPDATE usuario set email=? , pasword=?, nombre=? WHERE id_usuario=?";
+    $sql = "UPDATE Usuario set email=? , pasword=?, nombre=? WHERE id_usuario=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->bindValue(2,$password);
@@ -48,7 +48,7 @@ class Usuario extends Conexion{
   public function delete_usuario($id){
     $conectar=parent::connection();
     parent::set_name();
-    $sql = "DELETE FROM usuario WHERE id_usuario=?";
+    $sql = "DELETE FROM Usuario WHERE id_usuario=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$id);
     $sql->execute();
