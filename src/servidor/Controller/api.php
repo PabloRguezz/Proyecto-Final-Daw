@@ -6,7 +6,6 @@ require_once("../Model/Empresa.php");
 
 $usuario = new Usuario();
 $empresa = new Empresa();
-$body = json_decode(file_get_contents("php://input"),true);
 
 switch ($_GET["user"]) {
     case 'GetAll':
@@ -14,19 +13,19 @@ switch ($_GET["user"]) {
         echo json_encode($datos);
         break;
     case 'GetEmail':
-        $datos=$usuario->get_usuario_id($_POST["email"]);
+        $datos=$usuario->get_usuario_id($_GET["email"]);
         echo json_encode($datos);
         break;
     case "insert":
-        $datos=$usuario->insert_usuario($_POST["email"],$_POST["password"],$_POST["nombre"]);
+        $datos=$usuario->insert_usuario($_GET["email"],$_GET["password"],$_GET["nombre"]);
         echo json_encode("El usuario se ha insertado correctamente");
         break;
     case "update":
-        $datos=$usuario->update_usuario($_POST["id"],$_POST["email"],$_POST["password"],$_POST["nombre"]);
+        $datos=$usuario->update_usuario($_GET["id"],$_GET["email"],$_GET["password"],$_GET["nombre"]);
         echo json_encode("El usuario se ha actualizado correctamente");
         break;
     case "delete":
-        $datos=$usuario->delete_usuario($_POST["id"]);
+        $datos=$usuario->delete_usuario($_GET["id"]);
         echo json_encode("El usuario se ha eliminado correctamente");
         break;
 }
@@ -36,19 +35,19 @@ switch ($_GET["empresa"]) {
         echo json_encode($datos);
         break;
     case 'GetCif':
-        $datos=$empresa->get_empresa_cif($_POST["cif_Empresa"]);
+        $datos=$empresa->get_empresa_cif($_GET["cif_Empresa"]);
         echo json_encode($datos);
         break;
     case "insert":
-        $datos=$empresa->insert_empresa($_POST["cif_Empresa"],$_POST["nombre"],$_POST["tlf_contacto"],$_POST["password"],$_POST["horario"],$_POST["ubicacion"],$_POST["descripcion"]);
+        $datos=$empresa->insert_empresa($_GET["cif_Empresa"],$_GET["nombre"],$_GET["tlf_contacto"],$_GET["password"],$_GET["horario"],$_GET["ubicacion"],$_GET["descripcion"]);
         echo json_encode("La empresa se ha insertado correctamente");
         break;
     case "update":
-        $datos=$empresa->update_empresa($_POST["cif_Empresa"],$_POST["nombre"],$_POST["tlf_contacto"],$_POST["password"],$_POST["horario"],$_POST["ubicacion"],$_POST["descripcion"]);
+        $datos=$empresa->update_empresa($_GET["cif_Empresa"],$_GET["nombre"],$_GET["tlf_contacto"],$_GET["password"],$_GET["horario"],$_GET["ubicacion"],$_GET["descripcion"]);
         echo json_encode("La empresa se ha actualizado correctamente");
         break;
     case "delete":
-        $datos=$empresa->delete_empresa($_POST["cif_Empresa"]);
+        $datos=$empresa->delete_empresa($_GET["cif_Empresa"]);
         echo json_encode("La empresa se ha eliminado correctamente");
         break;
 }
