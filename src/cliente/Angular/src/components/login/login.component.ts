@@ -20,6 +20,8 @@ export class LoginComponent {
       this.usuarioService.iniciarSesion(this.email, this.password).subscribe(
         (usuario: any) => {
           if (usuario && usuario.length > 0) {
+            const token = usuario.token;
+            localStorage.setItem('token', token);
             this.router.navigate(['/usuario']);
           } else {
             Swal.fire({
