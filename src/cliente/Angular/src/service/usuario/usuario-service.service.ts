@@ -7,7 +7,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsuarioServiceService {
 
-  private apiUrl = 'https://api.usuario.alu6852.arkania.es';
+  private apiUrl = 'https://api.alu6852.arkania.es?user';
 
   constructor(private http: HttpClient) { }
 
@@ -18,7 +18,7 @@ export class UsuarioServiceService {
    * response will depend on the implementation of the API and the data it returns.
    */
   getUsuarios() {
-    return this.http.get(`${this.apiUrl}`);
+    return this.http.get(`${this.apiUrl}=GetAll`);
   }
   
   /**
@@ -31,9 +31,8 @@ export class UsuarioServiceService {
    * @returns an HTTP GET request to the API endpoint for "usuarios" with the specified email and
    * password parameters.
    */
-  iniciarSesion(email: string, password: string) {
-    withCredentials: true
-    return this.http.get(`${this.apiUrl}?email=${email}&password=${password}`);
+  iniciarSesion(email: string, password : string) {
+    return this.http.get(`${this.apiUrl}=GetEmail&email=${email}`);
   }
 
   /**
@@ -51,7 +50,7 @@ export class UsuarioServiceService {
    */
   registrarUsuario(nombre: string, email: string, password: string) {
     const body = { nombre, email, password };
-    return this.http.post(`${this.apiUrl}`, body);
+    return this.http.get(`${this.apiUrl}=insert&email=${email}&password=${password}`);
   }
 
 
@@ -70,7 +69,7 @@ export class UsuarioServiceService {
    */
   actualizarUsuario(id: number, nombre: string, email: string, password: string) {
     const body = { nombre, email, password };
-    return this.http.put(`${this.apiUrl}`, body);
+    return this.http.get(`${this.apiUrl}=update&nombre=${nombre}&email=${email}&password=${password}&id=${id}`);
   }
 
   /**
@@ -83,6 +82,6 @@ export class UsuarioServiceService {
    * in this function.
    */
   eliminarUsuario(id: number) {
-    return this.http.delete(`${this.apiUrl}?id_Usuario=${id}`);
+    return this.http.get(`${this.apiUrl}=delete&id=${id}`);
   }
 }

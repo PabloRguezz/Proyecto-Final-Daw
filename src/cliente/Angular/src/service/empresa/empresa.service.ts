@@ -13,12 +13,11 @@ export class EmpresaService {
   constructor(private http: HttpClient) { }
 
   registrarEmpresa(empresa): Observable<any> {
-    return this.http.post(`${this.apiUrl}=insert`, empresa);
+    return this.http.get(`${this.apiUrl}=insert&nombre=${empresa.nombre}&cif_Empresa=${empresa.cif_Empresa}&tlf_contacto=${empresa.tlf_contacto}&horario=${empresa.horario}&ubicacion=${empresa.ubicacion}&descripcion=${empresa.descripcion}&password=${empresa.password}`);
   }
 
-  iniciarSesion(email: string) {
-    const body = {email: email};
-    return this.http.get(`${this.apiUrl}=GetEmail`, body);
+  iniciarSesion(email: string,password : string) {
+    return this.http.get(`${this.apiUrl}=GetEmail&email=${email}&password=${password}`);
 }
 
 }

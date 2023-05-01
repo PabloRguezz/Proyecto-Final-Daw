@@ -20,19 +20,19 @@ export class RegistroComponent {
   registrarCliente() {
     const { nombre, email, password } = this.formularioRegistro;
     this.usuarioService.registrarUsuario(nombre, email, password).subscribe(
-      (response) => {
-      if (response['status']) {
+      (response :any) => {
+      if (response && response.length > 0) {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: response['msg'],
+          title: 'Se ha registrado correctamente',
           showConfirmButton: false,
           timer: 1500
         })
       } else {
         Swal.fire({
           icon: 'error',
-          title: response['msg'],
+          title: 'No se ha podido registrar el usuario, quizas ya estés registrado',
         })
       }
 
