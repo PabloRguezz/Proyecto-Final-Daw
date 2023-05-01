@@ -1,0 +1,17 @@
+{
+    "name": "usuario/servidor",
+    "autoload": {
+        "psr-4": {
+            "Usuario\\Servidor\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "PabloRguezz",
+            "email": "pablorodirguezz@gmail.com"
+        }
+    ],
+    "require": {
+        "firebase/php-jwt": "^6.4"
+    }
+}
