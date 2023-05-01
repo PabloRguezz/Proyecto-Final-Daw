@@ -10,7 +10,13 @@ $empresa = new Empresa();
 
 switch ($_GET["user"]) {
     case 'GetAll':
-        $datos=$usuario->get_usuario();
+        $headers = apache_request_headers();
+        $token = $headers['Authorization'] ?? null;
+        if (!$token || !Jwt_Token::verify_token($token)) {
+            http_response_code(401);
+            exit(json_encode(array("message" => "Acceso denegado")));
+        }
+        $datos = $usuario->get_usuario();
         echo json_encode($datos);
         break;
     case 'GetEmail':
@@ -29,6 +35,25 @@ switch ($_GET["user"]) {
         $datos=$usuario->delete_usuario($_GET["id"]);
         echo json_encode("El usuario se ha eliminado correctamente");
         break;
+    case "login":
+        $email = $_GET["email"];
+        $password = $_GET["password"];
+        $user = $usuario->get_usuario_id($email);
+        if (!$user) {
+            http_response_code(401);
+            echo json_encode(array("message" => "Credenciales incorrectas"));
+            break;
+        }
+        if (password_verify($password, $user["password"])) {
+            $token = Jwt_Token::generate_token(array("id" => $user["id"], "email" => $email));
+            echo json_encode(array("token" => $token));
+        } else {
+            http_response_code(401);
+            echo json_encode(array("message" => "Credenciales incorrectas"));
+        }
+        break;        
+        
+        
 }
 switch ($_GET["empresa"]) {
     case 'GetAll':
