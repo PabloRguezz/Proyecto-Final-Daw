@@ -6,7 +6,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class UsuarioServiceService {
-  
+
   private apiUrl = 'https://api.alu6852.arkania.es/api.php?user';
 
   constructor(private http: HttpClient) { }
@@ -32,7 +32,7 @@ export class UsuarioServiceService {
    * password parameters.
    */
   iniciarSesion(email: string, password : string) {
-    return this.http.get(`${this.apiUrl}=GetEmail&email=${email}`);
+    return this.http.get(`${this.apiUrl}=login&email=${email}&password=${password}`);
   }
 
   /**
