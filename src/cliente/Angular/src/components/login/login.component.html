@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' bookme.alu6852.arkania.es">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <title>Iniciar Sesion</title>
+    <title>Iniciar Sesión</title>
 </head>
 <body>
-    <div class="containter-fluid" style="background-color:#009DFF;">
-        <div class="container" style="background-color: #009DFF;">
+    <div id="contenedor" class="container-fluid bg-image d-flex align-items-center">
+        <div class="container">
             <div class="row d-flex justify-content-between" id="rowTam">
                 <form (submit)="iniciarSesion()">
                     <h1>Iniciar Sesión</h1>
                     <div class="form-floating mb-3">
                       <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required [(ngModel)]="email">
-                      <label for="email">Correo Electrónico</label>
+                      <label for="email">Correo Electrónico o CIF de la Empresa</label>
                     </div>
                     <div class="form-floating">
                       <input type="password" class="form-control" id="password" name="password" placeholder="Password" required [(ngModel)]="password">
@@ -24,12 +25,11 @@
                     <div class="d-flex justify-content-around" style="margin-top: 20px; margin-bottom: 20px;">
                       <button type="submit" class="btn btn-dark ">Iniciar Sesión</button>
                     </div>
-                    <p><strong>¿Aún no te has registrado? <a routerLink="/registro">Registrate</a></strong></p>
+                    <p><strong>¿Aún no te has registrado? <a href="/registro">Registrate</a></strong></p>
                 </form>                  
             </div>
         </div>
-    </div>
-        
+    </div>   
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>

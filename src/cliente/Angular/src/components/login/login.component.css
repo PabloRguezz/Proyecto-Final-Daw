@@ -1,60 +1,65 @@
-@media (max-width:320px) {
-    html{
-    background-color: #009DFF;
-    background-image: url("../../assets/imgs/reserva.png");
-    background-position: center top;
-    background-repeat: no-repeat;
-    }
-    #rowTam{
-        margin-top:250px; width:320px; text-align: center;
-    }
-}
-@media (max-width:575px) and (min-width:321px) {
-    html{
-    background-color: #009DFF;
-    background-image: url("../../assets/imgs/reserva.png");
-    background-position: center top;
-    background-repeat: no-repeat;
-    }
-    #rowTam{
-        margin-top:250px; width:300px; text-align: center;margin-left: 50px;
-    }
-}
-@media (max-width:991px) and (min-width:768px){
-    html{
-    background-color: #009DFF;
-    background-image: url("./../../assets/imgs/reserva.png");
-    background-position: center top;
-    background-repeat: no-repeat;
-    }
-    #rowTam{
-        margin-top:300px;margin-left:50px; width:600px; text-align: center;
-    }
-    
-}
-@media (max-width:1199px) and (min-width:992px){
-    html{
-    background-color: #009DFF;
-    background-image: url("./../../assets/imgs/reserva.png");
-    background-position: center top;
-    background-repeat: no-repeat;
-    }
-    #rowTam{
-        margin-top:300px;margin-left:100px; width:700px; text-align: center;
+body {
+    background-color: #F5F5F5;
+    height: 100vh;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+    border-radius: 10px;
+    padding: 40px;
+    background-color: #A8DFF1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  #contenedor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #3D7C98;
+  }
+  
+  .form-floating label {
+    font-size: 1.2rem;
+    color: #3D7C98;
     }
     
-}
-@media (min-width:1200px) {
-    html{
-    background-color: #009DFF;
-    background-image: url("./../../assets/imgs/reserva.png");
-    background-position: center top;
-    background-repeat: no-repeat;
+    .form-floating input {
+    padding: 10px;
+    font-size: 1.2rem;
+    color: #3D7C98;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #3D7C98;
     }
-    #rowTam{
-        margin-top:300px;margin-left:140px; width:1020px; text-align: center;
+    
+    .form-floating input:focus {
+    outline: none;
+    border-bottom: 2px solid #73B0CD;
     }
-}
-a:link, a:visited, a:active {
-    text-decoration:none;
-}
+    
+    .btn {
+    background-color: #3D7C98;
+    color: #F5F5F5;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    cursor: pointer;
+    }
+    
+    .btn:hover {
+    background-color: #73B0CD;
+    }
+    
+    #rowTam {
+    max-width: 500px;
+    margin: 0 auto;
+    }  

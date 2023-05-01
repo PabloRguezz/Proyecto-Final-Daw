@@ -1,42 +1,58 @@
 <?php
-class Usuario {
-  private $id_usuario;
-  private $email;
-  private $password;
-  private $nombre;
-
-  public function __construct($id_usuario, $email, $password, $nombre) {
-    $this->id_usuario = $id_usuario;
-    $this->email = $email;
-    $this->password = $password;
-    $this->nombre = $nombre;
+class Usuario extends Conexion{
+  public function get_usuario(){
+    $conectar=parent::connection();
+    parent::set_name();
+  
+    $sql = "SELECT * FROM Usuario";
+    $sql=$conectar->prepare($sql);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getIdUsuario() {
-    return $this->id_usuario;
+  public function get_usuario_id($email){
+    $conectar=parent::connection();
+    parent::set_name();
+    $sql = "SELECT * FROM Usuario WHERE email=?";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1,$email);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getEmail() {
-    return $this->email;
+  public function insert_usuario($email,$password,$nombre){
+    $conectar=parent::connection();
+    parent::set_name();
+    $sql = "INSERT INTO Usuario(id_usuario,email,password,nombre) VALUES (NULL,?,?,?)";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1,$email);
+    $sql->bindValue(2,$password);
+    $sql->bindValue(3,$nombre);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getPassword() {
-    return $this->password;
+  public function update_usuario($id,$email,$password,$nombre){
+    $conectar=parent::connection();
+    parent::set_name();
+    $sql = "UPDATE Usuario set email=? , pasword=?, nombre=? WHERE id_usuario=?";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1,$email);
+    $sql->bindValue(2,$password);
+    $sql->bindValue(3,$nombre);
+    $sql->bindValue(4,$id);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function getNombre() {
-    return $this->nombre;
-  }
-
-  public function setEmail($email) {
-    $this->email = $email;
-  }
-
-  public function setPassword($password) {
-    $this->password = $password;
-  }
-
-  public function setNombre($nombre) {
-    $this->nombre = $nombre;
+  public function delete_usuario($id){
+    $conectar=parent::connection();
+    parent::set_name();
+    $sql = "DELETE FROM Usuario WHERE id_usuario=?";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1,$id);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }
 }
+?>

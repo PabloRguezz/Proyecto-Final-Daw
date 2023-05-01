@@ -1,63 +1,65 @@
 <?php
-class Empresa {
-    private $id_empresa;
-    private $nombre;
-    private $direccion;
-    private $telefono;
-    private $email;
-  
-    public function __construct($id_empresa, $nombre, $direccion, $telefono, $email) {
-      $this->id_empresa = $id_empresa;
-      $this->nombre = $nombre;
-      $this->direccion = $direccion;
-      $this->telefono = $telefono;
-      $this->email = $email;
-    }
-  
-    public function getIdEmpresa() {
-      return $this->id_empresa;
-    }
-  
-    public function getNombre() {
-      return $this->nombre;
-    }
-  
-    public function setNombre($nombre) {
-      $this->nombre = $nombre;
-    }
-  
-    public function getDireccion() {
-      return $this->direccion;
-    }
-  
-    public function setDireccion($direccion) {
-      $this->direccion = $direccion;
-    }
-  
-    public function getTelefono() {
-      return $this->telefono;
-    }
-  
-    public function setTelefono($telefono) {
-      $this->telefono = $telefono;
-    }
-  
-    public function getEmail() {
-      return $this->email;
-    }
-  
-    public function setEmail($email) {
-      $this->email = $email;
-    }
-  
-    public function toArray() {
-      return [
-        'id_empresa' => $this->id_empresa,
-        'nombre' => $this->nombre,
-        'direccion' => $this->direccion,
-        'telefono' => $this->telefono,
-        'email' => $this->email
-      ];
-    }
+class Empresa extends Conexion {
+  public function get_empresa() {
+    $conectar = parent::connection();
+    parent::set_name();
+
+    $sql = "SELECT * FROM Empresa WHERE cif_Empresa = '12345678A'";
+    $sql = $conectar->prepare($sql);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }
-  
+
+  public function get_empresa_cif($cif) {
+    $conectar = parent::connection();
+    parent::set_name();
+    $sql = "SELECT * FROM Empresa WHERE cif_Empresa=?";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1,$cif);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function insert_empresa($cif, $nombre, $tlf_contacto, $password, $horario, $ubicacion, $descripcion) {
+    $conectar = parent::connection();
+    parent::set_name();
+    $sql = "INSERT INTO Empresa(cif_Empresa, nombre, tlf_contacto, password, horario, ubicacion, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?)";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1,$cif);
+    $sql->bindValue(2,$nombre);
+    $sql->bindValue(3,$tlf_contacto);
+    $sql->bindValue(4,$password);
+    $sql->bindValue(5,$horario);
+    $sql->bindValue(6,$ubicacion);
+    $sql->bindValue(7,$descripcion);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function update_empresa($cif, $nombre, $tlf_contacto, $password, $horario, $ubicacion, $descripcion) {
+    $conectar = parent::connection();
+    parent::set_name();
+    $sql = "UPDATE Empresa SET nombre=?, tlf_contacto=?, password=?, horario=?, ubicacion=?, descripcion=? WHERE cif_Empresa=?";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1,$nombre);
+    $sql->bindValue(2,$tlf_contacto);
+    $sql->bindValue(3,$password);
+    $sql->bindValue(4,$horario);
+    $sql->bindValue(5,$ubicacion);
+    $sql->bindValue(6,$descripcion);
+    $sql->bindValue(7,$cif);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+  }
+
+  public function delete_empresa($cif) {
+    $conectar = parent::connection();
+    parent::set_name();
+    $sql = "DELETE FROM Empresa WHERE cif_Empresa=?";
+    $sql = $conectar->prepare($sql);
+    $sql->bindValue(1,$cif);
+    $sql->execute();
+    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+  }
+}
+?>
