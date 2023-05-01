@@ -1,4 +1,5 @@
 <?php
+header('Access-Control-Allow-Origin: *');
 
 require_once("../config/conexion.php");
 require_once("../Model/Usuario.php");
