@@ -7,7 +7,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UsuarioServiceService {
 
+<<<<<<< HEAD
   private apiUrl = 'https://api.alu6852.arkania.es/api.php?user';
+=======
+  private apiUrl = 'https://api.alu6852.arkania.es?user';
+>>>>>>> e8f30f1750e3f34fb5676482439e2ddc182e6cf5
 
   constructor(private http: HttpClient) { }
 
@@ -82,6 +86,10 @@ export class UsuarioServiceService {
    * in this function.
    */
   eliminarUsuario(id: number) {
+<<<<<<< HEAD
     return this.http.delete(`${this.apiUrl}=delete&id=${id}`);
+=======
+    return this.http.get(`${this.apiUrl}=delete&id=${id}`);
+>>>>>>> e8f30f1750e3f34fb5676482439e2ddc182e6cf5
   }
 }
