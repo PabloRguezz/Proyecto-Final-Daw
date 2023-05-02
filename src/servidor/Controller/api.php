@@ -174,9 +174,9 @@ if (isset($_GET["empresa_has_servicios"])) {
             }
             break;
         case 'insert':
-            if (isset($_POST["cif_Empresa"]) && isset($_POST["id_servicio"])) {
+            if (isset($_GET["cif_Empresa"]) && isset($_GET["id_servicio"])) {
                 $empresa_has_servicios = new Empresa_has_Servicios();
-                $empresa_has_servicios->insert_empresa_servicio($_POST["cif_Empresa"], $_POST["id_servicio"]);
+                $empresa_has_servicios->insert_empresa_servicio($_GET["cif_Empresa"], $_GET["id_servicio"]);
                 echo json_encode("La relación empresa-servicio se ha insertado correctamente");
             } else {
                 http_response_code(400);
