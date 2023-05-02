@@ -7,6 +7,7 @@ require_once("../Model/Empresa.php");
 require_once("../Model/Servicios.php");
 require_once("../Model/Calificaciones.php");
 require_once("../Model/Empresa_has_Servicios.php");
+require_once("../Model/Reserva.php");
 
 $usuario = new Usuario();
 $empresa = new Empresa();
