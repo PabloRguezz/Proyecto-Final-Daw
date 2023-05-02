@@ -19,18 +19,27 @@ class Usuario extends Conexion{
     $sql->execute();
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }
-
   public function insert_usuario($email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name();
+    $sql = "SELECT * FROM Usuario WHERE email=?";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1,$email);
+    $sql->execute();
+    $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    if ($resultado) {
+        return array("error" => "El email ya está en uso");
+    }
+    $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO Usuario(id_usuario,email,password,nombre) VALUES (NULL,?,?,?)";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
-    $sql->bindValue(2,$password);
+    $sql->bindValue(2,$password_hasheada);
     $sql->bindValue(3,$nombre);
     $sql->execute();
-    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
-  }
+    return array("success" => "El usuario se ha insertado correctamente");
+}
+
 
   public function update_usuario($id,$email,$password,$nombre){
     $conectar=parent::connection();
