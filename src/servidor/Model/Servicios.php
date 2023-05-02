@@ -25,7 +25,7 @@ class Servicios extends Conexion {
     parent::set_name();
     $sql = "INSERT INTO Servicios(precio, nombre, descripcion) VALUES (?, ?, ?)";
     $sql = $conectar->prepare($sql);
-    $sql->bindValue(1,$precio);
+    $sql->bindValue(1,intval($precio));
     $sql->bindValue(2,$nombre);
     $sql->bindValue(3,$descripcion);
     $sql->execute();
