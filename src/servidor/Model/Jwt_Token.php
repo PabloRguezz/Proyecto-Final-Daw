@@ -11,7 +11,7 @@ class Jwt_Token {
     public static function generate_token($data){
         $payload = array(
             "iss" => "https://api.alu6852.arkania.es", 
-            "aud" => "http://localhost:4200",
+            "aud" => "https://bookme.alu6852.arkania.es",
             "iat" => time(),
             "exp" => time() + self::$expiration_time,
             "data" => $data

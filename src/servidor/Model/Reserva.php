@@ -33,7 +33,7 @@ public function get_reservas_by_usuario($id_usuario) {
 public function insert_reserva($hora_reserva, $nombre_servicio, $id_servicio, $id_usuario) {
   $conectar = parent::connection();
   parent::set_name();
-  $sql = "INSERT INTO Reserva(hora_reserva, nombre_servicio, id_servicio, id_usuario) VALUES (?, '?', ?, ?)";
+  $sql = "INSERT INTO Reserva(hora_reserva, nombre_servicio, id_servicio, id_usuario) VALUES (?, ?, ?, ?)";
   $stmt = $conectar->prepare($sql);
   $stmt->bindValue(1, $hora_reserva, PDO::PARAM_STR);
   $stmt->bindValue(2, $nombre_servicio, PDO::PARAM_STR);
