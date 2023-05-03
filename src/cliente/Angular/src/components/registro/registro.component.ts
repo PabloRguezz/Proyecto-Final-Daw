@@ -19,7 +19,7 @@ export class RegistroComponent {
   };
   registrarCliente() {
     const { nombre, email, password } = this.formularioRegistro;
-    this.usuarioService.agregarUsuario(nombre, email, password).subscribe(
+    this.usuarioService.agregarUsuario(email, password, nombre).subscribe(
       (response :any) => {
       if (response && response.length > 0) {
         Swal.fire({
