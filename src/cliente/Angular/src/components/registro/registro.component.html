@@ -24,8 +24,8 @@
                 <form (submit)="registrarCliente()">
                     <input class="input" type="text" name="nombre" id="nombre" placeholder="Nombre" required="" [(ngModel)]="formularioRegistro.nombre"> 
                     <input class="input" type="email" name="email" id="email" placeholder="Email" required="" [(ngModel)]="formularioRegistro.email"> 
-                    <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required="" [(ngModel)]="formularioRegistro.password">
-                    <button type="button" class="btn btn-dark" routerLink="">Volver al login</button> 
+                    <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required [(ngModel)]="formularioRegistro.password">
+                    <button type="button" class="btn btn-dark" >Volver al login</button> 
                     <button type="submit" class="btn btn-dark">Registrarse</button>
                 </form>
 			</div>

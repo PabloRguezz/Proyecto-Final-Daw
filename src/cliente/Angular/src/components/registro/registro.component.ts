@@ -15,7 +15,7 @@ export class RegistroComponent {
   formularioRegistro = {
     nombre: '',
     email: '',
-    password: ''
+    password: '',
   };
   registrarCliente() {
     const { nombre, email, password } = this.formularioRegistro;
