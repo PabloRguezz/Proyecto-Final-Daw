@@ -23,7 +23,7 @@ class Calificaciones extends Conexion {
     public function insert_calificacion($nota, $descripcion, $id_servicio, $id_usuario) {
       $conectar = parent::connection();
       parent::set_name();
-      $sql = "INSERT INTO Calificaciones(nota, descripcion, id_servicio, id_usuario) VALUES (?, ?, ?, ?)";
+      $sql = "INSERT INTO Calificaciones(nota, descripcion, id_servicio, id_usuario) VALUES (?, '?', ?, ?)";
       $sql = $conectar->prepare($sql);
       $sql->bindValue(1,$nota);
       $sql->bindValue(2,$descripcion);
@@ -36,7 +36,7 @@ class Calificaciones extends Conexion {
     public function update_calificacion($id, $nota, $descripcion, $id_servicio, $id_usuario) {
       $conectar = parent::connection();
       parent::set_name();
-      $sql = "UPDATE Calificaciones SET nota=?, descripcion=?, id_servicio=?, id_usuario=? WHERE id_Calificacion=?";
+      $sql = "UPDATE Calificaciones SET nota=?, descripcion='?', id_servicio=?, id_usuario=? WHERE id_Calificacion=?";
       $sql = $conectar->prepare($sql);
       $sql->bindValue(1,$nota);
       $sql->bindValue(2,$descripcion);

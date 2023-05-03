@@ -3,7 +3,6 @@ class Usuario extends Conexion{
   public function get_usuario(){
     $conectar=parent::connection();
     parent::set_name();
-  
     $sql = "SELECT * FROM Usuario";
     $sql=$conectar->prepare($sql);
     $sql->execute();
@@ -13,7 +12,7 @@ class Usuario extends Conexion{
   public function get_usuario_id($email){
     $conectar=parent::connection();
     parent::set_name();
-    $sql = "SELECT * FROM Usuario WHERE email=?";
+    $sql = "SELECT * FROM Usuario WHERE email='?'";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->execute();
@@ -22,7 +21,7 @@ class Usuario extends Conexion{
   public function insert_usuario($email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name();
-    $sql = "SELECT * FROM Usuario WHERE email=?";
+    $sql = "SELECT * FROM Usuario WHERE email='?'";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->execute();
@@ -31,7 +30,7 @@ class Usuario extends Conexion{
         return array("error" => "El email ya está en uso");
     }
     $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
-    $sql = "INSERT INTO Usuario(id_usuario,email,password,nombre) VALUES (NULL,?,?,?)";
+    $sql = "INSERT INTO Usuario(id_usuario,email,password,nombre) VALUES (NULL,'?','?','?')";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->bindValue(2,$password_hasheada);
@@ -44,7 +43,7 @@ class Usuario extends Conexion{
   public function update_usuario($id,$email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name();
-    $sql = "UPDATE Usuario set email=? , pasword=?, nombre=? WHERE id_usuario=?";
+    $sql = "UPDATE Usuario set email='?' , pasword='?', nombre='?' WHERE id_usuario=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->bindValue(2,$password);

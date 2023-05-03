@@ -23,7 +23,7 @@ class Servicios extends Conexion {
   public function insert_servicio($precio, $nombre, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
-    $sql = "INSERT INTO Servicios(precio, nombre, descripcion) VALUES (?, ?, ?)";
+    $sql = "INSERT INTO Servicios(precio, nombre, descripcion) VALUES (?, '?', '?')";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,intval($precio));
     $sql->bindValue(2,$nombre);
@@ -35,7 +35,7 @@ class Servicios extends Conexion {
   public function update_servicio($id_servicio, $precio, $nombre, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
-    $sql = "UPDATE Servicios SET precio=?, nombre=?, descripcion=? WHERE id_servicio=?";
+    $sql = "UPDATE Servicios SET precio=?, nombre='?', descripcion='?' WHERE id_servicio=?";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$precio);
     $sql->bindValue(2,$nombre);
