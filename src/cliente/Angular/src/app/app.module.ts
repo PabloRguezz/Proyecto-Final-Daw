@@ -7,19 +7,25 @@ import { RegistroComponent } from '../components/registro/registro.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeUsuarioComponent } from 'src/components/home-usuario/home-usuario.component';
+import { HeaderLoginComponent } from 'src/components/header-login/header-login.component';
+import { CalendarioComponent } from 'src/components/calendario/calendario.component';
+import { FullCalendarModule } from '@fullcalendar/angular';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegistroComponent,
-    HomeUsuarioComponent
+    HomeUsuarioComponent,
+    HeaderLoginComponent,
+    CalendarioComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    FullCalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

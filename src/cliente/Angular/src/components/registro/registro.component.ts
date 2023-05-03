@@ -19,7 +19,7 @@ export class RegistroComponent {
   };
   registrarCliente() {
     const { nombre, email, password } = this.formularioRegistro;
-    this.usuarioService.registrarUsuario(nombre, email, password).subscribe(
+    this.usuarioService.agregarUsuario(nombre, email, password).subscribe(
       (response :any) => {
       if (response && response.length > 0) {
         Swal.fire({
@@ -106,8 +106,7 @@ export class RegistroComponent {
         descripcion: descripcion,
         password: password,
       };
-      console.log(empresa);
-      this.empresaService.registrarEmpresa(empresa).subscribe(
+      this.empresaService.agregarEmpresa(empresa.cif_Empresa,empresa.nombre,empresa.tlf_contacto,empresa.password,empresa.horario,empresa.ubicacion,empresa.descripcion).subscribe(
         (datos) => {
           if (datos['status']) {
             Swal.fire({

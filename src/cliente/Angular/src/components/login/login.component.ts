@@ -17,7 +17,7 @@ export class LoginComponent {
   password: string;
   iniciarSesion() {
     if (this.email.includes("@")) {
-      this.usuarioService.iniciarSesion(this.email, this.password).subscribe(
+      this.usuarioService.login(this.email, this.password).subscribe(
         (usuario: any) => {
           if (usuario && usuario.token.length > 0) {
             const token = usuario.token;
@@ -41,7 +41,7 @@ export class LoginComponent {
         }
       );
     } else {
-      this.empresaService.iniciarSesion(this.email,this.password).subscribe(
+      this.empresaService.login(this.email,this.password).subscribe(
         (empresa: any) => {
           if (empresa && empresa.length > 0) {
             this.router.navigate(['/empresa']);
