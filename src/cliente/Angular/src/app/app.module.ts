@@ -12,6 +12,10 @@ import { CalendarioComponent } from 'src/components/calendario/calendario.compon
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { DatosEmpresaComponent } from 'src/components/datos-empresa/datos-empresa.component';
 import { HomeEmpresaComponent } from 'src/components/home-empresa/home-empresa.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +33,9 @@ import { HomeEmpresaComponent } from 'src/components/home-empresa/home-empresa.c
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    FullCalendarModule
+    FullCalendarModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideStorage(() => getStorage()) 
   ],
   providers: [],
   bootstrap: [AppComponent]

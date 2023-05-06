@@ -43,7 +43,9 @@ export class LoginComponent {
     } else {
       this.empresaService.login(this.email,this.password).subscribe(
         (empresa: any) => {
-          if (empresa && empresa.length > 0) {
+          if (empresa.token && empresa.token.length) {
+            const token = empresa.token;
+            localStorage.setItem('token', token);
             this.router.navigate(['/empresa']);
           } else {
             Swal.fire({

@@ -1,21 +1,113 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Página de inicio</title>
-  </head>
-  <body>
-    <h1>Bienvenido a nuestro sitio web</h1>
-    <a href="#" class="button">
-      <span class="icon">&#128197;</span>
-      Calendario
-    </a>
-    <a href="#" class="button">
-      <span class="icon">&#127968;</span>
-      Datos de la empresa
-    </a>
-    <a href="#" class="button">
-      <span class="icon">&#9998;</span>
-      Editar perfil
-    </a>
-  </body>
-</html>
+<div class="container">
+  <div class="carousel-container">
+    <div id="carousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <div class="carousel-caption d-none d-md-block">
+            <h5>Imagen de la empresa</h5>
+            <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#uploadModal">Agregar imagen</button>
+          </div>
+          <img src="https://via.placeholder.com/1920x720.png?text=Slide+1" class="d-block w-100" alt="Slide 1">
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </a>
+        </div>
+        <div *ngFor="let image of images; let i = index">
+          <div class="carousel-item">
+            <img [src]="image" class="d-block w-100" alt="Slide {{i}}">
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          </a>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>  
+</div>
+<div class="container">
+  <div class="card-deck">
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200.png?text=Editar+perfil" class="card-img-top" alt="Editar perfil">
+      <div class="card-body">
+        <h5 class="card-title">Editar perfil</h5>
+        <p class="card-text">Edita la información de la empresa</p>
+        <a href="#" class="btn btn-primary">Editar perfil</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200.png?text=Crear+anuncio" class="card-img-top" alt="Crear anuncio">
+      <div class="card-body">
+        <h5 class="card-title">Crear servicio</h5>
+        <p class="card-text">Crea un nuevo servicio para la empresa</p>
+        <a class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#crearServicio">Crear anuncio</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200.png?text=Editar+anuncio" class="card-img-top" alt="Editar anuncio">
+      <div class="card-body">
+        <h5 class="card-title">Editar anuncio</h5>
+        <p class="card-text">Edita un anuncio existente de la empresa</p>
+        <a href="#" class="btn btn-primary">Editar anuncio</a>
+      </div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200.png?text=Eliminar+anuncio" class="card-img-top" alt="Eliminar anuncio">
+      <div class="card-body">
+        <h5 class="card-title">Eliminar anuncio</h5>
+        <p class="card-text">Elimina un anuncio existente de la empresa</p>
+        <a href="#" class="btn btn-primary">Eliminar anuncio</a>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="offcanvas offcanvas-end" tabindex="-1" id="uploadModal" aria-labelledby="uploadModalLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="uploadModalLabel">Subir imagen</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <input type="file" (change)="uploadImage($event)">
+  </div>
+</div>
+
+<div class="offcanvas offcanvas-end" tabindex="-1" id="crearServicio" aria-labelledby="crearServicioLabel">
+  <div class="offcanvas-header">
+    <h5 id="crearServicioLabel">Crear servicio</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <form (submit)="agregarServicio()">
+      <div class="mb-3">
+        <label for="nombre" class="form-label">Nombre del servicio</label>
+        <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre del servicio" [(ngModel)]="nombre">
+      </div>
+      <div class="mb-3">
+        <label for="descripcion" class="form-label">Descripción</label>
+        <textarea class="form-control" id="descripcion" rows="3" placeholder="Ingresa la descripción del servicio" [(ngModel)]="descripcion"></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="precio" class="form-label">Precio</label>
+        <div class="input-group">
+          <span class="input-group-text">€</span>
+          <input type="number" class="form-control" id="precio" placeholder="Ingresa el precio del servicio" [(ngModel)]="precio">
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Crear</button>
+    </form>
+  </div>
+</div>
+
