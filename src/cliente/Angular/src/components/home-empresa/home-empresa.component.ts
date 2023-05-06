@@ -26,6 +26,8 @@ export class HomeEmpresaComponent {
     this.servicio.agregarServicio(this.precio,this.nombre,this.descripcion).subscribe(
       (data) => {
         if (data && data.length > 0) {
+          console.log(data);
+          const id_servicio = data.id_servicio;
           Swal.fire({
             position: 'center',
             icon: 'success',

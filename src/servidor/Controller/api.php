@@ -35,7 +35,7 @@ if (isset($_GET["user"])) {
         case 'GetEmail':
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
@@ -79,7 +79,7 @@ if (isset($_GET["user"])) {
                 break;
             }
             if (password_verify($password, $user[0]["password"])) {
-                $token = Jwt_Token::generate_token(array("id" => $user["id_usuario"], "email" => $email));
+                $token = Jwt_Token::generate_token(array("id" => $user[0]["id_usuario"], "email" => $email));
                 echo json_encode(array("token" => $token));
             } else {
                 http_response_code(401);
@@ -148,7 +148,7 @@ if(isset($_GET["empresa"])){
                 break;
             }
             if (password_verify($password, $company[0]["password"])) {
-                $token = Jwt_Token::generate_token(array("cif_Empresa" => $company["cif_Empresa"], "ubicacion" => $company["ubicacion"]));
+                $token = Jwt_Token::generate_token(array("cif_Empresa" => $company[0]["cif_Empresa"], "ubicacion" => $company[0]["ubicacion"]));
                 echo json_encode(array("token" => $token));
             } else {
                 http_response_code(401);
@@ -183,8 +183,12 @@ if(isset($_GET["servicios"])){
             echo json_encode($datos);
             break;
         case "insert":
-            $datos=$servicios->insert_servicio($_GET["precio"],$_GET["nombre"],$_GET["descripcion"]);
-            echo json_encode("El servicio se ha insertado correctamente");
+            $datos = $servicios->insert_servicio($_GET["precio"], $_GET["nombre"], $_GET["descripcion"]);
+            if ($datos!=null) {
+                echo json_encode(array("message" => "El servicio se ha insertado correctamente", "id_servicio" => $datos));
+            } else {
+                echo json_encode(array("message" => "Ha habido un error insertando el servicio"));
+            }
             break;
         case "update":
             $headers = apache_request_headers();

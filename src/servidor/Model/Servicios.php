@@ -28,10 +28,13 @@ class Servicios extends Conexion {
     $sql->bindValue(1,intval($precio));
     $sql->bindValue(2,$nombre);
     $sql->bindValue(3,$descripcion);
-    $sql->execute();
-    return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    if ($sql->execute()) {
+        $id_servicio = $conectar->lastInsertId();
+        return $id_servicio;
+    } else {
+        return null;
+    }
   }
-
   public function update_servicio($id_servicio, $precio, $nombre, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
