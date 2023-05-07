@@ -61,7 +61,7 @@ if (isset($_GET["user"])) {
         case "delete":
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
@@ -174,7 +174,7 @@ if(isset($_GET["servicios"])){
         case 'GetId':
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
@@ -272,7 +272,7 @@ if (isset($_GET["empresa_has_servicios"])) {
         case 'get_all':
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
@@ -283,7 +283,7 @@ if (isset($_GET["empresa_has_servicios"])) {
         case 'get_by_cif':
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));

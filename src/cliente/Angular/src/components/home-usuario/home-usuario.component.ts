@@ -1,6 +1,7 @@
 import { HttpHeaders } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { EmpresaService } from 'src/service/empresa/empresa.service';
 
 @Component({
   selector: 'app-home-usuario',
@@ -8,19 +9,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./home-usuario.component.css']
 })
 export class HomeUsuarioComponent {
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${localStorage.getItem('token')}`
-    })
-  };
-  constructor(private router: Router){}
-  ngOnInit() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-      this.httpOptions = { headers: headers };
-    }
+  empresas=[]
+  constructor(private router: Router, private empresa : EmpresaService){}
+  mostrarEmpresas(){
+    this.empresa.obtenerEmpresas().subscribe(
+      (response) => {
+        console.log(response);
+      }
+    )
+
   }
   
 }

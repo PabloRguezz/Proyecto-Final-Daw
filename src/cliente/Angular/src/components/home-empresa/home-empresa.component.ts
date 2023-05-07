@@ -6,6 +6,8 @@ import { Empresa } from 'src/model/empresa/empresa.model';
 import { getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
 import { Storage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
+import { EmpresaHasServiciosService } from 'src/service/empresa_has_servicios/empresa-has-servicios.service';
+import { error } from 'jquery';
 
 @Component({
   selector: 'app-home-empresa',
@@ -14,7 +16,7 @@ import { Router } from '@angular/router';
 })
 export class HomeEmpresaComponent {
 
-  constructor(private servicio: ServiciosService, private storage : Storage, private router : Router){}
+  constructor(private servicio: ServiciosService, private storage : Storage, private router : Router,private servicioEmpresaHasServicio : EmpresaHasServiciosService){}
   precio : number;
   descripcion : string;
   nombre : string;
@@ -25,9 +27,18 @@ export class HomeEmpresaComponent {
   agregarServicio(){
     this.servicio.agregarServicio(this.precio,this.nombre,this.descripcion).subscribe(
       (data) => {
-        if (data && data.length > 0) {
-          console.log(data);
+        if (data.id_servicio && data.id_servicio.length > 0) {
+          const token = localStorage.getItem('token');
+          const decodedToken: Empresa = jwt_decode(token);
           const id_servicio = data.id_servicio;
+          this.servicioEmpresaHasServicio.agregarEmpresaServicio(decodedToken["data"].cif_Empresa,id_servicio).subscribe(
+            (service) => {
+
+            }, 
+            (error) => {
+
+            }
+          )
           Swal.fire({
             position: 'center',
             icon: 'success',

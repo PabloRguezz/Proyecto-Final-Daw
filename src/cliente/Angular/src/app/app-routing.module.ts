@@ -6,6 +6,7 @@ import { HomeUsuarioComponent } from 'src/components/home-usuario/home-usuario.c
 import { HomeEmpresaComponent } from 'src/components/home-empresa/home-empresa.component';
 import { DatosEmpresaComponent } from 'src/components/datos-empresa/datos-empresa.component';
 import { CalendarioComponent } from 'src/components/calendario/calendario.component';
+import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empresa-servicios.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'usuario', component: HomeUsuarioComponent },
   { path: 'empresa', component: HomeEmpresaComponent },
   { path: 'empresa/datos', component: DatosEmpresaComponent },
-  { path: 'empresa/calendario', component: CalendarioComponent }
+  { path: 'empresa/calendario', component: CalendarioComponent },
+  { path: 'empresa/servicios', component: EmpresaServiciosComponent}
 ];
 
 @NgModule({

@@ -1,0 +1,32 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .media {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 5px;
+  }
+  
+  .media img {
+    width: 150px;
+    height: auto;
+    border-radius: 5px;
+  }
+  
+  .media-body {
+    padding-left: 1rem;
+  }
+  
+  @media (max-width: 576px) {
+    .media img {
+      width: 100%;
+    }
+  }
+  
