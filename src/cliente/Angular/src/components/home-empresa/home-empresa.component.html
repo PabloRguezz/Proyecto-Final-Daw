@@ -15,9 +15,9 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
           </a>
         </div>
-        <div *ngFor="let image of images; let i = index">
+        <div *ngFor="let image of images;">
           <div class="carousel-item">
-            <img [src]="image" class="d-block w-100" alt="Slide {{i}}">
+            <img [src]="image" class="d-block w-100">
           </div>
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>

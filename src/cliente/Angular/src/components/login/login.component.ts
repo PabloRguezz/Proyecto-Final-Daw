@@ -12,9 +12,20 @@ import { EmpresaService } from 'src/service/empresa/empresa.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private http: HttpClient,private router: Router,private usuarioService: UsuarioServiceService, private empresaService : EmpresaService) {}
+  constructor(private http: HttpClient,private empresa :EmpresaService, private router: Router,private usuarioService: UsuarioServiceService, private empresaService : EmpresaService) {}
   email: string;
   password: string;
+  ngOnInit(){
+    this.mostrarEmpresas();
+  }
+  mostrarEmpresas(){
+    this.empresa.obtenerEmpresas().subscribe(
+      (response) => {
+        console.log(response);
+      }
+    )
+
+  }
   iniciarSesion() {
     if (this.email.includes("@")) {
       this.usuarioService.login(this.email, this.password).subscribe(

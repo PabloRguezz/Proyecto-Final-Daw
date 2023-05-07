@@ -12,25 +12,12 @@ export class EmpresaService {
   constructor(private http: HttpClient) { }
 
   obtenerEmpresas(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Security-Policy': "default-src 'self'; script-src 'report-sample' 'self'; style-src 'report-sample' 'self'; object-src 'none'; base-uri 'self'; connect-src 'self'; font",
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    });
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.http.get(`${this.apiUrl}=GetAll`, { headers });
   }
 
   obtenerEmpresaCif(cif_Empresa: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Security-Policy': "default-src 'self'; script-src 'report-sample' 'self'; style-src 'report-sample' 'self'; object-src 'none'; base-uri 'self'; connect-src 'self'; font",
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'DNT,User-Agent,X-Requested-With,If-Modified-Since,Cache-Control,Content-Type,Range,Authorization',
-      'Authorization': 'Bearer ' + localStorage.getItem('token')
-    });
-
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.http.get(`${this.apiUrl}=GetCif&cif_Empresa=${cif_Empresa}`, { headers });
   }
 

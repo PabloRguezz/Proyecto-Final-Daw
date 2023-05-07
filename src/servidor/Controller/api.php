@@ -93,7 +93,7 @@ if(isset($_GET["empresa"])){
         case 'GetAll':
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
