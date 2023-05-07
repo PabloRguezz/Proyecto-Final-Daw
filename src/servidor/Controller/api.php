@@ -1,7 +1,5 @@
 <?php
 header('Access-Control-Allow-Origin: *');
-header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS');
-header('Access-Control-Allow-Headers: Content-Type, Authorization');
 
 require_once("../config/conexion.php");
 require_once("../Model/Usuario.php");
@@ -315,7 +313,7 @@ if (isset($_GET["empresa_has_servicios"])) {
         case 'insert':
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));

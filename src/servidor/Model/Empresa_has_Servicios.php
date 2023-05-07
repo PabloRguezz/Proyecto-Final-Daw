@@ -32,7 +32,7 @@ class Empresa_has_Servicios extends Conexion {
     $sql = "INSERT INTO Empresa_has_Servicios(cif_Empresa, id_servicio) VALUES (?, ?)";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$cif);
-    $sql->bindValue(2,$id_servicio);
+    $sql->bindValue(2,intval($id_servicio));
     $sql->execute();
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }

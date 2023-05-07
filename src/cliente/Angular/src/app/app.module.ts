@@ -20,6 +20,7 @@ import { CommonModule } from '@angular/common';
 import { EmpresaHasServiciosService } from 'src/service/empresa_has_servicios/empresa-has-servicios.service';
 import { EmpresaService } from 'src/service/empresa/empresa.service';
 import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empresa-servicios.component';
+import { HeaderEmpresaComponent } from 'src/components/header-empresa/header-empresa.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empr
     DatosEmpresaComponent,
     HomeEmpresaComponent,
     EmpresaServiciosComponent,
+    HeaderEmpresaComponent
 
   ],
   imports: [
