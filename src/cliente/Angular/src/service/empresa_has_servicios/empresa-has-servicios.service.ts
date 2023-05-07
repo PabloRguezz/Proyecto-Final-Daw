@@ -11,28 +11,28 @@ export class EmpresaHasServiciosService {
   constructor(private http: HttpClient) { }
 
   obtenerEmpresaServicio(): Observable<any> {
-
-    return this.http.get(`${this.apiUrl}=get_all`);
+    const headers = new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token'))
+    return this.http.get(`${this.apiUrl}=get_all`, { headers});
+    
   }
 
   obtenerEmpresaServicioCif(cif_Empresa: string): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    const headers = new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.http.get(`${this.apiUrl}=get_by_cif&cif_Empresa=${cif_Empresa}`, { headers });
   }
 
   obtenerEmpresaServicioService(id_servicio: number): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    const headers = new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.http.get(`${this.apiUrl}=get_by_id_servicio&id_servicio=${id_servicio}`, { headers });
   }
 
   agregarEmpresaServicio(cif_Empresa: string, id_servicio: number): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    const headers = new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.http.get(`${this.apiUrl}=insert&cif_Empresa=${cif_Empresa}&id_servicio=${id_servicio}`, { headers });
   }
 
   eliminarEmpresaServicio(cif_Empresa: string, id_servicio: number): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    const headers = new HttpHeaders().append('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.http.get(`${this.apiUrl}=delete&cif_Empresa=${cif_Empresa}&id_servicio=${id_servicio}`, { headers });
   }
 }
-

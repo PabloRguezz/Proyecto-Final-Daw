@@ -17,9 +17,9 @@ import { error } from 'jquery';
 export class HomeEmpresaComponent {
 
   constructor(private servicio: ServiciosService, private storage : Storage, private router : Router,private servicioEmpresaHasServicio : EmpresaHasServiciosService){}
-  precio : number;
-  descripcion : string;
-  nombre : string;
+  precio: number; 
+  descripcion: string; 
+  nombre: string;  
   images;
   ngOnInit(){
     this.getImages();
@@ -33,7 +33,7 @@ export class HomeEmpresaComponent {
           const id_servicio = data.id_servicio;
           this.servicioEmpresaHasServicio.agregarEmpresaServicio(decodedToken["data"].cif_Empresa,id_servicio).subscribe(
             (service) => {
-
+              console.log(service);
             }, 
             (error) => {
 

@@ -15,6 +15,11 @@ import { HomeEmpresaComponent } from 'src/components/home-empresa/home-empresa.c
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
+import { SwiperModule } from 'swiper/angular'
+import { CommonModule } from '@angular/common';
+import { EmpresaHasServiciosService } from 'src/service/empresa_has_servicios/empresa-has-servicios.service';
+import { EmpresaService } from 'src/service/empresa/empresa.service';
+import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empresa-servicios.component';
 
 
 @NgModule({
@@ -26,13 +31,17 @@ import { provideStorage,getStorage } from '@angular/fire/storage';
     HeaderLoginComponent,
     CalendarioComponent,
     DatosEmpresaComponent,
-    HomeEmpresaComponent
+    HomeEmpresaComponent,
+    EmpresaServiciosComponent,
+
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    CommonModule,
     FormsModule,
     ReactiveFormsModule,
+    SwiperModule,
     HttpClientModule,
     FullCalendarModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),

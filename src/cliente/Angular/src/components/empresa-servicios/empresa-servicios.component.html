@@ -1,25 +1,43 @@
-<div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h2>Servicios de la empresa</h2>
-        <table>
-            <thead>
-              <tr>
-                <th>Nombre</th>
-                <th>Descripción</th>
-                <th>Precio</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let servicio of servicios">
-                <td>{{ servicio.nombre }}</td>
-                <td>{{ servicio.descripcion }}</td>
-                <td>{{ servicio.precio }}</td>
-              </tr>
-            </tbody>
-          </table>
-          
+<div class="services-container">
+  <h2>Servicios</h2>
+  <ul>
+    <li *ngFor="let service of servicios">
+      <div class="service">
+        <h3>{{ service.nombre }}</h3>
+        <p>{{ service.descripcion }}</p>
+        <button type="button" class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample" data-bs-id="service.id_servicio ">
+          Editar Servicio
+        </button>
+        
+        <button (click)="eliminarServicio(service.id_servicio )">Eliminar Servicio</button>
       </div>
-    </div>
+    </li>
+  </ul>
+</div>
+
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="offcanvasExampleLabel">Editar Servicio</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
   </div>
-  
+  <div class="offcanvas-body">
+    <form>
+      <div class="mb-3">
+        <label for="id_servicio" class="form-label">ID del servicio</label>
+        <input type="text" class="form-control" id="id_servicio" name="id_servicio" readonly>
+      </div>
+      <!-- Aquí van los demás campos del formulario -->
+    </form>
+  </div>
+</div>
+
+<script>
+var myOffcanvas = document.getElementById('offcanvasExample');
+myOffcanvas.addEventListener('show.bs.offcanvas', function (event) {
+  var button = event.relatedTarget;
+  var id_servicio = button.getAttribute('data-bs-id');
+  var id_servicio_input = myOffcanvas.querySelector('#id_servicio');
+  id_servicio_input.value = id_servicio;
+});
+</script>
+

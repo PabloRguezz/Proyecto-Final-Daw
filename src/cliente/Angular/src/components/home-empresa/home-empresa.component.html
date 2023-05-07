@@ -91,23 +91,21 @@
   </div>
   <div class="offcanvas-body">
     <form (submit)="agregarServicio()">
-      <div class="mb-3">
-        <label for="nombre" class="form-label">Nombre del servicio</label>
-        <input type="text" class="form-control" id="nombre" placeholder="Ingresa el nombre del servicio" [(ngModel)]="nombre">
+      <div class="input-field">
+          <input type="text" class="input" id="nombre" name="nombre" required="required" autocomplete="off" [(ngModel)]="nombre">
+          <label for="nombre">Nombre</label>
       </div>
-      <div class="mb-3">
-        <label for="descripcion" class="form-label">Descripción</label>
-        <textarea class="form-control" id="descripcion" rows="3" placeholder="Ingresa la descripción del servicio" [(ngModel)]="descripcion"></textarea>
+      <div class="input-field">
+          <textarea type="descripcion" class="input" id="descripcion" name="descripcion" required="required" [(ngModel)]="descripcion"></textarea>
+          <label for="descripcion">Descripcion</label>
       </div>
-      <div class="mb-3">
-        <label for="precio" class="form-label">Precio</label>
-        <div class="input-group">
-          <span class="input-group-text">€</span>
-          <input type="number" class="form-control" id="precio" placeholder="Ingresa el precio del servicio" [(ngModel)]="precio">
-        </div>
-      </div>
+      <div class="input-field">
+        <input type="number" class="input" id="precio" name="precio" required="required" [(ngModel)]="precio">
+        <label for="precio">Precio</label>
+    </div>
       <button type="submit" class="btn btn-primary">Crear</button>
     </form>
+    
   </div>
 </div>
 

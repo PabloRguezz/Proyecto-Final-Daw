@@ -24,11 +24,13 @@
     "@fullcalendar/daygrid": "^6.1.6",
     "bootstrap": "^5.2.3",
     "glidejs": "^2.1.0",
+    "http-proxy-middleware": "^2.0.6",
     "jquery": "^3.6.4",
     "jwt-decode": "^3.1.2",
     "rxjs": "~7.8.0",
     "slick-carousel": "^1.8.1",
     "sweetalert2": "^11.4.8",
+    "swiper": "^8.4.7",
     "tslib": "^2.3.0",
     "zone.js": "^0.12.0"
   },

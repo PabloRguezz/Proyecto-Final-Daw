@@ -1,8 +1,7 @@
 {
-    "/api": {
-      "target": "https://api.usuario.alu6852.arkania.es",
-      "secure": false,
-      "changeOrigin": true
-    }
+  "/api": {
+    "target": "https://api.alu6852.arkania.es/api.php",
+    "secure": false,
+    "changeOrigin": true
+  }
 }
-  

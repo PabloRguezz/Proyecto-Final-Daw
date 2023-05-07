@@ -81,3 +81,57 @@
   border-radius: 5px;
   margin-top: 10px;
 }
+form {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.input-field {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input {
+  font-size: 16px;
+  padding: 10px;
+  display: block;
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  background-color: transparent;
+}
+
+.input:focus, .input:valid {
+  border-bottom: 1px solid #008CBA;
+}
+
+label {
+  font-size: 16px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  pointer-events: none;
+  transition: all 0.2s ease;
+}
+
+.input:focus ~ label, .input:valid ~ label {
+  font-size: 12px;
+  top: -20px;
+  color: #008CBA;
+}
+
+.btn {
+  background-color: #008CBA;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #006C80;
+}
