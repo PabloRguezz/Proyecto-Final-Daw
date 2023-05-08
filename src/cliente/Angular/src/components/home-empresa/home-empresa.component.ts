@@ -7,7 +7,6 @@ import { getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage
 import { Storage } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { EmpresaHasServiciosService } from 'src/service/empresa_has_servicios/empresa-has-servicios.service';
-import { error } from 'jquery';
 
 @Component({
   selector: 'app-home-empresa',

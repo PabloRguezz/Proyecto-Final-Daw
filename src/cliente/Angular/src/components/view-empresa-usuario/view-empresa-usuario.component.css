@@ -1,0 +1,199 @@
+/* Estilo para el cuerpo del sitio */
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f9f9f9;
+    max-height: 100vh;
+    width: 100%;
+  }
+  
+  /* Estilo para los encabezados */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  /* Estilo para los enlaces */
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  /* Estilo para los botones */
+  .btn {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #007bff;
+    border: 1px solid #007bff;
+    border-radius: 0.25rem;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #fff;
+  }
+  
+  .btn:hover {
+    background-color: #0069d9;
+    border-color: #0062cc;
+    color: #fff;
+  }
+  
+  /* Estilo para los contenedores */
+  .container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  /* Estilo para las secciones */
+  section {
+    padding: 4rem 0;
+  }
+  
+  /* Estilo para las tarjetas */
+  .card {
+    margin-bottom: 1.5rem;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+  }
+  
+  .card:hover {
+    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,.3);
+  }
+  
+  .card-img-top {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  
+  .card-body {
+    padding: 1.25rem;
+  }
+  
+  .card-title {
+    font-size: 1.25rem;
+    margin-bottom: .75rem;
+  }
+  
+  .card-text {
+    margin-bottom: 1.25rem;
+  }
+  
+  /* Estilo para la barra de navegación */
+  .navbar {
+    background-color: #fff;
+    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
+  }
+  
+  .navbar-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: #007bff;
+  }
+  
+  .nav-link {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    color: #333;
+    margin-right: 1rem;
+  }
+  
+  .nav-link:hover {
+    color: #007bff;
+  }
+  .no-servicios-template {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin: 10px;
+    width: 99%;
+
+  }
+  .no-empresa-template {
+    background-color: #f1f1f1;
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 100%;
+
+  }
+  img{
+    height: 300px;
+  }
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f5f5f5;
+    text-align: center;
+  }
+  
+  .carousel {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  
+  .carousel-container {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .carousel-item {
+    flex: 1 0 100%;
+    margin-right: 20px;
+    text-align: center;
+  }
+  
+  .carousel-item img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+  
+  .carousel-controls {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+  }
+  
+  .carousel-control {
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    color: #000;
+    font-size: 20px;
+    height: 40px;
+    margin-right: 10px;
+    width: 40px;
+  }
+  
+  .carousel-control i {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .carousel-control:hover {
+    cursor: pointer;
+  }
+  

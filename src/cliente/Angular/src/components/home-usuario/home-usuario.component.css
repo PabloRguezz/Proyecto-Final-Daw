@@ -218,12 +218,18 @@ nav a:hover {
     text-align: center;
     cursor: pointer;
   }
-  
-  .carousel-control-prev {
-    left: 2rem;
+  .carousel-container {
+    max-width: 300px;
+    margin-right: 10px;
+  }
+  .carousel {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    width: 100%;
+    margin: 0 auto;
   }
   
-  .carousel-control-next {
-    right: 2rem;
-  }
+    
+  
   

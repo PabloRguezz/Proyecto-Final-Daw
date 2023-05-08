@@ -386,7 +386,7 @@ if(isset($_GET["reservas"])){
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
             }
-            $datos=$reservas->insert_reserva($_GET["hora_reserva"],$_GET["nombre_servicio"],$_GET["id_servicio"],$_GET["id_usuario"]);
+            $datos=$reservas->insert_reserva($_GET["hora_reserva"],$_GET["nombre_servicio"],$_GET["id_servicio"],$_GET["id_usuario"],$_GET["dia_reserva"]);
             echo json_encode("La reserva se ha insertado correctamente");
             break;
         case "update":
@@ -397,7 +397,7 @@ if(isset($_GET["reservas"])){
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
             }
-            $datos=$reservas->update_reserva($_GET["id_reserva"],$_GET["hora_reserva"],$_GET["nombre_servicio"],$_GET["id_servicio"],$_GET["id_usuario"]);
+            $datos=$reservas->update_reserva($_GET["id_reserva"],$_GET["hora_reserva"],$_GET["nombre_servicio"],$_GET["id_servicio"],$_GET["id_usuario"],$_GET["dia_reserva"]);
             echo json_encode("La reserva se ha actualizado correctamente");
             break;
         case "delete":

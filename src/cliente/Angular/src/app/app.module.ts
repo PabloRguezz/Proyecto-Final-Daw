@@ -21,6 +21,8 @@ import { EmpresaHasServiciosService } from 'src/service/empresa_has_servicios/em
 import { EmpresaService } from 'src/service/empresa/empresa.service';
 import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empresa-servicios.component';
 import { HeaderEmpresaComponent } from 'src/components/header-empresa/header-empresa.component';
+import { ViewEmpresaUsuarioComponent } from 'src/components/view-empresa-usuario/view-empresa-usuario.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 @NgModule({
@@ -34,7 +36,8 @@ import { HeaderEmpresaComponent } from 'src/components/header-empresa/header-emp
     DatosEmpresaComponent,
     HomeEmpresaComponent,
     EmpresaServiciosComponent,
-    HeaderEmpresaComponent
+    HeaderEmpresaComponent,
+    ViewEmpresaUsuarioComponent
 
   ],
   imports: [
@@ -45,6 +48,7 @@ import { HeaderEmpresaComponent } from 'src/components/header-empresa/header-emp
     ReactiveFormsModule,
     SwiperModule,
     HttpClientModule,
+    CarouselModule,
     FullCalendarModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()) 

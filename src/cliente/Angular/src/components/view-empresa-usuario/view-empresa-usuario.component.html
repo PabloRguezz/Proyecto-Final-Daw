@@ -1,0 +1,88 @@
+<div class="container-fluid">
+    <!-- Cuerpo -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="jumbotron">
+          <h1 class="display-4">{{datosEmpresa.nombre}}</h1>
+          <p>{{datosEmpresa.descripcion}}</p>
+          <hr class="my-4">
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="images.length > 0; else noEmpresa">
+                <div class="carousel-indicators" *ngFor="let image of images; let i = index">
+                  <button type="button" class="active" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i"></button>
+                </div>
+                <div class="carousel-inner" *ngFor="let image of images; let i = index;">
+                  <div class="carousel-item" [class.active]="i === 0">
+                    <img [src]="image" class="d-block w-100 img-fluid">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>                                  
+        </div>
+    </div>
+    <ng-template #noEmpresa>
+        <div class="card no-empresa-template">
+          <div class="card-body">
+            <p class="card-text">No existen imágenes.</p>
+          </div>
+        </div>
+      </ng-template>     
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Servicios</h2>
+      </div>
+      <div class="col-md-4" *ngIf="servicios.length > 0; else noServicios">
+        <div class="card" *ngFor="let service of servicios">
+          <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Imagen del destino 1">
+          <div class="card-body">
+            <h5 class="card-title">{{service.nombre}}</h5>
+            <p class="card-text">{{service.descripcion}}</p>
+            <p class="card-text">{{service.precio}}€</p>
+            <a href="#" class="btn btn-primary">Ver más</a>
+          </div>
+        </div>
+    </div>
+    <ng-template id="error" #noServicios>
+        <div class="card no-servicios-template">
+          <div class="card-body">
+            <p class="card-text">No existen servicios.</p>
+          </div>
+        </div>
+      </ng-template>
+    <footer>
+        <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+            <h3>Contáctanos</h3>
+            <p>Puedes contactarnos por teléfono, correo electrónico o visitarnos en nuestras oficinas.</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+            <h4>Teléfono</h4>
+            <p>{{datosEmpresa.tlf_contacto}}</p>
+            </div>
+            <div class="col-md-6">
+            <h4>Dirección</h4>
+            <p>{{datosEmpresa.ubicacion}}</p>
+            </div>
+        </div>
+        </div>
+    </footer>
+  
+ 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  

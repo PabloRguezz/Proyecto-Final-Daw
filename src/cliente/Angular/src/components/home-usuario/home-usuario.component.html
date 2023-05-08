@@ -31,14 +31,16 @@
         </section>
       </div>
       <div class="carousel">
-        <div class="carousel-container" >
-          <div class="card" id="{{empresas[i].cif_Empresa}}" *ngFor="let empresa of empresas; let i = index" >
-            <img src="https://via.placeholder.com/400x250/ff0000/ffffff?text=Card+1" alt="Card 1">
-            <div class="card-body">
-              <h3>{{empresas[i].nombre}}</h3>
-              <p>{{empresas[i].descripcion}}</p>
+        <div class="carousel-container" *ngFor="let empresa of empresas; let i = index"  >
+          <a [routerLink]="['/usuario', empresas[i].cif_Empresa]">
+            <div class="card" id="{{empresas[i].cif_Empresa}}">
+              <img src="https://via.placeholder.com/400x250/ff0000/ffffff?text=Card+1" alt="Card 1">
+              <div class="card-body">
+                <h3>{{empresas[i].nombre}}</h3>
+                <p>{{empresas[i].descripcion}}</p>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>      
       

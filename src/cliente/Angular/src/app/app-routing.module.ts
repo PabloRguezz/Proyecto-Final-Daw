@@ -7,6 +7,7 @@ import { HomeEmpresaComponent } from 'src/components/home-empresa/home-empresa.c
 import { DatosEmpresaComponent } from 'src/components/datos-empresa/datos-empresa.component';
 import { CalendarioComponent } from 'src/components/calendario/calendario.component';
 import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empresa-servicios.component';
+import { ViewEmpresaUsuarioComponent } from 'src/components/view-empresa-usuario/view-empresa-usuario.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -15,7 +16,8 @@ const routes: Routes = [
   { path: 'empresa', component: HomeEmpresaComponent },
   { path: 'empresa/datos', component: DatosEmpresaComponent },
   { path: 'empresa/calendario', component: CalendarioComponent },
-  { path: 'empresa/servicios', component: EmpresaServiciosComponent}
+  { path: 'empresa/servicios', component: EmpresaServiciosComponent},
+  { path: 'usuario/:cif_empresa', component: ViewEmpresaUsuarioComponent}
 ];
 
 @NgModule({
