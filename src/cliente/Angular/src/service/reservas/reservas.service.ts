@@ -25,6 +25,10 @@ export class ReservasService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.http.get(`${this.apiUrl}=GetUsuario&id_usuario=${id_usuario}`, { headers });
   }
+  obtenerReservasServicio(id_servicio: number): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    return this.http.get(`${this.apiUrl}=GetServicio&id_servicio=${id_servicio}`, { headers });
+  }
 
   agregarReserva(hora_reserva: string, nombre_servicio: string, id_servicio: number, id_usuario: number): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));

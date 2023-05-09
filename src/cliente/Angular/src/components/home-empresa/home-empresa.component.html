@@ -1,14 +1,23 @@
-<app-header-empresa></app-header-empresa>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <app-header-empresa></app-header-empresa>
 <div class="container">
   <div class="carousel-container">
     <div id="carousel" class="carousel slide" data-bs-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <div class="carousel-caption d-none d-md-block">
+          <div class="carousel-caption" style="height: 150px;">
             <h5>Imagen de la empresa</h5>
             <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#uploadModal">Agregar imagen</button>
           </div>
-          <img src="https://via.placeholder.com/1920x720.png?text=Slide+1" class="d-block w-100" alt="Slide 1">
+          <img src="../../assets/imgs/reserva.png" class="d-block w-100" >
           <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           </a>
@@ -42,15 +51,15 @@
 <div class="container">
   <div class="card-deck">
     <div class="card">
-      <img src="https://via.placeholder.com/300x200.png?text=Editar+perfil" class="card-img-top" alt="Editar perfil">
+      <img src="../../assets/imgs/perfil.png" class="card-img-top" alt="Editar perfil" style="width: 99%;">
       <div class="card-body">
         <h5 class="card-title">Ver Perfil</h5>
-        <p class="card-text">Edita la información de la empresa</p>
-        <a href="empresa/datos" class="btn btn-primary">Editar perfil</a>
+        <p class="card-text">Ver perfil de la empresa</p>
+        <a href="empresa/datos" class="btn btn-primary">Ver perfil</a>
       </div>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/300x200.png?text=Crear+anuncio" class="card-img-top" alt="Crear anuncio">
+      <img src="../../assets/imgs/editar.png" class="card-img-top" alt="Crear anuncio">
       <div class="card-body">
         <h5 class="card-title">Crear servicio</h5>
         <p class="card-text">Crea un nuevo servicio para la empresa</p>
@@ -58,19 +67,19 @@
       </div>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/300x200.png?text=Editar+anuncio" class="card-img-top" alt="Editar anuncio">
+      <img src="../../assets/imgs/calendario.png" class="card-img-top" alt="Editar anuncio">
       <div class="card-body">
         <h5 class="card-title">Ver Calendario</h5>
-        <p class="card-text">Edita un anuncio existente de la empresa</p>
+        <p class="card-text">Ver calendario con las reservas</p>
         <a href="empresa/calendario" class="btn btn-primary">Ver Calendario</a>
       </div>
     </div>
     <div class="card">
-      <img src="https://via.placeholder.com/300x200.png?text=Eliminar+anuncio" class="card-img-top" alt="Eliminar anuncio">
+      <img src="../../assets/imgs/servicios.png" class="card-img-top" alt="Eliminar anuncio">
       <div class="card-body">
         <h5 class="card-title">Ver servicios</h5>
-        <p class="card-text">Elimina un anuncio existente de la empresa</p>
-        <a href="empresa/servicios" class="btn btn-primary">Eliminar anuncio</a>
+        <p class="card-text">Ver servicios que añade la empresa</p>
+        <a href="empresa/servicios" class="btn btn-primary">Ver servicios</a>
       </div>
     </div>
   </div>
@@ -110,3 +119,6 @@
   </div>
 </div>
 
+
+</body>
+</html>

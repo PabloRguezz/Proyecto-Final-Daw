@@ -32,7 +32,6 @@ export class HomeEmpresaComponent {
           const id_servicio = data.id_servicio;
           this.servicioEmpresaHasServicio.agregarEmpresaServicio(decodedToken["data"].cif_Empresa,id_servicio).subscribe(
             (service) => {
-              console.log(service);
             }, 
             (error) => {
 

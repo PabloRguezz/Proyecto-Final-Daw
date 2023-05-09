@@ -3,8 +3,14 @@
 *{
     font-family: 'Poppins', sans-serif;
 }
+body {
+    background-image: url('../../assets/imgs/login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
 .wrapper{
-    background: #ececec;
+
     padding: 0 20px 0 20px;
 }
 .main{

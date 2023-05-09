@@ -378,6 +378,17 @@ if(isset($_GET["reservas"])){
             $datos=$reservas->get_reservas_by_usuario($_GET["id_usuario"]);
             echo json_encode($datos);
             break;
+        case 'GetServicio':
+            $headers = apache_request_headers();
+            $token = $headers['Authorization'] ?? null;
+            $token = str_replace("Bearer ", "", $token);
+            if (!$token || !Jwt_Token::verify_token($token)) {
+                http_response_code(401);
+                exit(json_encode(array("message" => "Acceso denegado")));
+            }
+            $datos=$reservas->get_reservas_by_servicio($_GET["id_servicio"]);
+            echo json_encode($datos);
+            break;
         case "insert":
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
@@ -416,3 +427,6 @@ if(isset($_GET["reservas"])){
 
 
 ?>
+
+
+

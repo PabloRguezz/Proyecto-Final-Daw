@@ -23,6 +23,7 @@ import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empr
 import { HeaderEmpresaComponent } from 'src/components/header-empresa/header-empresa.component';
 import { ViewEmpresaUsuarioComponent } from 'src/components/view-empresa-usuario/view-empresa-usuario.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { HeaderUsuarioComponent } from 'src/components/header-usuario/header-usuario.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     HomeEmpresaComponent,
     EmpresaServiciosComponent,
     HeaderEmpresaComponent,
-    ViewEmpresaUsuarioComponent
+    ViewEmpresaUsuarioComponent, 
+    HeaderUsuarioComponent
 
   ],
   imports: [

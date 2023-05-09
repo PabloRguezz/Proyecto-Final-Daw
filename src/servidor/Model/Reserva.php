@@ -30,6 +30,16 @@ public function get_reservas_by_usuario($id_usuario) {
   return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+public function get_reservas_by_servicio($id_servicio) {
+  $conectar = parent::connection();
+  parent::set_name();
+  $sql = "SELECT * FROM Reserva WHERE id_servicio = ?";
+  $stmt = $conectar->prepare($sql);
+  $stmt->bindValue(1, $id_servicio, PDO::PARAM_INT);
+  $stmt->execute();
+  return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
 public function insert_reserva($hora_reserva, $nombre_servicio, $id_servicio, $id_usuario, $dia_reserva) {
   $conectar = parent::connection();
   parent::set_name();

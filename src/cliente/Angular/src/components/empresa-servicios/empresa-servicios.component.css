@@ -2,64 +2,64 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
-}
-
-.services-container h2 {
+  }
+  
+  .services-container h2 {
   text-align: center;
   margin-bottom: 30px;
-}
-
-ul {
+  }
+  
+  ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-}
-
-li {
+  }
+  
+  li {
   width: calc(33.33% - 20px);
   margin-bottom: 40px;
   position: relative;
-}
-
-.service {
-  background-color: #f5f5f5;
+  }
+  
+  .service {
+  background-color: #3D7C98;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   text-align: center;
   height: 300px; /* Ajusta la altura según tus necesidades */
-}
-
-.service img {
+  }
+  
+  .service img {
   width: 100%;
   max-width: 200px;
   margin-bottom: 20px;
-}
-
-.service h3 {
+  }
+  
+  .service h3 {
   font-size: 1.5rem;
   margin-bottom: 10px;
-}
-
-.service p {
+  }
+  
+  .service p {
   font-size: 1rem;
   margin-bottom: 20px;
   word-wrap: break-word; /* Añade esta propiedad */
-}
-
-.service button {
-  background-color: #007bff;
+  }
+  
+  .service button {
+  background-color: #73B0CD;
   border: none;
   color: #fff;
   padding: 10px 20px;
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-}
-
-.service button:hover {
-  background-color: #0062cc;
-}
+  }
+  
+  .service button:hover {
+  background-color: #A8DFF1;
+  }
