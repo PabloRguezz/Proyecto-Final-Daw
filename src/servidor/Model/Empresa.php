@@ -3,8 +3,7 @@ class Empresa extends Conexion {
   public function get_empresa() {
     $conectar = parent::connection();
     parent::set_name();
-
-    $sql = "SELECT * FROM Empresa WHERE cif_Empresa = '12345678A'";
+    $sql = "SELECT * FROM Empresa";
     $sql = $conectar->prepare($sql);
     $sql->execute();
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -23,12 +22,21 @@ class Empresa extends Conexion {
   public function insert_empresa($cif, $nombre, $tlf_contacto, $password, $horario, $ubicacion, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
+    $sql = "SELECT * FROM Empresa WHERE cif_Empresa=?";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1,$cif);
+    $sql->execute();
+    $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    if ($resultado) {
+        return array("error" => "El cif de la empresa ya está en uso");
+    }
+    $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO Empresa(cif_Empresa, nombre, tlf_contacto, password, horario, ubicacion, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$cif);
     $sql->bindValue(2,$nombre);
     $sql->bindValue(3,$tlf_contacto);
-    $sql->bindValue(4,$password);
+    $sql->bindValue(4,$password_hasheada);
     $sql->bindValue(5,$horario);
     $sql->bindValue(6,$ubicacion);
     $sql->bindValue(7,$descripcion);
@@ -39,7 +47,7 @@ class Empresa extends Conexion {
   public function update_empresa($cif, $nombre, $tlf_contacto, $password, $horario, $ubicacion, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
-    $sql = "UPDATE Empresa SET nombre=?, tlf_contacto=?, password=?, horario=?, ubicacion=?, descripcion=? WHERE cif_Empresa=?";
+    $sql = "UPDATE Empresa SET nombre='?', tlf_contacto=?, password='?', horario='?', ubicacion='?', descripcion='?' WHERE cif_Empresa=?";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$nombre);
     $sql->bindValue(2,$tlf_contacto);

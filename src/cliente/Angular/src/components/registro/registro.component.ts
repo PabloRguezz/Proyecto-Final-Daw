@@ -15,11 +15,11 @@ export class RegistroComponent {
   formularioRegistro = {
     nombre: '',
     email: '',
-    password: ''
+    password: '',
   };
   registrarCliente() {
     const { nombre, email, password } = this.formularioRegistro;
-    this.usuarioService.registrarUsuario(nombre, email, password).subscribe(
+    this.usuarioService.agregarUsuario(email, password, nombre).subscribe(
       (response :any) => {
       if (response && response.length > 0) {
         Swal.fire({
@@ -101,26 +101,25 @@ export class RegistroComponent {
         nombre: nombreEmpresa,
         cif_Empresa: cif,
         tlf_contacto: telefono,
-        horario: `Lun ${this.horarioToString(`${lunesInicio} - ${lunesFin}`)}, Mar ${this.horarioToString(`${martesInicio} - ${martesFin}`)}, Mie ${this.horarioToString(`${miercolesInicio} - ${miercolesFin}`)}, Jue ${this.horarioToString(`${juevesInicio} - ${juevesFin}`)}, Vie ${this.horarioToString(`${viernesInicio} - ${viernesFin}`)}, Sab ${this.horarioToString(`${sabadoInicio} - ${sabadoFin}`)}, Dom ${this.horarioToString(`${domingoInicio} - ${domingoFin}`)}`,
+        horario : `Lun ${this.horarioToString(`${lunesInicio}-${lunesFin}`)}, Mar ${this.horarioToString(`${martesInicio}-${martesFin}`)}, Mie ${this.horarioToString(`${miercolesInicio}-${miercolesFin}`)}, Jue ${this.horarioToString(`${juevesInicio}-${juevesFin}`)}, Vie ${this.horarioToString(`${viernesInicio}-${viernesFin}`)}, Sab ${this.horarioToString(`${sabadoInicio}-${sabadoFin}`)}, Dom ${this.horarioToString(`${domingoInicio}-${domingoFin}`)}`,
         ubicacion: ubicacion,
         descripcion: descripcion,
         password: password,
       };
-      console.log(empresa);
-      this.empresaService.registrarEmpresa(empresa).subscribe(
-        (datos) => {
-          if (datos['status']) {
+      this.empresaService.agregarEmpresa(empresa.cif_Empresa,empresa.nombre,empresa.tlf_contacto,empresa.password,empresa.horario,empresa.ubicacion,empresa.descripcion).subscribe(
+        (datos :any) => {
+          if (datos && datos.length > 0) {
             Swal.fire({
               position: 'center',
               icon: 'success',
-              title: datos['msg'],
+              title: 'Empresa registrada correctamente',
               showConfirmButton: false,
               timer: 1500
             })
           } else {
             Swal.fire({
               icon: 'error',
-              title: datos['msg'],
+              title: 'Ha habido un error registrando la empresa',
             })
           }
         },
@@ -128,7 +127,7 @@ export class RegistroComponent {
           Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Ha habido un error registrando la empresa',
+            text: 'Ha habido un problema registrando la empresa',
           })
         }
       );

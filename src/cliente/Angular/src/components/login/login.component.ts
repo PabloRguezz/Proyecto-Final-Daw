@@ -12,12 +12,12 @@ import { EmpresaService } from 'src/service/empresa/empresa.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private http: HttpClient,private router: Router,private usuarioService: UsuarioServiceService, private empresaService : EmpresaService) {}
+  constructor(private http: HttpClient,private empresa :EmpresaService, private router: Router,private usuarioService: UsuarioServiceService, private empresaService : EmpresaService) {}
   email: string;
   password: string;
   iniciarSesion() {
     if (this.email.includes("@")) {
-      this.usuarioService.iniciarSesion(this.email, this.password).subscribe(
+      this.usuarioService.login(this.email, this.password).subscribe(
         (usuario: any) => {
           if (usuario && usuario.token.length > 0) {
             const token = usuario.token;
@@ -41,9 +41,11 @@ export class LoginComponent {
         }
       );
     } else {
-      this.empresaService.iniciarSesion(this.email,this.password).subscribe(
+      this.empresaService.login(this.email,this.password).subscribe(
         (empresa: any) => {
-          if (empresa && empresa.length > 0) {
+          if (empresa.token && empresa.token.length) {
+            const token = empresa.token;
+            localStorage.setItem('token', token);
             this.router.navigate(['/empresa']);
           } else {
             Swal.fire({

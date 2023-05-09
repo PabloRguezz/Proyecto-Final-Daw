@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport"
-		content="width=device-width,
-						initial-scale=1.0">
-	<title>BookMe</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+    <title>BookMe</title>
 </head>
 
 <body>
-	<header>
-		<h1 class="heading">BookMe</h1>
-	</header>
+    <app-header-login></app-header-login>
 	<div class="container">
-		<div class="slider"></div>
+		<div class="slider">
+        </div>
 		<div class="btn">
 			<button class="login">Cliente</button>
 			<button class="signup">Empresa</button>
@@ -22,8 +20,8 @@
 		<div class="form-section">
 			<div class="login-box">
                 <form (submit)="registrarCliente()">
-                    <input class="input" type="text" name="nombre" id="nombre" placeholder="Nombre" required="" [(ngModel)]="formularioRegistro.nombre"> 
-                    <input class="input" type="email" name="email" id="email" placeholder="Email" required="" [(ngModel)]="formularioRegistro.email"> 
+                    <input class="input" type="text" name="nombre" id="nombre" placeholder="Nombre" required [(ngModel)]="formularioRegistro.nombre"> 
+                    <input class="input" type="email" name="email" id="email" placeholder="Email" required [(ngModel)]="formularioRegistro.email"> 
                     <input class="input" type="password" name="pswd" id="pswd" placeholder="Contraseña" required [(ngModel)]="formularioRegistro.password">
                     <button type="button" class="btn btn-dark" routerLink="">Volver al login</button> 
                     <button type="submit" class="btn btn-dark">Registrarse</button>
@@ -31,27 +29,17 @@
 			</div>
 			<div class="signup-box">
                 <form class="empresa" (submit)="registrarEmpresa()">
-                    <input class="input" type="text" name="nombreEmpresa"
-                    id="nombreEmpresa" placeholder="Nombre de la empresa" required> 
-                    <input class="input" type="text" name="cif" id="cif"
-                    placeholder="CIF Empresa" required> 
-                    <input class="input" type="tel" name="telefono" id="telefono"
-                    placeholder="Telefono de Contacto" required>
+                    <input class="input" type="text" name="nombreEmpresa" id="nombreEmpresa" placeholder="Nombre de la empresa" required> 
+                    <input class="input" type="text" name="cif" id="cif" placeholder="CIF Empresa" required> 
+                    <input class="input" type="tel" name="telefono" id="telefono" placeholder="Telefono de Contacto" required>
                     <label for="lunes">Lunes:</label>
-                    <input type="time" id="lunesInicio" name="lunesInicio"> - <input type="time" id="lunesFin"
-                    name="lunesFin"><br>
-                    <label for="martes">Martes:</label> <input type="time" id="martesInicio" name="martesInicio"> - <input type="time"
-                        id="martesFin" name="martesFin"><br>
-                    <label for="miercoles">Miércoles:</label> <input type="time" id="miercolesInicio" name="miercolesInicio"> - <input
-                        type="time" id="miercolesFin" name="miercolesFin"><br>
-                    <label for="jueves">Jueves:</label> <input type="time" id="juevesInicio" name="juevesInicio"> - <input type="time"
-                        id="juevesFin" name="juevesFin"><br>
-                    <label for="viernes">Viernes:</label> <input type="time" id="viernesInicio" name="viernesInicio"> - <input type="time"
-                        id="viernesFin" name="viernesFin"><br>
-                    <label for="sabado">Sábado:</label> <input type="time" id="sabadoInicio" name="sabadoInicio"> - <input type="time"
-                        id="sabadoFin" name="sabadoFin"><br>
-                    <label for="domingo">Domingo:</label> <input type="time" id="domingoInicio" name="domingoInicio"> - <input type="time"
-                    id="domingoFin" name="domingoFin"> <br>
+                    <input type="time" id="lunesInicio" name="lunesInicio"> - <input type="time" id="lunesFin" name="lunesFin"><br>
+                    <label for="martes">Martes:</label> <input type="time" id="martesInicio" name="martesInicio"> - <input type="time" id="martesFin" name="martesFin"><br>
+                    <label for="miercoles">Miércoles:</label> <input type="time" id="miercolesInicio" name="miercolesInicio"> - <input type="time" id="miercolesFin" name="miercolesFin"><br>
+                    <label for="jueves">Jueves:</label> <input type="time" id="juevesInicio" name="juevesInicio"> - <input type="time" id="juevesFin" name="juevesFin"><br>
+                    <label for="viernes">Viernes:</label> <input type="time" id="viernesInicio" name="viernesInicio"> - <input type="time" id="viernesFin" name="viernesFin"><br>
+                    <label for="sabado">Sábado:</label> <input type="time" id="sabadoInicio" name="sabadoInicio"> - <input type="time" id="sabadoFin" name="sabadoFin"><br>
+                    <label for="domingo">Domingo:</label> <input type="time" id="domingoInicio" name="domingoInicio"> - <input type="time" id="domingoFin" name="domingoFin"> <br>
                     <input class="input" type="text" name="ubicacion" id="ubicacion" placeholder="Ubicacion" required> 
                     <input class="input" type="text" name="descripcion" id="descripcion" placeholder="Descripcion" required> 
                     <input class="input" type="password" name="password" id="password" placeholder="Contraseña" required> 
@@ -62,5 +50,4 @@
 		</div>
 	</div>
 </body>
-
 </html>

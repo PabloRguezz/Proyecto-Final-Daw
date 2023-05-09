@@ -5,13 +5,20 @@ import { RegistroComponent } from 'src/components/registro/registro.component';
 import { HomeUsuarioComponent } from 'src/components/home-usuario/home-usuario.component';
 import { HomeEmpresaComponent } from 'src/components/home-empresa/home-empresa.component';
 import { DatosEmpresaComponent } from 'src/components/datos-empresa/datos-empresa.component';
+import { CalendarioComponent } from 'src/components/calendario/calendario.component';
+import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empresa-servicios.component';
+import { ViewEmpresaUsuarioComponent } from 'src/components/view-empresa-usuario/view-empresa-usuario.component';
+import { AuthGuardGuard } from './auth-guard.guard';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
-  { path: 'usuario', component: HomeUsuarioComponent },
-  { path: 'empresa', component: HomeEmpresaComponent },
-  { path: 'empresa/datos', component: DatosEmpresaComponent }
+  { path: 'usuario', component: HomeUsuarioComponent, canActivate : [AuthGuardGuard] },
+  { path: 'empresa', component: HomeEmpresaComponent , canActivate : [AuthGuardGuard]},
+  { path: 'empresa/datos', component: DatosEmpresaComponent , canActivate : [AuthGuardGuard]},
+  { path: 'empresa/calendario', component: CalendarioComponent , canActivate : [AuthGuardGuard]},
+  { path: 'empresa/servicios', component: EmpresaServiciosComponent , canActivate : [AuthGuardGuard]},
+  { path: 'usuario/:cif_empresa', component: ViewEmpresaUsuarioComponent , canActivate : [AuthGuardGuard]}
 ];
 
 @NgModule({

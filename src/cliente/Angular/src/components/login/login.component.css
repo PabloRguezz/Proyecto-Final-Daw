@@ -3,8 +3,14 @@
 *{
     font-family: 'Poppins', sans-serif;
 }
+body {
+    background-image: url('../../assets/imgs/login.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
 .wrapper{
-    background: #ececec;
+
     padding: 0 20px 0 20px;
 }
 .main{
@@ -126,13 +132,13 @@ i{
     font-size: small;
     margin-top: 25px;
 }
-span a{
+span button{
     text-decoration: none;
     font-weight: 700;
     color: #000;
     transition: .5s;
 }
-span a:hover{
+span button:hover{
     text-decoration: underline;
     color: #000;
 }

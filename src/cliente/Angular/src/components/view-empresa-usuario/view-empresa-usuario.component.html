@@ -1,0 +1,148 @@
+<div class="container-fluid">
+    <!-- Cuerpo -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="jumbotron">
+          <h1 class="display-4">{{datosEmpresa.nombre}}</h1>
+          <p>{{datosEmpresa.descripcion}}</p>
+          <hr class="my-4">
+          
+        </div>
+      </div>
+    </div>
+    <div class="row equal-height">
+        <div class="col-md-6">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="images.length > 0; else noEmpresa">
+              <div class="carousel-indicators">
+                <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
+              </div>
+                <div class="carousel-inner" *ngFor="let image of images; let i = index;">
+                  <div class="carousel-item" [class.active]="i === 0">
+                    <img [src]="image" class="d-block w-100 img-fluid">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>                                  
+        <ng-template #noEmpresa>
+          <div class="card no-empresa-template">
+            <div class="card-body">
+              <p class="card-text">No existen imágenes.</p>
+            </div>
+          </div>
+        </ng-template>  
+    </div>
+    <div class="col-md-6">
+      <div class="container h-100  w-100">
+        <div class="col-md-12 h-100  w-100">
+          <div class="schedule-container h-100 w-100">
+            <table class="table h-100 w-100">
+              <thead>
+                <tr>
+                  <th>Día</th>
+                  <th>Horario</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Lunes</td>
+                  <td>{{horarioFinal[0].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Martes</td>
+                  <td>{{horarioFinal[1].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Miércoles</td>
+                  <td>{{horarioFinal[2].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Jueves</td>
+                  <td>{{horarioFinal[3].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Viernes</td>
+                  <td>{{horarioFinal[4].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Sábado</td>
+                  <td>{{horarioFinal[5].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Domingo</td>
+                  <td>{{horarioFinal[6].hora}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    <div class="row" style="padding-top: 2%;">
+      <div class="col-md-12">
+        <h2>Servicios</h2>
+      </div>
+      <div class="col-md-4" *ngIf="servicios.length > 0; else noServicios" style="width: 100%;">
+        <div class="card" *ngFor="let service of servicios">
+          <div class="card-body">
+            <h5 class="card-title">{{service.nombre}}</h5>
+            <p class="card-text">{{service.descripcion}}</p>
+            <p class="card-text">{{service.precio}}€</p>
+            <a class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">Reserva</a>
+          </div>
+          
+        </div>
+      </div>
+      
+    <ng-template id="error" #noServicios>
+        <div class="card no-servicios-template">
+          <div class="card-body">
+            <p class="card-text">No existen servicios.</p>
+          </div>
+        </div>
+      </ng-template>
+      </div>
+    <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div class="wrapper-calendar">
+                <div class="header-calendar">
+                    <div>
+                        <button (click)="changeMonth(-1)" class="btn-prev">Antes</button>
+                    </div>
+                    <h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
+                    <div>
+                        <button (click)="changeMonth(1)" class="btn-next">Siguiente</button>
+                    </div>
+                </div>
+                <ol>
+                    <li *ngFor="let day of week" class="day-name">{{day | slice:0:3}}</li>
+            
+                    <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
+                     *ngFor="let day of monthSelect;let first = first">
+                        <span>{{day?.value}}</span>
+                    </li>
+                </ol>
+            </div>
+            <div>
+              
+            </div>
+            <hr>
+        </div>
+      </div>
+      
+ 
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  

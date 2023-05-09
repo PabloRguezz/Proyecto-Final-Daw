@@ -3,7 +3,6 @@ class Usuario extends Conexion{
   public function get_usuario(){
     $conectar=parent::connection();
     parent::set_name();
-  
     $sql = "SELECT * FROM Usuario";
     $sql=$conectar->prepare($sql);
     $sql->execute();
@@ -44,7 +43,7 @@ class Usuario extends Conexion{
   public function update_usuario($id,$email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name();
-    $sql = "UPDATE Usuario set email=? , pasword=?, nombre=? WHERE id_usuario=?";
+    $sql = "UPDATE Usuario set email='?' , password='?', nombre='?' WHERE id_usuario=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->bindValue(2,$password);

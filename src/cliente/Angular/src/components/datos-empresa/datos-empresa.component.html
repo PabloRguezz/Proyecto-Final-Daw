@@ -1,167 +1,128 @@
-<div class="container-fluid">
-    <!-- Encabezado -->
-    <div class="row">
-      <div class="col-md-12">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">BookMe</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item active">
-                <a class="nav-link" href="">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Reservas</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Contacto</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
-    </div>
-  
-    <!-- Cuerpo -->
-    <div class="row">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <app-header-empresa></app-header-empresa>
+<div class="container-fluid" style="padding-top: 4%;">
+    <div class="row" >
       <div class="col-md-12">
         <div class="jumbotron">
-          <h1 class="display-4">Empresa Ejemplo</h1>
+          <h1 class="display-4">{{datosEmpresa.nombre}}</h1>
+          <p>{{datosEmpresa.descripcion}}</p>
           <hr class="my-4">
+          
         </div>
       </div>
     </div>
-  
-    <!-- Sección de destinos destacados -->
-    <div class="row">
+    <div class="row equal-height">
+        <div class="col-md-6">
+            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="images.length > 0; else noEmpresa">
+              <div class="carousel-indicators">
+                <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
+              </div>
+                <div class="carousel-inner" *ngFor="let image of images; let i = index;">
+                  <div class="carousel-item" [class.active]="i === 0">
+                    <img [src]="image" class="d-block w-100 img-fluid">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>                                  
+        <ng-template #noEmpresa>
+          <div class="card no-empresa-template">
+            <div class="card-body">
+              <p class="card-text">No existen imágenes.</p>
+            </div>
+          </div>
+        </ng-template>  
+    </div>
+    <div class="col-md-6">
+      <div class="container h-100  w-100">
+        <div class="col-md-12 h-100  w-100">
+          <div class="schedule-container h-100 w-100">
+            <table class="table h-100 w-100">
+              <thead>
+                <tr>
+                  <th>Día</th>
+                  <th>Horario</th>
+                </tr>
+              </thead>
+              <tbody style="background-color: #F5F5F5;">
+                <tr>
+                  <td>Lunes</td>
+                  <td>{{horarioFinal[0].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Martes</td>
+                  <td>{{horarioFinal[1].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Miércoles</td>
+                  <td>{{horarioFinal[2].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Jueves</td>
+                  <td>{{horarioFinal[3].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Viernes</td>
+                  <td>{{horarioFinal[4].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Sábado</td>
+                  <td>{{horarioFinal[5].hora}}</td>
+                </tr>
+                <tr>
+                  <td>Domingo</td>
+                  <td>{{horarioFinal[6].hora}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+    <div class="row" style="padding-top: 2%;">
       <div class="col-md-12">
         <h2>Servicios</h2>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Imagen del destino 1">
+      <div class="col-md-4" *ngIf="servicios.length > 0; else noServicios" style="width: 100%;">
+        <div class="card" *ngFor="let service of servicios">
           <div class="card-body">
-            <h5 class="card-title">Servicio 1</h5>
-            <p class="card-text">Descripción breve del Servicio 1.</p>
-            <a href="#" class="btn btn-primary">Ver más</a>
+            <h5 class="card-title">{{service.nombre}}</h5>
+            <p class="card-text">{{service.descripcion}}</p>
+            <p class="card-text">{{service.precio}}€</p>
+            <a class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">Reserva</a>
           </div>
+          
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Imagen del destino 2">
+      
+    <ng-template id="error" #noServicios>
+        <div class="card no-servicios-template">
           <div class="card-body">
-            <h5 class="card-title">Servicio 2</h5>
-            <p class="card-text">Descripción breve del Servicio 2.</p>
-            <a href="#" class="btn btn-primary">Ver más</a>
+            <p class="card-text">No existen servicios.</p>
           </div>
         </div>
+      </ng-template>
       </div>
-      <div class="col-md-4">
-        <div class="card">
-          <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Imagen del destino 3">
-          <div class="card-body">
-            <h5 class="card-title">Servicio 3</h5>
-            <p class="card-text">Descripción breve del Servicio 3.</p>
-            <a href="#" class="btn btn-primary">Ver más</a>
-            </div>
-            </div>
-            </div>
-            
-              </div>
-              <!-- Sección de ofertas -->
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Imagen de la oferta 1">
-                    <div class="card-body">
-                      <h5 class="card-title">Servicio 1</h5>
-                      <p class="card-text">Descripción breve de la Servicio 1.</p>
-                      <a href="#" class="btn btn-primary">Ver más</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Imagen de la oferta 2">
-                    <div class="card-body">
-                      <h5 class="card-title">Servicio 2</h5>
-                      <p class="card-text">Descripción breve de la Servicio 2.</p>
-                      <a href="#" class="btn btn-primary">Ver más</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <img class="card-img-top" src="https://via.placeholder.com/300x200" alt="Imagen de la oferta 3">
-                    <div class="card-body">
-                      <h5 class="card-title">Servicio 3</h5>
-                      <p class="card-text">Descripción breve de la Servicio 3.</p>
-                      <a href="#" class="btn btn-primary">Ver más</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Sección de testimonios -->
-              <div class="row">
-                <div class="col-md-12">
-                  <h2>Testimonios</h2>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <p class="card-text">"Excelente servicio y atención al cliente. Definitivamente volvería a reservar con ellos."</p>
-                      <p class="text-right"><em>- Cliente satisfecho</em></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <p class="card-text">"Me encantó la experiencia de viajar con ellos. Todo fue muy fácil y sin complicaciones."</p>
-                      <p class="text-right"><em>- Otro cliente satisfecho</em></p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-4">
-                  <div class="card">
-                    <div class="card-body">
-                      <p class="card-text">"Increíble atención al cliente y precios muy competitivos. Sin duda recomendaría esta empresa."</p>
-                      <p class="text-right"><em>- Cliente feliz</em></p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!-- Pie de página -->
-            <footer>
-                <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                    <h3>Contáctanos</h3>
-                    <p>Puedes contactarnos por teléfono, correo electrónico o visitarnos en nuestras oficinas.</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-4">
-                    <h4>Teléfono</h4>
-                    <p>+1 (123) 456-7890</p>
-                    </div>
-                    <div class="col-md-4">
-                    <h4>Correo electrónico</h4>
-                    <p>info@nombreempresa.com</p>
-                    </div>
-                    <div class="col-md-4">
-                    <h4>Dirección</h4>
-                    <p>1234 Calle Principal, Ciudad, País</p>
-                    </div>
-                </div>
-                </div>
-            </footer>
-  
-  <!-- Scripts de Bootstrap y jQuery -->
+
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   
+</div>
+</body>
+</html>
