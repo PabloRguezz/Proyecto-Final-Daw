@@ -249,7 +249,7 @@ if(isset($_GET["calificaciones"])){
             echo json_encode($datos);
             break;
         case "insert":
-            $datos=$calificaciones->insert_calificacion($_GET["nota"],$_GET["descripcion"],$_GET["id_servicio"],$_GET["id_usuario"]);
+            $datos=$calificaciones->insert_calificacion($_GET["nota"],$_GET["descripcion"],$_GET["id_servicio"],$_GET["id_usuario"],$_GET["fecha_subida"]);
             echo json_encode("La calificación se ha insertado correctamente");
             break;
         case "update":
@@ -260,7 +260,7 @@ if(isset($_GET["calificaciones"])){
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
             }
-            $datos=$calificaciones->update_calificacion($_GET["id_Calificacion"],$_GET["nota"],$_GET["descripcion"],$_GET["id_servicio"],$_GET["id_usuario"]);
+            $datos=$calificaciones->update_calificacion($_GET["id_Calificacion"],$_GET["nota"],$_GET["descripcion"],$_GET["id_servicio"],$_GET["id_usuario"],$_GET["fecha_subida"]);
             echo json_encode("La calificación se ha actualizado correctamente");
             break;
         case "delete":
