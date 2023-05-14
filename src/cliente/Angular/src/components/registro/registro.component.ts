@@ -101,7 +101,7 @@ export class RegistroComponent {
         nombre: nombreEmpresa,
         cif_Empresa: cif,
         tlf_contacto: telefono,
-        horario : `Lun ${this.horarioToString(`${lunesInicio}-${lunesFin}`)}, Mar ${this.horarioToString(`${martesInicio}-${martesFin}`)}, Mie ${this.horarioToString(`${miercolesInicio}-${miercolesFin}`)}, Jue ${this.horarioToString(`${juevesInicio}-${juevesFin}`)}, Vie ${this.horarioToString(`${viernesInicio}-${viernesFin}`)}, Sab ${this.horarioToString(`${sabadoInicio}-${sabadoFin}`)}, Dom ${this.horarioToString(`${domingoInicio}-${domingoFin}`)}`,
+        horario : `Lun ${this.horarioToString(`${lunesInicio}-${lunesFin}`)},Mar ${this.horarioToString(`${martesInicio}-${martesFin}`)},Mie ${this.horarioToString(`${miercolesInicio}-${miercolesFin}`)},Jue ${this.horarioToString(`${juevesInicio}-${juevesFin}`)},Vie ${this.horarioToString(`${viernesInicio}-${viernesFin}`)},Sab ${this.horarioToString(`${sabadoInicio}-${sabadoFin}`)},Dom ${this.horarioToString(`${domingoInicio}-${domingoFin}`)}`,
         ubicacion: ubicacion,
         descripcion: descripcion,
         password: password,

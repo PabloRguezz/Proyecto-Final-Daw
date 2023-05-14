@@ -17,8 +17,6 @@ import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { SwiperModule } from 'swiper/angular'
 import { CommonModule } from '@angular/common';
-import { EmpresaHasServiciosService } from 'src/service/empresa_has_servicios/empresa-has-servicios.service';
-import { EmpresaService } from 'src/service/empresa/empresa.service';
 import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empresa-servicios.component';
 import { HeaderEmpresaComponent } from 'src/components/header-empresa/header-empresa.component';
 import { ViewEmpresaUsuarioComponent } from 'src/components/view-empresa-usuario/view-empresa-usuario.component';
@@ -39,7 +37,8 @@ import { HeaderUsuarioComponent } from 'src/components/header-usuario/header-usu
     EmpresaServiciosComponent,
     HeaderEmpresaComponent,
     ViewEmpresaUsuarioComponent, 
-    HeaderUsuarioComponent
+    HeaderUsuarioComponent,
+    ViewEmpresaUsuarioComponent
 
   ],
   imports: [

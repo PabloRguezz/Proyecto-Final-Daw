@@ -12,8 +12,16 @@ export class AuthGuardGuard implements CanActivate {
   canActivate(): boolean{
     const token = localStorage.getItem('token');
     const decodedToken: Empresa = jwt_decode(token);
+    const expirationTime = decodedToken['exp'] ;
+    const expirationTimeMs = expirationTime * 1000;
     const decodedTokenUser = jwt_decode(token);
-    if (decodedToken["data"].cif_Empresa!=undefined || decodedTokenUser["data"].id!=undefined) {
+    const expirationTimeUser = decodedTokenUser['exp'] ;
+    const expirationTimeMsUser = expirationTimeUser * 1000;
+    const now = Date.now();
+    if (now > expirationTimeMs || now > expirationTimeMsUser) {
+      this.router.navigate(['']);
+      return false;
+    } else if(decodedToken["data"].cif_Empresa!=undefined || decodedTokenUser["data"].id!=undefined){
       return true;
     } else {
       this.router.navigate(['']);
