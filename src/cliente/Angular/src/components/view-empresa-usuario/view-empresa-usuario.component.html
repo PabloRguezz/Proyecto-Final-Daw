@@ -96,11 +96,12 @@
             <p class="card-text">{{service.descripcion}}</p>
             <p class="card-text">{{service.precio}}€</p>
             <a class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="obtenerDatosService(service.id_servicio,service.nombre)">Reserva</a>
+            <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResena">Agregar reseña</button>
           </div>
-          
         </div>
+       
       </div>
-      
+    </div>
     <ng-template id="error" #noServicios>
         <div class="card no-servicios-template">
           <div class="card-body">
@@ -145,6 +146,15 @@
           
             <button class="reservar" (click)="reservar()">Reservar</button>
         </div>
+    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasResena" aria-labelledby="offcanvasResenaLabel">
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasResenaLabel">Agregar reseña</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body">
+        <!-- Aquí irá el contenido del offcanvas de agregar reseñas -->
+      </div>
     </div>
     
       

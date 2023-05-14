@@ -19,7 +19,16 @@ class Calificaciones extends Conexion {
       $sql->execute();
       return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     }
-  
+    public function get_calificacion_servicio($id) {
+      $conectar = parent::connection();
+      parent::set_name();
+      $sql = "SELECT * FROM Calificaciones WHERE id_servicio=? ORDER BY fecha_subida DESC";
+      $sql = $conectar->prepare($sql);
+      $sql->bindValue(1,$id);
+      $sql->execute();
+      return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
     public function insert_calificacion($nota, $descripcion, $id_servicio, $id_usuario) {
       $conectar = parent::connection();
       parent::set_name();

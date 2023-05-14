@@ -218,7 +218,7 @@ if(isset($_GET["calificaciones"])){
         case 'GetAll':
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
@@ -229,12 +229,23 @@ if(isset($_GET["calificaciones"])){
         case 'GetId':
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
             }
             $datos=$calificaciones->get_calificacion_id($_GET["id_Calificacion"]);
+            echo json_encode($datos);
+            break;
+        case 'GetServicio':
+            $headers = apache_request_headers();
+            $token = $headers['Authorization'] ?? null;
+            $token = str_replace("Bearer ", "", $token);
+            if (!$token || !Jwt_Token::verify_token($token)) {
+                http_response_code(401);
+                exit(json_encode(array("message" => "Acceso denegado")));
+            }
+            $datos=$calificaciones->get_calificacion_servicio($_GET["id_servicio"]);
             echo json_encode($datos);
             break;
         case "insert":
@@ -244,7 +255,7 @@ if(isset($_GET["calificaciones"])){
         case "update":
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
@@ -255,7 +266,7 @@ if(isset($_GET["calificaciones"])){
         case "delete":
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
-	    $token = str_replace("Bearer ", "", $token);
+	        $token = str_replace("Bearer ", "", $token);
             if (!$token || !Jwt_Token::verify_token($token)) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
