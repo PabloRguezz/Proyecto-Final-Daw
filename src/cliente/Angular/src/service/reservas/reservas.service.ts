@@ -30,14 +30,14 @@ export class ReservasService {
     return this.http.get(`${this.apiUrl}=GetServicio&id_servicio=${id_servicio}`, { headers });
   }
 
-  agregarReserva(hora_reserva: string, nombre_servicio: string, id_servicio: number, id_usuario: number): Observable<any> {
+  agregarReserva(hora_reserva: string, nombre_servicio: string, id_servicio: number, id_usuario: number, dia_reserva:string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    return this.http.get(`${this.apiUrl}=insert&hora_reserva=${hora_reserva}&nombre_servicio=${nombre_servicio}&id_servicio=${id_servicio}&id_usuario=${id_usuario}`, { headers });
+    return this.http.get(`${this.apiUrl}=insert&hora_reserva=${hora_reserva}&nombre_servicio=${nombre_servicio}&id_servicio=${id_servicio}&id_usuario=${id_usuario}&dia_reserva=${dia_reserva}`, { headers });
   }
 
-  actualizarReserva(id_reserva: number, hora_reserva: string, nombre_servicio: string, id_servicio: number, id_usuario: number): Observable<any> {
+  actualizarReserva(id_reserva: number, hora_reserva: string, nombre_servicio: string, id_servicio: number, id_usuario: number,dia_reserva:string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    return this.http.get(`${this.apiUrl}=update&id_reserva=${id_reserva}&hora_reserva=${hora_reserva}&nombre_servicio=${nombre_servicio}&id_servicio=${id_servicio}&id_usuario=${id_usuario}`, { headers });
+    return this.http.get(`${this.apiUrl}=update&id_reserva=${id_reserva}&hora_reserva=${hora_reserva}&nombre_servicio=${nombre_servicio}&id_servicio=${id_servicio}&id_usuario=${id_usuario}&dia_reserva=${dia_reserva}`, { headers });
   }
 
   eliminarReserva(id_reserva: number): Observable<any> {

@@ -52,31 +52,31 @@
               <tbody>
                 <tr>
                   <td>Lunes</td>
-                  <td>{{horarioFinal[0].hora}}</td>
+                  <td>{{horarioFinal[1].dia}}</td>
                 </tr>
                 <tr>
                   <td>Martes</td>
-                  <td>{{horarioFinal[1].hora}}</td>
+                  <td>{{horarioFinal[3].dia}}</td>
                 </tr>
                 <tr>
                   <td>Miércoles</td>
-                  <td>{{horarioFinal[2].hora}}</td>
+                  <td>{{horarioFinal[5].dia}}</td>
                 </tr>
                 <tr>
                   <td>Jueves</td>
-                  <td>{{horarioFinal[3].hora}}</td>
+                  <td>{{horarioFinal[7].dia}}</td>
                 </tr>
                 <tr>
                   <td>Viernes</td>
-                  <td>{{horarioFinal[4].hora}}</td>
+                  <td>{{horarioFinal[9].dia}}</td>
                 </tr>
                 <tr>
                   <td>Sábado</td>
-                  <td>{{horarioFinal[5].hora}}</td>
+                  <td>{{horarioFinal[11].dia}}</td>
                 </tr>
                 <tr>
                   <td>Domingo</td>
-                  <td>{{horarioFinal[6].hora}}</td>
+                  <td>{{horarioFinal[13].dia}}</td>
                 </tr>
               </tbody>
             </table>
@@ -95,7 +95,7 @@
             <h5 class="card-title">{{service.nombre}}</h5>
             <p class="card-text">{{service.descripcion}}</p>
             <p class="card-text">{{service.precio}}€</p>
-            <a class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample">Reserva</a>
+            <a class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="obtenerDatosService(service.id_servicio,service.nombre)">Reserva</a>
           </div>
           
         </div>
@@ -109,10 +109,10 @@
         </div>
       </ng-template>
       </div>
-    <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
-          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Reserva</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <div class="wrapper-calendar">
@@ -127,19 +127,26 @@
                 </div>
                 <ol>
                     <li *ngFor="let day of week" class="day-name">{{day | slice:0:3}}</li>
-            
-                    <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'"
-                     *ngFor="let day of monthSelect;let first = first">
+    
+                    <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'" *ngFor="let day of monthSelect;let first = first">
                         <span>{{day?.value}}</span>
                     </li>
                 </ol>
             </div>
             <div>
-              
             </div>
             <hr>
+            <div class="horario-container">
+              <div class="horario-buttons">
+                  <button *ngFor="let hora of horarioArray" class="horario-button" (click)="elegirHora(hora)">{{ hora }}</button>
+              </div>
+            </div>
+          
+          
+            <button class="reservar" (click)="reservar()">Reservar</button>
         </div>
-      </div>
+    </div>
+    
       
  
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
