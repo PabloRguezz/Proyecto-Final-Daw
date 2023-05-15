@@ -25,14 +25,14 @@ export class CalificacionesService {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
     return this.http.get(`${this.apiUrl}=GetServicio&id_servicio=${id_servicio}`, { headers });
   }
-  agregarCalificacion(nota: number, descripcion: string, id_servicio: number, id_usuario: number): Observable<any> {
+  agregarCalificacion(nota: number, descripcion: string, id_servicio: number, id_usuario: number, fecha_subida :string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    return this.http.get(`${this.apiUrl}=insert&nota=${nota}&descripcion=${descripcion}&id_servicio=${id_servicio}&id_usuario=${id_usuario}`, { headers });
+    return this.http.get(`${this.apiUrl}=insert&nota=${nota}&descripcion=${descripcion}&id_servicio=${id_servicio}&id_usuario=${id_usuario}&fecha_subida=${ fecha_subida}`, { headers });
   }
 
-  actualizarCalificacion(id_Calificacion: number, nota: number, descripcion: string, id_servicio: number, id_usuario: number): Observable<any> {
+  actualizarCalificacion(id_Calificacion: number, nota: number, descripcion: string, id_servicio: number, id_usuario: number, fecha_subida :string): Observable<any> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
-    return this.http.get(`${this.apiUrl}=update&id_Calificacion=${id_Calificacion}&nota=${nota}&descripcion=${descripcion}&id_servicio=${id_servicio}&id_usuario=${id_usuario}`, { headers });
+    return this.http.get(`${this.apiUrl}=update&id_Calificacion=${id_Calificacion}&nota=${nota}&descripcion=${descripcion}&id_servicio=${id_servicio}&id_usuario=${id_usuario}&fecha_subida=${ fecha_subida}`, { headers });
   }
 
   eliminarCalificacion(id_Calificacion: number): Observable<any> {

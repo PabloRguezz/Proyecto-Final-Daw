@@ -13,7 +13,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            
             "outputPath": "dist/angular",
             "index": "src/index.html",
             "main": "src/main.ts",
@@ -25,14 +24,16 @@
               "src/favicon.ico",
               "src/assets"
             ],
-	    "styles": [
-  	      "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-  	      "src/styles.css"
-	    ],
-	    "scripts": [
-  	    "./node_modules/jquery/dist/jquery.min.js",
- 	      "./node_modules/bootstrap/dist/js/bootstrap.min.js"
-	    ]
+            "styles": [
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           },
           "configurations": {
             "production": {

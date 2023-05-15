@@ -22,6 +22,12 @@ import { HeaderEmpresaComponent } from 'src/components/header-empresa/header-emp
 import { ViewEmpresaUsuarioComponent } from 'src/components/view-empresa-usuario/view-empresa-usuario.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { HeaderUsuarioComponent } from 'src/components/header-usuario/header-usuario.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { RatingModule } from 'ngx-bootstrap/rating';
+
+
+
 
 
 @NgModule({
@@ -38,7 +44,7 @@ import { HeaderUsuarioComponent } from 'src/components/header-usuario/header-usu
     HeaderEmpresaComponent,
     ViewEmpresaUsuarioComponent, 
     HeaderUsuarioComponent,
-    ViewEmpresaUsuarioComponent
+    ViewEmpresaUsuarioComponent,
 
   ],
   imports: [
@@ -52,7 +58,10 @@ import { HeaderUsuarioComponent } from 'src/components/header-usuario/header-usu
     CarouselModule,
     FullCalendarModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideStorage(() => getStorage()) 
+    provideStorage(() => getStorage()),
+    BrowserAnimationsModule,
+    TooltipModule,
+    RatingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

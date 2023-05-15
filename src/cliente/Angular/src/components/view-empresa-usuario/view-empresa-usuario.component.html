@@ -1,4 +1,4 @@
-<div class="container-fluid">
+  <div class="container-fluid">
     <!-- Cuerpo -->
     <div class="row">
       <div class="col-md-12">
@@ -29,7 +29,8 @@
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
-              </div>                                  
+              </div> 
+                                               
         <ng-template #noEmpresa>
           <div class="card no-empresa-template">
             <div class="card-body">
@@ -38,6 +39,8 @@
           </div>
         </ng-template>  
     </div>
+
+
     <div class="col-md-6">
       <div class="container h-100  w-100">
         <div class="col-md-12 h-100  w-100">
@@ -84,7 +87,6 @@
         </div>
       </div>
     </div>
-</div>
     <div class="row" style="padding-top: 2%;">
       <div class="col-md-12">
         <h2>Servicios</h2>
@@ -95,11 +97,10 @@
             <h5 class="card-title">{{service.nombre}}</h5>
             <p class="card-text">{{service.descripcion}}</p>
             <p class="card-text">{{service.precio}}€</p>
-            <a class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="obtenerDatosService(service.id_servicio,service.nombre)">Reserva</a>
-            <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResena">Agregar reseña</button>
+            <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="obtenerDatosService(service.id_servicio,service.nombre)">Reserva</button>
+            <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResena" (click)="getCalificaciones(service.id_servicio)">Agregar reseña</button>
           </div>
         </div>
-       
       </div>
     </div>
     <ng-template id="error" #noServicios>
@@ -142,8 +143,6 @@
                   <button *ngFor="let hora of horarioArray" class="horario-button" (click)="elegirHora(hora)">{{ hora }}</button>
               </div>
             </div>
-          
-          
             <button class="reservar" (click)="reservar()">Reservar</button>
         </div>
     </div>
@@ -153,13 +152,30 @@
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
-        <!-- Aquí irá el contenido del offcanvas de agregar reseñas -->
+          <div>
+            <rating [max]="10" [(ngModel)]="y" [customTemplate]="tt" name="rating"></rating>
+            <ng-template #tt let-i="index" let-v="value">
+              <button class="btn btn-{{i < v ? 'warning' : 'default'}}">
+                {{i < v ? '&#9733;' : '&#9734;'}}
+              </button>
+            </ng-template>
+          </div>
+          <div class="mb-3">
+            <label for="calificacionTextarea" class="form-label">Descripción</label>
+            <textarea class="form-control" id="calificacionTextarea" [(ngModel)]="descripcion" name="descripcion"></textarea>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="agregarCalificacion()">Enviar</button>
+        <div class="mb-3" *ngFor="let calificaciones of calificacion">
+          <h6>Nota: {{calificaciones.nota}}</h6>
+          <p>Descripción: {{calificaciones.descripcion}}</p>
+        </div>
       </div>
     </div>
-    
-      
- 
+  </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+
   
