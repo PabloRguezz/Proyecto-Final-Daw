@@ -19,30 +19,41 @@ class Calificaciones extends Conexion {
       $sql->execute();
       return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     }
-  
-    public function insert_calificacion($nota, $descripcion, $id_servicio, $id_usuario) {
+    public function get_calificacion_servicio($id) {
       $conectar = parent::connection();
       parent::set_name();
-      $sql = "INSERT INTO Calificaciones(nota, descripcion, id_servicio, id_usuario) VALUES (?, ?, ?, ?)";
+      $sql = "SELECT * FROM Calificaciones WHERE id_servicio=? ORDER BY fecha_subida DESC";
+      $sql = $conectar->prepare($sql);
+      $sql->bindValue(1,$id);
+      $sql->execute();
+      return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    public function insert_calificacion($nota, $descripcion, $id_servicio, $id_usuario, $fecha_subida) {
+      $conectar = parent::connection();
+      parent::set_name();
+      $sql = "INSERT INTO Calificaciones(nota, descripcion, id_servicio, id_usuario, fecha_subida) VALUES (?, ?, ?, ?,?)";
       $sql = $conectar->prepare($sql);
       $sql->bindValue(1,$nota);
       $sql->bindValue(2,$descripcion);
       $sql->bindValue(3,$id_servicio);
       $sql->bindValue(4,$id_usuario);
+      $sql->bindValue(5,$fecha_subida);
       $sql->execute();
       return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     }
   
-    public function update_calificacion($id, $nota, $descripcion, $id_servicio, $id_usuario) {
+    public function update_calificacion($id, $nota, $descripcion, $id_servicio, $id_usuario, $fecha_subida) {
       $conectar = parent::connection();
       parent::set_name();
-      $sql = "UPDATE Calificaciones SET nota=?, descripcion='?', id_servicio=?, id_usuario=? WHERE id_Calificacion=?";
+      $sql = "UPDATE Calificaciones SET nota=?, descripcion='?', id_servicio=?, id_usuario=?, fecha_subida=?' WHERE id_Calificacion=?";
       $sql = $conectar->prepare($sql);
       $sql->bindValue(1,$nota);
       $sql->bindValue(2,$descripcion);
       $sql->bindValue(3,$id_servicio);
       $sql->bindValue(4,$id_usuario);
       $sql->bindValue(5,$id);
+      $sql->bindValue(6,$fecha_subida);
       $sql->execute();
       return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     }

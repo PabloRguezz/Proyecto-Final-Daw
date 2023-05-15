@@ -10,8 +10,8 @@ import { getDownloadURL, listAll, ref } from '@angular/fire/storage';
 import { Storage } from '@angular/fire/storage';
 import * as moment from 'moment';
 import { ReservasService } from 'src/service/reservas/reservas.service';
-import { error } from 'jquery';
 import Swal from 'sweetalert2';
+import { CalificacionesService } from 'src/service/calificaciones/calificaciones.service';
 
 
 @Component({
@@ -20,6 +20,9 @@ import Swal from 'sweetalert2';
   styleUrls: ['./view-empresa-usuario.component.css']
 })
 export class ViewEmpresaUsuarioComponent {
+  y = 5;
+  calificacion;
+  descripcion;
   cifEmpresa:string;
   id_servicio:number;
   nombreServicio:string;
@@ -52,7 +55,7 @@ export class ViewEmpresaUsuarioComponent {
   dayName;
   cerrado;
   horarioFinal = [];
-  constructor(private servicio: ServiciosService, private storage : Storage ,private route: ActivatedRoute,private servicioEmpresa: EmpresaHasServiciosService, private empresa : EmpresaService, private reservas : ReservasService){}
+  constructor(private servicio: ServiciosService,private calificaciones : CalificacionesService , private storage : Storage ,private route: ActivatedRoute,private servicioEmpresa: EmpresaHasServiciosService, private empresa : EmpresaService, private reservas : ReservasService){}
   ngOnInit(){
     this.getServicios();
     this.getDatos();
@@ -148,7 +151,6 @@ export class ViewEmpresaUsuarioComponent {
         
       }
     }
-
     this.fechaSeleccionada=true;
   }
   getHorarioArray(horario: string): string[] {
@@ -270,4 +272,47 @@ export class ViewEmpresaUsuarioComponent {
       }
     )
   }
+  getCalificaciones(id): void {
+    this.id_servicio=id;
+    this.calificaciones.obtenerCalificacionServicio(this.id_servicio).subscribe(
+      data => {
+        this.calificacion = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  agregarCalificacion() {
+    const formattedDate = moment().format('YYYY-MM-DD HH:mm:ss');
+    const token = localStorage.getItem('token');
+    const decodedToken = jwt_decode(token);
+    this.id_usuario = decodedToken['data'].id;
+    console.log("Hola");
+    this.calificaciones.agregarCalificacion(this.y,this.descripcion,this.id_servicio,this.id_usuario,formattedDate).subscribe(
+      data => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Se ha agregado su comentario correctamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
+        this.getCalificaciones(this.id_servicio);
+      },
+      error => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Ha habido un error creando su su comentario',
+        });
+      }
+    );
+  }
 }
+
+
+
+
+
