@@ -1,44 +1,56 @@
 header {
-    height: 80px;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-  }
-  
-  nav {
-    background-color: red;
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100%;
-  }
-  
-  
-  .navbar-brand {
-    font-size: 2rem;
-    color: #3d7c98;
-    font-weight: bold;
-    text-transform: uppercase;
-  }
-  
-  .nav-link {
-    color: #3d7c98;
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-right: 20px;
-  }
-  
-  .nav-link:hover {
-    color: #73b0cd;
-  }
-  
-  .logo {
-    height: 70px;
-    width: 70px;
-    margin-right: 10px;
-  }
-  
-  
+  height: 80px;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+nav {
+  background-color: red;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.navbar-brand {
+  font-size: 2rem;
+  color: #3d7c98;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.nav-link {
+  color: #3d7c98;
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-right: 20px;
+}
+
+.nav-link:hover {
+  color: #73b0cd;
+}
+
+.logo {
+  height: 70px;
+  width: 70px;
+  margin-right: 10px;
+}
+
+img{
+max-height: 85px;
+}
+.image-container {
+overflow: hidden;
+}
+
+.image-container img {
+transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+transform: scale(1.2); /* Ajusta el valor para cambiar el nivel de zoom */
+}
