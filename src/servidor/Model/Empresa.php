@@ -48,16 +48,13 @@ class Empresa extends Conexion {
     $conectar = parent::connection();
     parent::set_name();
     $horario_decodificado = urldecode($horario);
-    $horario = $horario_decodificado;
 
     $nombre_decodificado = urldecode($nombre);
-    $nombre = $nombre_decodificado;
 
     $ubicacion_decodificado = urldecode($ubicacion);
-    $ubicacion = $ubicacion_decodificado;
     
     $descripcion_decodificado = urldecode($descripcion);
-    $descripcion = $descripcion_decodificado;
+
     if(password_get_info($password)!==0){
       $password_hasheada = $password;
     } else {
@@ -65,12 +62,12 @@ class Empresa extends Conexion {
     }
     $sql = "UPDATE Empresa SET nombre=?, tlf_contacto=?, password=?, horario=?, ubicacion=?, descripcion=? WHERE cif_Empresa=?";
     $sql = $conectar->prepare($sql);
-    $sql->bindValue(1,$nombre);
+    $sql->bindValue(1,$nombre_decodificado);
     $sql->bindValue(2,$tlf_contacto);
     $sql->bindValue(3,$password_hasheada);
-    $sql->bindValue(4,$horario);
-    $sql->bindValue(5,$ubicacion);
-    $sql->bindValue(6,$descripcion);
+    $sql->bindValue(4,$horario_decodificado);
+    $sql->bindValue(5,$ubicacion_decodificado);
+    $sql->bindValue(6,$descripcion_decodificado);
     $sql->bindValue(7,$cif);
     $sql->execute();
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);

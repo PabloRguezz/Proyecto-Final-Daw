@@ -21,10 +21,6 @@ class Usuario extends Conexion{
   public function insert_usuario($email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name();
-    $nombre_decodificado = urldecode($nombre);
-    $nombre = $nombre_decodificado;
-    $email_decodificado = urldecode($email);
-    $email = $email_decodificado;
     $sql = "SELECT * FROM Usuario WHERE email=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
@@ -46,7 +42,8 @@ class Usuario extends Conexion{
 
   public function update_usuario($id,$email,$password,$nombre){
     $conectar=parent::connection();
-    parent::set_name();
+    parent::set_name();    
+    $nombre_decodificado = urldecode($nombre);
     if(password_get_info($password)!==0){
       $password_hasheada = $password;
     } else {
@@ -56,7 +53,7 @@ class Usuario extends Conexion{
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->bindValue(2,$password_hasheada);
-    $sql->bindValue(3,$nombre);
+    $sql->bindValue(3,$nombre_decodificado);
     $sql->bindValue(4,$id);
     $sql->execute();
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
