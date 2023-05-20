@@ -47,31 +47,30 @@ class Empresa extends Conexion {
   public function update_empresa($cif, $nombre, $tlf_contacto, $password, $horario, $ubicacion, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
-    $horario_decodificado = urldecode($horario);
+    $horario_decodificado = rawurldecode($horario);
+    $nombre_decodificado = rawurldecode($nombre);
+    $ubicacion_decodificado = rawurldecode($ubicacion);
+    $descripcion_decodificado = rawurldecode($descripcion);
 
-    $nombre_decodificado = urldecode($nombre);
-
-    $ubicacion_decodificado = urldecode($ubicacion);
-    
-    $descripcion_decodificado = urldecode($descripcion);
-
-    if(password_get_info($password)!==0){
-      $password_hasheada = $password;
+    if (password_get_info($password) !== 0) {
+        $password_hasheada = $password;
     } else {
-      $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
+        $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
     }
+
     $sql = "UPDATE Empresa SET nombre=?, tlf_contacto=?, password=?, horario=?, ubicacion=?, descripcion=? WHERE cif_Empresa=?";
     $sql = $conectar->prepare($sql);
-    $sql->bindValue(1,$nombre_decodificado);
-    $sql->bindValue(2,$tlf_contacto);
-    $sql->bindValue(3,$password_hasheada);
-    $sql->bindValue(4,$horario_decodificado);
-    $sql->bindValue(5,$ubicacion_decodificado);
-    $sql->bindValue(6,$descripcion_decodificado);
-    $sql->bindValue(7,$cif);
+    $sql->bindValue(1, $nombre_decodificado);
+    $sql->bindValue(2, $tlf_contacto);
+    $sql->bindValue(3, $password_hasheada);
+    $sql->bindValue(4, $horario_decodificado);
+    $sql->bindValue(5, $ubicacion_decodificado);
+    $sql->bindValue(6, $descripcion_decodificado);
+    $sql->bindValue(7, $cif);
     $sql->execute();
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
-  }
+}
+
 
   public function delete_empresa($cif) {
     $conectar = parent::connection();

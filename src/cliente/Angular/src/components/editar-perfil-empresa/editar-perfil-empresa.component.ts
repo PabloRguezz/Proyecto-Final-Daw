@@ -21,8 +21,6 @@ export class EditarPerfilEmpresaComponent {
   constructor(private empresa:EmpresaService){}
   ngOnInit(){
     this.getDatos();
-    console.log(this.datosEmpresa);
-    
   }
   getDatos(){
     const token = localStorage.getItem('token');
@@ -31,11 +29,9 @@ export class EditarPerfilEmpresaComponent {
     this.empresa.obtenerEmpresaCif('A12345678').subscribe({
       next : data => {
         console.log(data);
-        
         this.datosEmpresa=data[0];
         this.nombre=data[0].nombre;
         this.descripcion=data[0].descripcion;
-        this.cif_empresa=this.cif_empresa;
         this.ubicacion=data[0].ubicacion;
         this.telefono=data[0].tlf_contacto;
         let horario = this.datosEmpresa.horario;
