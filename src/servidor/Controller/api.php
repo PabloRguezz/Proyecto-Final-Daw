@@ -54,7 +54,8 @@ if (isset($_GET["user"])) {
                 exit(json_encode(array("message" => "Acceso denegado")));
             }
             $datos=$usuario->update_usuario($_GET["id"],$_GET["email"],$_GET["password"],$_GET["nombre"]);
-            echo json_encode("El usuario se ha actualizado correctamente");
+            $token = Jwt_Token::generate_token(array("id" => $_GET["id"], "email" => $_GET["email"]));
+            echo json_encode(array("token" => $token));
             break;
         case "delete":
             $headers = apache_request_headers();
@@ -123,7 +124,8 @@ if(isset($_GET["empresa"])){
                 exit(json_encode(array("message" => "Acceso denegado")));
             }
             $datos=$empresa->update_empresa($_GET["cif_Empresa"],$_GET["nombre"],$_GET["tlf_contacto"],$_GET["password"],$_GET["horario"],$_GET["ubicacion"],$_GET["descripcion"]);
-            echo json_encode("La empresa se ha actualizado correctamente");
+            $token = Jwt_Token::generate_token(array("cif_Empresa" => $_GET["cif_Empresa"], "ubicacion" => $_GET["ubicacion"]));
+            echo json_encode(array("token" => $token));
             break;
         case "delete":
             $headers = apache_request_headers();

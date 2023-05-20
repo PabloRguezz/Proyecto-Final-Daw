@@ -47,7 +47,7 @@ export class RegistroComponent {
   }
 
   horarioToString(horario) {
-    if (!horario || horario === " - ") {
+    if (!horario || horario === '-') {
       return "Cerrado";
     } else {
       return horario;

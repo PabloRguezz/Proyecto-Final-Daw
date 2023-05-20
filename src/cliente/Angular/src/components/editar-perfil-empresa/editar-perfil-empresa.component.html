@@ -1,0 +1,45 @@
+<app-header-empresa></app-header-empresa>
+
+<div style="padding-top: 7%;"></div>
+
+<h2 style="text-align: center;">Editar Perfil</h2>
+
+<div class="container">
+  <div class="col-12 md:col-4" style="display: flex; justify-content: center;">
+    <p-avatar label="T" size="xlarge" [style]="{ 'background-color': '#73B0CD', color: '#ffffff' }"></p-avatar>
+  </div>
+  <form (submit)="updateData()">
+    <input class="input" type="text" name="nombreEmpresa" id="nombreEmpresa" placeholder="Nombre de la empresa" [value]="nombre" required [(ngModel)]="nombre">
+    <input class="input" type="text" name="cif" id="cif" placeholder="CIF Empresa" [value]="cifEmpresa" required [(ngModel)]="cifEmpresa">
+    <input class="input" type="tel" name="telefono" id="telefono" placeholder="Teléfono de contacto" [value]="telefono" required [(ngModel)]="telefono">
+    <div class="horario">
+      <label for="lunes">Lunes:</label>
+      <input type="time" id="lunesInicio" name="lunesInicio" [value]="horarioFinal[0][0]" [(ngModel)]="horarioFinal[0][0]"> - <input type="time" id="lunesFin" name="lunesFin" [value]="horarioFinal[0][1]" [(ngModel)]="horarioFinal[0][1]"><br>
+      
+      <label for="martes">Martes:</label>
+      <input type="time" id="martesInicio" name="martesInicio" [value]="horarioFinal[1][0]" [(ngModel)]="horarioFinal[1][0]"> - <input type="time" id="martesFin" name="martesFin" [value]="horarioFinal[1][1]" [(ngModel)]="horarioFinal[1][1]"><br>
+      
+      <label for="miercoles">Miércoles:</label>
+      <input type="time" id="miercolesInicio" name="miercolesInicio" [value]="horarioFinal[2][0]" [(ngModel)]="horarioFinal[2][0]"> - <input type="time" id="miercolesFin" name="miercolesFin" [value]="horarioFinal[2][1]" [(ngModel)]="horarioFinal[2][1]"><br>
+      
+      <label for="jueves">Jueves:</label>
+      <input type="time" id="juevesInicio" name="juevesInicio" [value]="horarioFinal[3][0]" [(ngModel)]="horarioFinal[3][0]"> - <input type="time" id="juevesFin" name="juevesFin" [value]="horarioFinal[3][1]" [(ngModel)]="horarioFinal[3][1]"><br>
+      
+      <label for="viernes">Viernes:</label>
+      <input type="time" id="viernesInicio" name="viernesInicio" [value]="horarioFinal[4][0]" [(ngModel)]="horarioFinal[4][0]"> - <input type="time" id="viernesFin" name="viernesFin" [value]="horarioFinal[4][1]" [(ngModel)]="horarioFinal[4][1]"><br>
+      
+      <label for="sabado">Sábado:</label>
+      <input type="time" id="sabadoInicio" name="sabadoInicio" [value]="horarioFinal[5][0]" [(ngModel)]="horarioFinal[5][0]"> - <input type="time" id="sabadoFin" name="sabadoFin" [value]="horarioFinal[5][1]" [(ngModel)]="horarioFinal[5][1]"><br>
+      
+      <label for="domingo">Domingo:</label>
+      <input type="time" id="domingoInicio" name="domingoInicio" [value]="horarioFinal[6][0]" [(ngModel)]="horarioFinal[6][0]"> - <input type="time" id="domingoFin" name="domingoFin" [value]="horarioFinal[6][1]" [(ngModel)]="horarioFinal[6][1]"><br>
+    </div>
+
+    <input class="input" type="text" name="ubicacion" id="ubicacion" placeholder="Ubicación" [value]="ubicacion" required [(ngModel)]="ubicacion">
+    <input class="input" type="text" name="descripcion" id="descripcion" placeholder="Descripción" [value]="descripcion" required [(ngModel)]="descripcion">
+    <input class="input" type="password" name="password" id="password" placeholder="Contraseña" required [(ngModel)]="password">
+    <div class="buttons">
+      <button type="submit" class="btn btn-dark">Editar Perfil</button>
+    </div>
+  </form>
+</div>

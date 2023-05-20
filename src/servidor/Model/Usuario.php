@@ -43,10 +43,15 @@ class Usuario extends Conexion{
   public function update_usuario($id,$email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name();
+    if(password_get_info($password)!==0){
+      $password_hasheada = $password;
+    } else {
+      $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
+    }
     $sql = "UPDATE Usuario set email='?' , password='?', nombre='?' WHERE id_usuario=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
-    $sql->bindValue(2,$password);
+    $sql->bindValue(2,$password_hasheada);
     $sql->bindValue(3,$nombre);
     $sql->bindValue(4,$id);
     $sql->execute();

@@ -22,7 +22,7 @@ export class HomeUsuarioComponent {
   ngOnInit(){
     this.mostrarEmpresas();
     this.mostrarReservas();
-    console.log(this.reservas[0])
+
   }
   mostrarEmpresas(){
     this.empresa.obtenerEmpresas().subscribe(
@@ -36,7 +36,6 @@ export class HomeUsuarioComponent {
     mostrarReservas(){
       const token = localStorage.getItem('token');
       const decodedToken = jwt_decode(token);
-      
       this.reserva.obtenerReservasUsuario(decodedToken["data"].id).subscribe(
         (response) => {
           for (let index = 0; index < response.length; index++) {

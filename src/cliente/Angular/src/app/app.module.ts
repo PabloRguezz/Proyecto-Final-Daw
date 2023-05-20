@@ -25,10 +25,9 @@ import { HeaderUsuarioComponent } from 'src/components/header-usuario/header-usu
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { RatingModule } from 'ngx-bootstrap/rating';
-
-
-
-
+import { EditarPerfilUsuarioComponent } from 'src/components/editar-perfil-usuario/editar-perfil-usuario.component';
+import { AvatarModule } from 'primeng/avatar';
+import { EditarPerfilEmpresaComponent } from 'src/components/editar-perfil-empresa/editar-perfil-empresa.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +44,8 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     ViewEmpresaUsuarioComponent, 
     HeaderUsuarioComponent,
     ViewEmpresaUsuarioComponent,
+    EditarPerfilUsuarioComponent,
+    EditarPerfilEmpresaComponent
 
   ],
   imports: [
@@ -57,6 +58,7 @@ import { RatingModule } from 'ngx-bootstrap/rating';
     HttpClientModule,
     CarouselModule,
     FullCalendarModule,
+    AvatarModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
     BrowserAnimationsModule,
