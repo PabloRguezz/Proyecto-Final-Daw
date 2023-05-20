@@ -47,12 +47,23 @@ class Empresa extends Conexion {
   public function update_empresa($cif, $nombre, $tlf_contacto, $password, $horario, $ubicacion, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
+    $horario_decodificado = urldecode($horario);
+    $horario = $horario_decodificado;
+
+    $nombre_decodificado = urldecode($nombre);
+    $nombre = $nombre_decodificado;
+
+    $ubicacion_decodificado = urldecode($ubicacion);
+    $ubicacion = $ubicacion_decodificado;
+    
+    $descripcion_decodificado = urldecode($descripcion);
+    $descripcion = $descripcion_decodificado;
     if(password_get_info($password)!==0){
       $password_hasheada = $password;
     } else {
       $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
     }
-    $sql = "UPDATE Empresa SET nombre='?', tlf_contacto=?, password=?, horario='?', ubicacion='?', descripcion='?' WHERE cif_Empresa=?";
+    $sql = "UPDATE Empresa SET nombre=?, tlf_contacto=?, password=?, horario=?, ubicacion=?, descripcion=? WHERE cif_Empresa=?";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$nombre);
     $sql->bindValue(2,$tlf_contacto);

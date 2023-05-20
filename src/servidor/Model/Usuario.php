@@ -21,6 +21,10 @@ class Usuario extends Conexion{
   public function insert_usuario($email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name();
+    $nombre_decodificado = urldecode($nombre);
+    $nombre = $nombre_decodificado;
+    $email_decodificado = urldecode($email);
+    $email = $email_decodificado;
     $sql = "SELECT * FROM Usuario WHERE email=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
