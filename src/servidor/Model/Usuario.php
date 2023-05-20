@@ -48,7 +48,7 @@ class Usuario extends Conexion{
     } else {
       $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
     }
-    $sql = "UPDATE Usuario set email='?' , password='?', nombre='?' WHERE id_usuario=?";
+    $sql = "UPDATE Usuario set email=? , password=?, nombre=? WHERE id_usuario=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->bindValue(2,$password_hasheada);

@@ -63,7 +63,8 @@ export class EditarPerfilEmpresaComponent {
     }
     this.empresa.actualizarEmpresa(this.cifEmpresa,this.nombre,this.telefono,this.password,horario,this.ubicacion,this.descripcion).subscribe({
       next:data => {
-        
+        console.log(data);
+        localStorage.setItem("token",data)
       }
     })
 
