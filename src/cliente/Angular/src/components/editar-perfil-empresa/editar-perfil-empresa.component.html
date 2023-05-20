@@ -4,9 +4,9 @@
 
 <h2 style="text-align: center;">Editar Perfil</h2>
 
-<div class="container">
-  <div class="col-12 md:col-4" style="display: flex; justify-content: center;">
-    <p-avatar label="T" size="xlarge" [style]="{ 'background-color': '#73B0CD', color: '#ffffff' }"></p-avatar>
+<div class="container" >
+  <div class="col-12 md:col-4" style="display: flex; justify-content: center;padding-bottom: 2%;">
+    <p-avatar [label]="obtenerNombre(nombre)" size="xlarge" [style]="{ 'background-color': '#73B0CD', color: '#ffffff' }"></p-avatar>
   </div>
   <form (submit)="updateData()">
     <input class="input" type="text" name="nombreEmpresa" id="nombreEmpresa" placeholder="Nombre de la empresa" [value]="nombre" required [(ngModel)]="nombre">

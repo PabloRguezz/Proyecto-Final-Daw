@@ -8,6 +8,7 @@ import { ServiciosService } from 'src/service/servicios/servicios.service';
 import jwt_decode from 'jwt-decode';
 import { EmpresaHasServiciosService } from 'src/service/empresa_has_servicios/empresa-has-servicios.service';
 import { FullCalendarComponent } from '@fullcalendar/angular';
+import esLocale from '@fullcalendar/core/locales/es';
 
 @Component({
   selector: 'app-calendario',
@@ -22,6 +23,7 @@ export class CalendarioComponent {
     initialView: 'dayGridMonth',
     weekends: true,
     events: [],
+    locale: esLocale,
     eventTimeFormat: {
       hour: '2-digit',
       minute: '2-digit',

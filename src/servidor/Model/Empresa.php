@@ -44,21 +44,20 @@ class Empresa extends Conexion {
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }
 
-  public function update_empresa($cif, $nombre, $tlf_contacto, $password, $horario, $ubicacion, $descripcion) {
+ public function update_empresa($cif, $nombre, $tlf_contacto, $password, $horario, $ubicacion, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
     $horario_decodificado = rawurldecode($horario);
     $nombre_decodificado = rawurldecode($nombre);
     $ubicacion_decodificado = rawurldecode($ubicacion);
     $descripcion_decodificado = rawurldecode($descripcion);
-
-    if (password_get_info($password) !== 0) {
-        $password_hasheada = $password;
-    } else {
-        $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
-    }
-
-    $sql = "UPDATE Empresa SET nombre='?', tlf_contacto='?', password='?', horario='?', ubicacion='?', descripcion='?' WHERE cif_Empresa='?'";
+    if (password_needs_rehash($password, PASSWORD_DEFAULT)) {
+      $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
+  } else {
+      $password_hasheada = $password;
+  }
+  
+    $sql = "UPDATE Empresa SET nombre=?, tlf_contacto=?, password=?, horario=?, ubicacion=?, descripcion=? WHERE cif_Empresa=?";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1, $nombre_decodificado);
     $sql->bindValue(2, $tlf_contacto);

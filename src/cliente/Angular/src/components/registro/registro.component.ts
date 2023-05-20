@@ -47,8 +47,13 @@ export class RegistroComponent {
   }
 
   horarioToString(horario) {
-    if (!horario || horario === '-') {
+    let resultado=horario.split('-')
+    if (!horario || resultado[0] == '' && resultado[1] == '') {
       return "Cerrado";
+    } else if(resultado[1] == 'undefined'){
+      return "Cerrado"
+    } else if(resultado[0] == ''){
+      return "Cerrado"
     } else {
       return horario;
     }

@@ -27,7 +27,11 @@ export class EditarPerfilUsuarioComponent {
         this.email=this.datosUsuario[0].email;
       },
       error : (error) => {
-
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Obteniendo los datos del usuario',
+        })   
       }
     })
   }
@@ -44,7 +48,7 @@ export class EditarPerfilUsuarioComponent {
       this.email=this.datosUsuario[0].email;
     }
     this.usuario.actualizarUsuario(decodedToken['data'].id,this.email,this.password,this.nombre).subscribe({
-      next : (data)=> {
+      next:data=> {
         Swal.fire({
           position: 'center',
           icon: 'success',
@@ -52,7 +56,14 @@ export class EditarPerfilUsuarioComponent {
           showConfirmButton: false,
           timer: 1500
         })
-        this.usuario.login(this.email,this.password)
+        localStorage.setItem('token',data.token)
+      }, 
+      error:error=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Error actualizando el usuario',
+        })   
       }
     })
   }

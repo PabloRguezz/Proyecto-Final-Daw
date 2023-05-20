@@ -43,13 +43,14 @@ class Usuario extends Conexion{
   public function update_usuario($id,$email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name();    
-    $nombre_decodificado = urldecode($nombre);
-    if(password_get_info($password)!==0){
-      $password_hasheada = $password;
-    } else {
+    $nombre_decodificado = rawurldecode($nombre);
+    if (password_needs_rehash($password, PASSWORD_DEFAULT)) {
       $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
-    }
-    $sql = "UPDATE Usuario set email='?' , password=?, nombre='?' WHERE id_usuario=?";
+  } else {
+      $password_hasheada = $password;
+  }
+  
+    $sql = "UPDATE Usuario set email=? , password=?, nombre=? WHERE id_usuario=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$email);
     $sql->bindValue(2,$password_hasheada);

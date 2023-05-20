@@ -50,4 +50,6 @@
   .btn-dark:hover {
     background-color: #555;
   }
-  
+  button{
+    width: 100%;
+  }
