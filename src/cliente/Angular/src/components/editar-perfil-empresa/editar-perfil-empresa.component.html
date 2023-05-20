@@ -10,7 +10,6 @@
   </div>
   <form (submit)="updateData()">
     <input class="input" type="text" name="nombreEmpresa" id="nombreEmpresa" placeholder="Nombre de la empresa" [value]="nombre" required [(ngModel)]="nombre">
-    <input class="input" type="text" name="cif" id="cif" placeholder="CIF Empresa" [value]="cifEmpresa" required [(ngModel)]="cifEmpresa">
     <input class="input" type="tel" name="telefono" id="telefono" placeholder="Teléfono de contacto" [value]="telefono" required [(ngModel)]="telefono">
     <div class="horario">
       <label for="lunes">Lunes:</label>

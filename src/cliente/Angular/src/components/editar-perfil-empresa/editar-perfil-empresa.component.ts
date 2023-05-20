@@ -13,7 +13,6 @@ export class EditarPerfilEmpresaComponent {
   horarioFinal = [];
   datosEmpresa;
   nombre: string;
-  cifEmpresa: string;
   telefono: string;
   ubicacion: string;
   descripcion: string;
@@ -29,16 +28,20 @@ export class EditarPerfilEmpresaComponent {
     const token = localStorage.getItem('token');
     const decodedToken: Empresa = jwt_decode(token);
     this.cif_empresa = decodedToken["data"].cif_Empresa;
-    this.empresa.obtenerEmpresaCif(this.cif_empresa).subscribe({
+    this.empresa.obtenerEmpresaCif('A12345678').subscribe({
       next : data => {
+        console.log(data);
+        
         this.datosEmpresa=data[0];
         this.nombre=data[0].nombre;
         this.descripcion=data[0].descripcion;
-        this.cifEmpresa=this.cif_empresa;
+        this.cif_empresa=this.cif_empresa;
         this.ubicacion=data[0].ubicacion;
         this.telefono=data[0].tlf_contacto;
         let horario = this.datosEmpresa.horario;
         let horarioArray = horario.split(",");
+        console.log(this.horarioFinal);
+        
         for (let i = 0; i < horarioArray.length; i++) {
           let info = horarioArray[i].split(" ");
           let infoFInal = info[1].split("-");
@@ -49,22 +52,32 @@ export class EditarPerfilEmpresaComponent {
     })
   }
   horarioToString(horario) {
-    if (!horario || horario === '-') {
+    let resultado=horario.split('-')
+    console.log(resultado);
+    if (!horario || resultado[0] == '' && resultado[1] == '') {
       return "Cerrado";
-    } else {
+    } else if(resultado[1] == 'undefined'){
+      return "Cerrado"
+    } else if(resultado[0] == ''){
+      return "Cerrado"
+    }  
+    else {
       return horario;
     }
   }
   updateData(){
     let horario:string;
     horario=`Lun ${this.horarioToString(`${this.horarioFinal[0][0]}-${this.horarioFinal[0][1]}`)}, Mar ${this.horarioToString(`${this.horarioFinal[1][0]}-${this.horarioFinal[1][1]}`)}, Mie ${this.horarioToString(`${this.horarioFinal[2][0]}-${this.horarioFinal[2][1]}`)}, Jue ${this.horarioToString(`${this.horarioFinal[3][0]}-${this.horarioFinal[3][1]}`)}, Vie ${this.horarioToString(`${this.horarioFinal[4][0]}-${this.horarioFinal[4][1]}`)}, Sab ${this.horarioToString(`${this.horarioFinal[5][0]}-${this.horarioFinal[5][1]}`)}, Dom ${this.horarioToString(`${this.horarioFinal[6][0]}-${this.horarioFinal[6][1]}`)}`;
+    let pass;
     if (this.password==null) {
-      this.password=this.datosEmpresa.password;
+      pass=this.datosEmpresa.password;
+    } else {
+      pass = this.password;
     }
-    this.empresa.actualizarEmpresa(this.cifEmpresa,this.nombre,this.telefono,this.password,horario,this.ubicacion,this.descripcion).subscribe({
+    console.log(horario);
+    this.empresa.actualizarEmpresa(this.cif_empresa,this.nombre,this.telefono,pass,horario,this.ubicacion,this.descripcion).subscribe({
       next:data => {
-        console.log(data);
-        localStorage.setItem("token",data)
+        localStorage.setItem('token',data.token)
       }
     })
 
