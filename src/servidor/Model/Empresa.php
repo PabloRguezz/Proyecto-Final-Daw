@@ -58,7 +58,7 @@ class Empresa extends Conexion {
         $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
     }
 
-    $sql = "UPDATE Empresa SET nombre=?, tlf_contacto=?, password=?, horario=?, ubicacion=?, descripcion=? WHERE cif_Empresa=?";
+    $sql = "UPDATE Empresa SET nombre='?', tlf_contacto='?', password='?', horario='?', ubicacion='?', descripcion='?' WHERE cif_Empresa='?'";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1, $nombre_decodificado);
     $sql->bindValue(2, $tlf_contacto);
