@@ -3,7 +3,7 @@
 <h2>Editar Perfil</h2>
 <div class="container" *ngFor="let usuario of datosUsuario;">
 <div class="col-12 md:col-4" style="display: flex; justify-content: center;" >
-    <p-avatar label="T" size="xlarge" [style]="{ 'background-color': '#73B0CD', color: '#ffffff' }"></p-avatar>
+    <p-avatar [label]="obtenerNombre(nombre)" size="xlarge" [style]="{ 'background-color': '#73B0CD', color: '#ffffff' }"></p-avatar>
 </div>
 
 <form (submit)="updateUsuario()" >

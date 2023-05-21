@@ -1,25 +1,39 @@
-<header>
-  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-    <div class="container">
-      <div class="navbar-brand">
-        <img src="../../assets/imgs/logoEmpresaTransparente.png" class="img-fluid" alt="Logo de la empresa">
-      </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/usuario">Inicio</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/usuario/editar/perfil">Editar perfil</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" onclick="logOut()">Cerrar sesión</a>
-          </li>
-        </ul>
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <div class="navbar-brand" style="padding-left: 2%;">
+    <img src="../../assets/imgs/logoEmpresaTransparente.png" class="img-fluid" alt="Logo de la empresa">
+  </div>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarCollapse">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/usuario">Inicio</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/usuario/editar/perfil">Editar perfil</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" (click)="logOut()">Cerrar sesión</a>
+      </li>
+    </ul>
+    <div class="search-container" style="padding-right: 2%;">
+    <span class="p-input-icon-left">
+        <i class="pi pi-search"></i>
+        <input type="text" pInputText [(ngModel)]="nombreEmpresa" (keyup)="buscarEmpresas()" placeholder="Buscar empresas por nombre"/>
+    </span>
+      <div *ngIf="empresas.length > 0" class="search-results">
+        <div class="result" *ngFor="let empresa of empresas" routerLink="/usuario/{{empresa.cif_Empresa}}">
+          <ng-container *ngIf="empresa.images && empresa.images.length > 0; else noImage">
+            <img [src]="empresa.images[0]" alt="Logo de la empresa" class="logo logo-small">
+          </ng-container>
+          <ng-template #noImage>
+            <img src="../../assets/imgs/empresaVacia.png" alt="Imagen por defecto" class="logo logo-small">
+          </ng-template>
+          <span class="nombre">{{ empresa.nombre }}</span>
+        </div>
       </div>
     </div>
-  </nav>
-</header>
+    
+  </div>
+</nav>

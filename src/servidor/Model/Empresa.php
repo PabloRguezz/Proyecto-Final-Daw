@@ -22,19 +22,21 @@ class Empresa extends Conexion {
   public function insert_empresa($cif, $nombre, $tlf_contacto, $password, $horario, $ubicacion, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
-    $sql = "SELECT * FROM Empresa WHERE cif_Empresa=?";
+    $nombre_decodificado = rawurldecode($nombre);
+    $sql = "SELECT * FROM Empresa WHERE cif_Empresa=? OR nombre=?";
     $sql=$conectar->prepare($sql);
     $sql->bindValue(1,$cif);
+    $sql->bindValue(2,$nombre_decodificado);
     $sql->execute();
     $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     if ($resultado) {
-        return array("error" => "El cif de la empresa ya está en uso");
+        return array("error" => "El cif de la empresa o el nombre ya está en uso");
     }
     $password_hasheada = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO Empresa(cif_Empresa, nombre, tlf_contacto, password, horario, ubicacion, descripcion) VALUES (?, ?, ?, ?, ?, ?, ?)";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$cif);
-    $sql->bindValue(2,$nombre);
+    $sql->bindValue(2,$nombre_decodificado);
     $sql->bindValue(3,$tlf_contacto);
     $sql->bindValue(4,$password_hasheada);
     $sql->bindValue(5,$horario);
@@ -47,8 +49,16 @@ class Empresa extends Conexion {
  public function update_empresa($cif, $nombre, $tlf_contacto, $password, $horario, $ubicacion, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
-    $horario_decodificado = rawurldecode($horario);
     $nombre_decodificado = rawurldecode($nombre);
+    $sql = "SELECT * FROM Empresa WHERE nombre=$nombre_decodificado";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1,$nombre);
+    $sql->execute();
+    $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    if ($resultado) {
+        return array("error" => "El nombre de la empresa ya está en uso");
+    }
+    $horario_decodificado = rawurldecode($horario);
     $ubicacion_decodificado = rawurldecode($ubicacion);
     $descripcion_decodificado = rawurldecode($descripcion);
     if (password_needs_rehash($password, PASSWORD_DEFAULT)) {

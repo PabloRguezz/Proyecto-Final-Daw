@@ -52,7 +52,7 @@ export class EditarPerfilUsuarioComponent {
         Swal.fire({
           position: 'center',
           icon: 'success',
-          title: 'Se ha registrado correctamente',
+          title: 'Se han actualizado los datos correctamente',
           showConfirmButton: false,
           timer: 1500
         })
@@ -66,5 +66,8 @@ export class EditarPerfilUsuarioComponent {
         })   
       }
     })
+  }
+  obtenerNombre(nombre:string){
+    return nombre[0];
   }
 }

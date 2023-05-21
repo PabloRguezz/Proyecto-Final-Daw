@@ -42,7 +42,15 @@ class Usuario extends Conexion{
 
   public function update_usuario($id,$email,$password,$nombre){
     $conectar=parent::connection();
-    parent::set_name();    
+    parent::set_name(); 
+    $sql = "SELECT * FROM Usuario WHERE email=?";
+    $sql=$conectar->prepare($sql);
+    $sql->bindValue(1,$email);
+    $sql->execute();
+    $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+    if ($resultado) {
+        return array("error" => "El email ya está en uso");
+    }   
     $nombre_decodificado = rawurldecode($nombre);
     if (password_needs_rehash($password, PASSWORD_DEFAULT)) {
       $password_hasheada = password_hash($password, PASSWORD_DEFAULT);

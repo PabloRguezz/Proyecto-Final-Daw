@@ -10,30 +10,32 @@
   <body>
     <app-header-usuario></app-header-usuario>
     <main>
-      <section class="hero">
+      <section style="padding-top:11%;" class="hero">
         <h1>Haz tu primera reserva</h1>
         <p>
           Realiza tus reservas en cualquier parte y en cualquier momento
         </p>
       </section>
-      <div class="carousel">
-        <div class="carousel-container" *ngFor="let empresa of empresas; let i = index">
-          <a [routerLink]="['/usuario', empresas[i].cif_Empresa]">
-            <div class="card" id="{{empresas[i].cif_Empresa}}">
-              <img src='../../assets/imgs/empresaVacia.png' alt="Card 1">
-              <div class="card-body">
-                <h3>{{empresas[i].nombre}}</h3>
-                <p>{{empresas[i].descripcion}}</p>
-              </div>
-            </div>
-          </a>
-        </div>
+      <div class="card" style="width: 100%;height: 85vh; display: flex; align-items: center;">
+        <p-carousel [value]="products" [numVisible]="3" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+            <ng-template let-product pTemplate="item">
+                <div class="product-item" style="padding: 1%;">
+                    <div class="product-item-content" style="border: 1px solid black;border-radius: 10px;">
+                        <div class="mb-3">
+                          <img src="../../assets/imgs/empresaVacia.png" class="product-image" height="100px" width="100px"/>
+                        </div>
+                        <div>
+                            <h4 class="mb-1" style="text-align: center;">{{ product.nombre }}</h4>
+                            <h6 class="mt-0 mb-3" style="text-align:center;">{{ product.descripcion }}</h6>
+                            <div class="car-buttons mt-5" style="width: 100%;">
+                                <button type="button" [routerLink]="['/usuario', product.cif_Empresa]" style="width: 100%;">Ver Perfil</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+        </p-carousel>
       </div>
-      
-      
     </main>
-    <footer>
-      <p>Derechos Reservados &copy; 2023 BookMe</p>
-    </footer>
   </body>
 </html>

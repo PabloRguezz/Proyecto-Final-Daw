@@ -14,22 +14,38 @@ import { ReservasService } from 'src/service/reservas/reservas.service';
   styleUrls: ['./home-usuario.component.css']
 })
 export class HomeUsuarioComponent {
-  empresas
-  cantEmpresas=6;
+  products:Empresa[] = [];
+  cantEmpresas=10;
   reservas ;
+  responsiveOptions: any[];
   constructor(private router: Router, private empresa : EmpresaService,private storage : Storage, private reserva : ReservasService){}
 
   ngOnInit(){
     this.mostrarEmpresas();
     this.mostrarReservas();
+    this.responsiveOptions = [
+      {
+          breakpoint: '1400px',
+          numVisible: 3,
+          numScroll: 3
+      },
+      {
+          breakpoint: '1220px',
+          numVisible: 2,
+          numScroll: 2
+      },
+      {
+          breakpoint: '1100px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
 
   }
   mostrarEmpresas(){
     this.empresa.obtenerEmpresas().subscribe(
       (response) => {
-         for (let index = 0; index < this.cantEmpresas; index++) {
-          this.empresas=response;
-          }
+          this.products=response;
       }
     )
   }
@@ -38,13 +54,14 @@ export class HomeUsuarioComponent {
       const decodedToken = jwt_decode(token);
       this.reserva.obtenerReservasUsuario(decodedToken["data"].id).subscribe(
         (response) => {
-          for (let index = 0; index < response.length; index++) {
-            console.log(response[index]);
-            this.reservas.push(response[index]);
-          }
+            this.reservas=response;
+            console.log(this.reservas);
+            
         }
       )
     }
+
+
 }
 
     

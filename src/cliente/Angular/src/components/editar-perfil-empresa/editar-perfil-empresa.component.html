@@ -5,9 +5,21 @@
 <h2 style="text-align: center;">Editar Perfil</h2>
 
 <div class="container" >
-  <div class="col-12 md:col-4" style="display: flex; justify-content: center;padding-bottom: 2%;">
-    <p-avatar [label]="obtenerNombre(nombre)" size="xlarge" [style]="{ 'background-color': '#73B0CD', color: '#ffffff' }"></p-avatar>
+  <div class="col-12 md:col-4" style="display: flex; justify-content: center; padding-bottom: 2%;">
+    <label for="avatar-upload" style="display: flex; flex-direction: column; align-items: center;">
+      <ng-container *ngIf="images.length === 0">
+        <p-avatar [label]="obtenerNombre(nombre)" size="xlarge" [style]="{ 'background-color': '#73B0CD', color: '#ffffff' }"></p-avatar>
+        <button type="button" onclick="document.getElementById('avatar-upload').click();" style="margin-top: 8px;">Añade una foto de perfil</button>
+      </ng-container>
+      <ng-container *ngIf="images.length > 0">
+        <p-image [src]="images[0]" alt="Image" width="100px" height="100px"></p-image>
+        <button type="button" onclick="document.getElementById('avatar-upload').click();" style="margin-top: 8px;">Añade una foto de perfil</button>
+      </ng-container>
+    </label>
+    <input type="file" id="avatar-upload" style="display: none;" (change)="uploadImage($event)">
   </div>
+  
+  
   <form (submit)="updateData()">
     <input class="input" type="text" name="nombreEmpresa" id="nombreEmpresa" placeholder="Nombre de la empresa" [value]="nombre" required [(ngModel)]="nombre">
     <input class="input" type="tel" name="telefono" id="telefono" placeholder="Teléfono de contacto" [value]="telefono" required [(ngModel)]="telefono">

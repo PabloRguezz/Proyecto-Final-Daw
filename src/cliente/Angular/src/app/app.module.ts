@@ -20,7 +20,7 @@ import { CommonModule } from '@angular/common';
 import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empresa-servicios.component';
 import { HeaderEmpresaComponent } from 'src/components/header-empresa/header-empresa.component';
 import { ViewEmpresaUsuarioComponent } from 'src/components/view-empresa-usuario/view-empresa-usuario.component';
-import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { CarouselModule } from 'primeng/carousel';
 import { HeaderUsuarioComponent } from 'src/components/header-usuario/header-usuario.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -28,6 +28,12 @@ import { RatingModule } from 'ngx-bootstrap/rating';
 import { EditarPerfilUsuarioComponent } from 'src/components/editar-perfil-usuario/editar-perfil-usuario.component';
 import { AvatarModule } from 'primeng/avatar';
 import { EditarPerfilEmpresaComponent } from 'src/components/editar-perfil-empresa/editar-perfil-empresa.component';
+import { ToastModule } from 'primeng/toast';
+import { ImageModule } from 'primeng/image';
+import { PasswordModule } from 'primeng/password';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+
 
 @NgModule({
   declarations: [
@@ -58,11 +64,16 @@ import { EditarPerfilEmpresaComponent } from 'src/components/editar-perfil-empre
     HttpClientModule,
     CarouselModule,
     FullCalendarModule,
+    ButtonModule,
     AvatarModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideStorage(() => getStorage()),
     BrowserAnimationsModule,
     TooltipModule,
+    ImageModule,
+    PasswordModule,
+    InputTextModule,
+    ToastModule,
     RatingModule.forRoot()
   ],
   providers: [],

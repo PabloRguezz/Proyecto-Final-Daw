@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { Empresa } from 'src/model/empresa/empresa.model';
 import { EmpresaService } from 'src/service/empresa/empresa.service';
 import jwt_decode from 'jwt-decode';
-import { ref } from '@angular/fire/storage';
+import { ref, listAll, deleteObject, uploadBytes } from '@firebase/storage';
+import Swal from 'sweetalert2';
+import { Storage, getDownloadURL } from '@angular/fire/storage';
 
 @Component({
   selector: 'app-editar-perfil-empresa',
@@ -18,9 +20,68 @@ export class EditarPerfilEmpresaComponent {
   descripcion: string;
   password: string;
   cif_empresa:string;
-  constructor(private empresa:EmpresaService){}
+  images:string[]=[];
+  constructor(private empresa:EmpresaService,private storage : Storage){}
   ngOnInit(){
     this.getDatos();
+    this.getImages();
+  }
+  uploadImage($event: any) {
+    const file = $event.target.files[0];
+    const token = localStorage.getItem('token');
+    const decodedToken: Empresa = jwt_decode(token);
+    const folderPath = `perfil/${decodedToken["data"].cif_Empresa}`;
+    const folderRef = ref(this.storage, folderPath);
+    listAll(folderRef)
+      .then(listResult => {
+        const fileRefs = listResult.items.map(item => item.fullPath);
+        const deletePromises = fileRefs.map(fileRef => deleteObject(ref(this.storage, fileRef)));
+        return Promise.all(deletePromises);
+      })
+      .then(() => {
+        const imgRef = ref(this.storage, `${folderPath}/${file.name}`);
+        uploadBytes(imgRef, file)
+          .then(response => {
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Se ha añadido correctamente',
+              showConfirmButton: false,
+              timer: 1500
+            });
+            setTimeout(() => {
+              location.reload();
+            }, 1500);
+          })
+          .catch(error => Swal.fire({
+            icon: 'error',
+            title: 'No se ha podido subir la imagen',
+          }));
+      })
+      .catch(error => Swal.fire({
+        icon: 'error',
+        title: 'No se ha podido eliminar la carpeta',
+      }));
+  }
+  
+  
+  getImages(){
+    const token = localStorage.getItem('token');
+    const decodedToken: Empresa = jwt_decode(token);
+    const imagesRef = ref(this.storage,`perfil/${decodedToken["data"].cif_Empresa}`);
+
+    listAll(imagesRef)
+    .then(async response => {
+      this.images=[];
+      for(let item of response.items){
+        const url = await getDownloadURL(item);
+        this.images.push(url);
+      }
+    })
+
+    .catch(
+      error => console.log(error)
+    )
   }
   getDatos(){
     const token = localStorage.getItem('token');
@@ -68,7 +129,21 @@ export class EditarPerfilEmpresaComponent {
     }
     this.empresa.actualizarEmpresa(this.cif_empresa,this.nombre,this.telefono,pass,horario,this.ubicacion,this.descripcion).subscribe({
       next:data => {
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Se han actualizado los datos correctamente',
+          showConfirmButton: false,
+          timer: 1500
+        })
         localStorage.setItem('token',data.token)
+      },
+      error:error=>{
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Error actualizando los datos',
+        }) 
       }
     })
 
@@ -76,6 +151,7 @@ export class EditarPerfilEmpresaComponent {
   obtenerNombre(nombre:string){
     return nombre[0];
   }
+  
 }
 
 

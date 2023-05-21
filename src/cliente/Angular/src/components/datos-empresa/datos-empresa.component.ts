@@ -57,7 +57,6 @@ export class DatosEmpresaComponent {
     const token = localStorage.getItem('token');
     const decodedToken: Empresa = jwt_decode(token);
     const imagesRef = ref(this.storage,`imagenesEmpresas/${decodedToken["data"].cif_Empresa}`);
-
     listAll(imagesRef)
     .then(async response => {
       this.images=[];
