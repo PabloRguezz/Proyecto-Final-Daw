@@ -10,9 +10,9 @@ import Swal from 'sweetalert2';
 })
 export class EditarPerfilUsuarioComponent {
   datosUsuario;
-  nombre:string;
-  email:string;
-  password:string;
+  nombre:string="";
+  email:string="";
+  password:string="";
   constructor(private usuario : UsuarioServiceService){}
   ngOnInit(){
     this.getUsuario();

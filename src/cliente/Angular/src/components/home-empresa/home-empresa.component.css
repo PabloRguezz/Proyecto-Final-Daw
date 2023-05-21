@@ -65,33 +65,105 @@ body {
   margin-bottom: 20px;
   font-size: 1rem; /* Ajusta el tamaño de fuente del texto */
 }
-
+/* Estilo para el offcanvas */
+/* Estilo para el offcanvas */
 .offcanvas {
   position: fixed;
   top: 0;
-  bottom: 0;
   right: 0;
-  left: auto;
-  width: 400px;
-  background-color: #fff;
-  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease-in-out;
-  overflow-y: auto;
+  bottom: 0;
+  left: 0;
   z-index: 1050;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: visibility 0.3s ease;
+  overflow-y: auto;
 }
 
+/* Estilo para mostrar el offcanvas */
+.offcanvas.show {
+  visibility: visible;
+}
+
+/* Estilo para la posición del offcanvas */
+.offcanvas-end {
+  transform: translateX(100%);
+}
+
+/* Estilo para el encabezado del offcanvas */
 .offcanvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   padding: 1rem;
+  background-color: #f8f9fa;
   border-bottom: 1px solid #dee2e6;
 }
 
-.offcanvas-title {
-  margin-bottom: 0;
-  line-height: 1.5;
+/* Estilo para el botón de cierre */
+.offcanvas-header .btn-close {
+  padding: 0.5rem 0.75rem;
+  margin: -0.5rem -0.75rem -0.5rem auto;
 }
 
+/* Estilo para el cuerpo del offcanvas */
 .offcanvas-body {
   padding: 1rem;
+  background-color: #fff;
+}
+
+/* Estilo para los campos de entrada */
+.input-field {
+  margin-bottom: 1rem;
+}
+
+.input-field label {
+  display: block;
+  font-size: 0.8rem;
+  color: #495057;
+  margin-bottom: 0.2rem;
+}
+
+.input-field .input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-field .input:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+/* Estilo para el botón de crear */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
 }
 
 .stretched-link {
