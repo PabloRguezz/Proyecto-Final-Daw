@@ -38,11 +38,13 @@ class Servicios extends Conexion {
   public function update_servicio($id_servicio, $precio, $nombre, $descripcion) {
     $conectar = parent::connection();
     parent::set_name();
+    $nombre_decodificado = rawurldecode($nombre);
+    $descripcion_decodificado = rawurldecode($descripcion);
     $sql = "UPDATE Servicios SET precio=?, nombre=?, descripcion=? WHERE id_servicio=?";
     $sql = $conectar->prepare($sql);
     $sql->bindValue(1,$precio);
-    $sql->bindValue(2,$nombre);
-    $sql->bindValue(3,$descripcion);
+    $sql->bindValue(2,$nombre_decodificado);
+    $sql->bindValue(3,$descripcion_decodificado);
     $sql->bindValue(4,$id_servicio);
     $sql->execute();
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);

@@ -7,121 +7,161 @@
   <title>Document</title>
 </head>
 <body>
-  <app-header-empresa></app-header-empresa>
-<div class="container-fluid" style="padding-top: 4%;">
-    <div class="row" >
-      <div class="col-md-12">
-        <div class="jumbotron">
-          <h1 class="display-4">{{datosEmpresa.nombre}}</h1>
-          <p>{{datosEmpresa.descripcion}}</p>
-          <hr class="my-4">
-          
-        </div>
-      </div>
-    </div>
-    <div class="row equal-height">
-        <div class="col-md-6">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="images.length > 0; else noEmpresa">
-              <div class="carousel-indicators">
-                <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
+  <div class="spinner-container" *ngIf="showSpinner">
+    <div class="spinner"></div>
+  </div>
+  <div *ngIf="!showSpinner">
+    <app-header-empresa></app-header-empresa>
+    <div class="container-fluid" style="padding-top: 3%;">
+      <section class="company-profile">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="jumbotron" style="border-radius: 10px;">
+                <h1 class="display-4">{{ datosEmpresa.nombre }}</h1>
+                <p class="lead">{{ datosEmpresa.descripcion }}</p>
               </div>
-                <div class="carousel-inner" *ngFor="let image of images; let i = index;">
-                  <div class="carousel-item" [class.active]="i === 0">
-                    <img [src]="image" class="d-block w-100 img-fluid">
+            </div>
+        </div>
+      </section>
+        <div class="row equal-height" style="padding-top: 2%;">
+            <div class="col-md-6">
+                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="images.length > 0; else noEmpresa">
+                  <div class="carousel-indicators">
+                    <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
                   </div>
+                    <div class="carousel-inner" *ngFor="let image of images; let i = index;"  style="border-radius: 10px;">
+                      <div class="carousel-item" [class.active]="i === 0" style="max-height: 500px;min-height: 500px; background-color: #f5f5f5;">
+                        <img [src]="image" class="d-block w-100 img-fluid">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>                                  
+            <ng-template #noEmpresa>
+              <div class="card no-empresa-template">
+                <div class="card-body">
+                  <p class="card-text">No existen imágenes.</p>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>                                  
-        <ng-template #noEmpresa>
-          <div class="card no-empresa-template">
-            <div class="card-body">
-              <p class="card-text">No existen imágenes.</p>
+              </div>
+            </ng-template>  
+        </div>
+        <div class="col-md-6">
+          <div class="container h-100  w-100">
+            <div class="col-md-12 h-100  w-100">
+              <div class="schedule-container h-100 w-100">
+                <table class="table h-100 w-100">
+                  <thead>
+                    <tr>
+                      <th>Día</th>
+                      <th>Horario</th>
+                    </tr>
+                  </thead>
+                  <tbody style="background-color: #f5f5f5;">
+                    <tr>
+                      <td>Lunes</td>
+                      <td>{{horarioFinal[0].hora}}</td>
+                    </tr>
+                    <tr>
+                      <td>Martes</td>
+                      <td>{{horarioFinal[1].hora}}</td>
+                    </tr>
+                    <tr>
+                      <td>Miércoles</td>
+                      <td>{{horarioFinal[2].hora}}</td>
+                    </tr>
+                    <tr>
+                      <td>Jueves</td>
+                      <td>{{horarioFinal[3].hora}}</td>
+                    </tr>
+                    <tr>
+                      <td>Viernes</td>
+                      <td>{{horarioFinal[4].hora}}</td>
+                    </tr>
+                    <tr>
+                      <td>Sábado</td>
+                      <td>{{horarioFinal[5].hora}}</td>
+                    </tr>
+                    <tr>
+                      <td>Domingo</td>
+                      <td>{{horarioFinal[6].hora}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
             </div>
           </div>
-        </ng-template>  
+        </div>
     </div>
-    <div class="col-md-6">
-      <div class="container h-100  w-100">
-        <div class="col-md-12 h-100  w-100">
-          <div class="schedule-container h-100 w-100">
-            <table class="table h-100 w-100">
-              <thead>
-                <tr>
-                  <th>Día</th>
-                  <th>Horario</th>
-                </tr>
-              </thead>
-              <tbody style="background-color: #F5F5F5;">
-                <tr>
-                  <td>Lunes</td>
-                  <td>{{horarioFinal[0].hora}}</td>
-                </tr>
-                <tr>
-                  <td>Martes</td>
-                  <td>{{horarioFinal[1].hora}}</td>
-                </tr>
-                <tr>
-                  <td>Miércoles</td>
-                  <td>{{horarioFinal[2].hora}}</td>
-                </tr>
-                <tr>
-                  <td>Jueves</td>
-                  <td>{{horarioFinal[3].hora}}</td>
-                </tr>
-                <tr>
-                  <td>Viernes</td>
-                  <td>{{horarioFinal[4].hora}}</td>
-                </tr>
-                <tr>
-                  <td>Sábado</td>
-                  <td>{{horarioFinal[5].hora}}</td>
-                </tr>
-                <tr>
-                  <td>Domingo</td>
-                  <td>{{horarioFinal[6].hora}}</td>
-                </tr>
-              </tbody>
-            </table>
+      <div class="container-fluid">
+        <div class="row" style="padding-top: 2%;">
+          <div class="col-md-12">
+            <h2 style="color: white;">Servicios</h2>
+          </div>
+          <div class="card" style="width: 100%;" >
+            <p-carousel [value]="servicios" [numVisible]="1" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+              <ng-template let-product pTemplate="item">
+                <div class="border-1 surface-border border-round m-2 text-center py-5 px-3" >
+                  <div  style="border-radius: 10px;">
+                    <h4 class="mb-1">{{ product.nombre  }}</h4>
+                    <h6 class="mt-0 mb-3">{{ '€' + product.precio }}</h6>
+                    <div class="car-buttons mt-5">
+                      <button type="button" class="btn btn-primary btn-rounded mr-2" data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" aria-controls="myOffcanvas" (click)="addDatos(product.id_servicio,product.nombre,product.descripcion,product.precio)">
+                        <span class="pi pi-pencil"></span> Editar Servicio
+                      </button>
+                      <button type="button" class="btn btn-success btn-rounded mr-2" (click)="eliminarServicio(product.id_servicio)">
+                        <span class="pi pi-delete-left"></span> Eliminar servicio
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </p-carousel>
           </div>
         </div>
-      </div>
-    </div>
-</div>
-    <div class="row" style="padding-top: 2%;">
-      <div class="col-md-12">
-        <h2>Servicios</h2>
-      </div>
-      <div class="col-md-4" *ngIf="servicios.length > 0; else noServicios" style="width: 100%;">
-        <div class="card" *ngFor="let service of servicios">
-          <div class="card-body">
-            <h5 class="card-title">{{service.nombre}}</h5>
-            <p class="card-text">{{service.descripcion}}</p>
-            <p class="card-text">{{service.precio}}€</p>
+        <ng-template id="error" #noServicios>
+            <div class="card no-servicios-template">
+              <div class="card-body">
+                <p class="card-text">No existen servicios.</p>
+              </div>
+            </div>
+          </ng-template>
           </div>
-          
-        </div>
-      </div>
+          <div class="offcanvas offcanvas-start" tabindex="-1" id="myOffcanvas" aria-labelledby="offcanvasLabel" style="width: 100%;">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasLabel">Búsqueda</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+              <form (submit)="editar()">
+                <div class="form-group">
+                  <label for="nombre">Nombre del servicio:</label>
+                  <input type="text" class="form-control" id="nombre" placeholder="Ingrese el nombre del servicio" [value]="nombre">
+                </div>
+                <div class="form-group">
+                  <label for="descripcion">Descripción del servicio:</label>
+                  <textarea class="form-control" id="descripcion" placeholder="Ingrese la descripción del servicio" [value]="descripcion"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="precio">Precio del servicio:</label>
+                  <input type="number" class="form-control" id="precio" placeholder="Ingrese el precio del servicio" [value]="precio">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+              </form>
+            </div>
+          </div>
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
       
-    <ng-template id="error" #noServicios>
-        <div class="card no-servicios-template">
-          <div class="card-body">
-            <p class="card-text">No existen servicios.</p>
-          </div>
-        </div>
-      </ng-template>
-      </div>
-
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    </div>
+  </div>
   
-</div>
+
 </body>
 </html>

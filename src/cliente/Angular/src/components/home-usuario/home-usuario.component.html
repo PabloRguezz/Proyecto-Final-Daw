@@ -10,12 +10,48 @@
   <body>
     <app-header-usuario></app-header-usuario>
     <main>
-      <section style="padding-top:11%;" class="hero">
-        <h1>Haz tu primera reserva</h1>
-        <p>
-          Realiza tus reservas en cualquier parte y en cualquier momento
-        </p>
-      </section>
+      <div class="card" style="width: 100%;padding-top: 4%;">
+        <ng-container *ngIf="reservas.length > 0">
+          <p-carousel [value]="reservas" [numVisible]="1" [numScroll]="1" [circular]="true" [responsiveOptions]="responsiveOptions" autoPlayInterval="3000">
+            <ng-template let-product pTemplate="item">
+              <div class="border-1 surface-border border-round m-2 text-center py-5 px-3" id="contenedor">
+                <div class="company-details">
+                  <div *ngFor="let empresa of datosEmpresa" class="company-info">
+                    <div class="company-header">
+                      <h1 class="company-name">{{ empresa.nombre }}</h1>
+                      <h4 class="location">{{ empresa.ubicacion }}</h4>
+                    </div>
+                    <div class="reservation-details">
+                      <h2 class="service-name">Servicio: {{ product.nombre_servicio }}</h2>
+                      <div class="reservation-info">
+                        <div class="reservation-item">
+                          <span class="label">Día:</span>
+                          <span class="value">{{ product.dia_reserva }}</span>
+                        </div>
+                        <div class="reservation-item">
+                          <span class="label">Hora:</span>
+                          <span class="value">{{ product.hora_reserva }}</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="car-buttons">
+                      <p-button type="button" styleClass="p-button-danger p-button-rounded mr-2" icon="pi pi-times" (click)="eliminarReserva(product.id_Reserva)"></p-button>
+                    </div>
+                  </div>
+                </div>       
+              </div>
+            </ng-template>
+          </p-carousel>
+        </ng-container>
+        <ng-container *ngIf="reservas.length === 0">
+          <section style="padding-top: 7%;" class="hero">
+            <h1>Haz tu primera reserva</h1>
+            <p>
+              Realiza tus reservas en cualquier parte y en cualquier momento
+            </p>
+          </section>
+        </ng-container>
+      </div>           
       <div class="card" style="width: 100%;height: 85vh; display: flex; align-items: center;">
         <p-carousel [value]="products" [numVisible]="3" [numScroll]="1" [responsiveOptions]="responsiveOptions">
             <ng-template let-product pTemplate="item">

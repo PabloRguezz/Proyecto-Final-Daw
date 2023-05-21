@@ -1,3 +1,9 @@
+body{
+  background-image: url('../../assets/imgs/editarEmpresa.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+}
 .container {
     margin: 0 auto;
     max-width: 600px;
@@ -36,17 +42,20 @@
   
   .btn {
     padding: 10px 20px;
-    color: #fff;
-    background-color: #333;
+    color: black;
+    background-color: #73B0CD;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
+  .btn:hover {
+    background-color: #A8DFF1;
+  }
   button{
     width: 100%;
-    background-color: #333;
-    color: white;
+    background-color: #A8DFF1;
+    color: black;
   }
   button:hover{
-    background-color: #555;
+    background-color: #73B0CD;
   }

@@ -20,8 +20,12 @@ import { CalificacionesService } from 'src/service/calificaciones/calificaciones
   styleUrls: ['./view-empresa-usuario.component.css']
 })
 export class ViewEmpresaUsuarioComponent {
-  y = 5;
+  y = 3;
+  selectedDay: any;
+  horarioSeleccionado: number = -1;
   calificacion;
+  calificacionMedia:any[];
+  calificacionMediaFinal:number[];
   descripcion;
   cifEmpresa:string;
   id_servicio:number;
@@ -34,11 +38,13 @@ export class ViewEmpresaUsuarioComponent {
   horaSeleccionada = false;
   horarioArray;
   datosEmpresa : Empresa;
-  images;
+  images: string[] = [];
   fechas_reservas = [];
   monthSelect: any[];
   dateSelect: any;
   dateValue: any;
+  isLoading: boolean = true;
+  showSpinner: boolean = true;
   date;
   today = new Date();
   currentMonth = this.today.getMonth() + 1;
@@ -55,14 +61,32 @@ export class ViewEmpresaUsuarioComponent {
   dayName;
   cerrado;
   horarioFinal = [];
+  responsiveOptions: any[] = [
+    {
+        breakpoint: '1024px',
+        numVisible: 5
+    },
+    {
+        breakpoint: '768px',
+        numVisible: 3
+    },
+    {
+        breakpoint: '560px',
+        numVisible: 1
+    }
+];
+  hasComentario: number;
   constructor(private servicio: ServiciosService,private calificaciones : CalificacionesService , private storage : Storage ,private route: ActivatedRoute,private servicioEmpresa: EmpresaHasServiciosService, private empresa : EmpresaService, private reservas : ReservasService){}
   ngOnInit(){
+    setTimeout(() => {
+      this.showSpinner = false;
+    }, 2000);
+    this.isLoading = true;
     this.getServicios();
     this.getDatos();
     this.getImages();
     this.getDaysFromDate(this.currentMonth, this.currentYear);
   }
-  
 
   getDaysFromDate(month, year) {
 
@@ -97,6 +121,7 @@ export class ViewEmpresaUsuarioComponent {
   }
 
   clickDay(day) {
+    this.selectedDay = day;
     const monthYear = this.dateSelect.format('YYYY-MM')
     const parse = `${monthYear}-${day.value}`
     const objectDate = moment(parse)
@@ -166,10 +191,8 @@ export class ViewEmpresaUsuarioComponent {
     return horarioArray;
   }
   
-  getServicios(){
-
+  getServicios() {
     this.cifEmpresa = this.route.snapshot.paramMap.get('cif_empresa');
-
     this.servicioEmpresa.obtenerEmpresaServicioCif(this.cifEmpresa).subscribe(
       (response) => {
         if (response.length > 0) {
@@ -177,19 +200,44 @@ export class ViewEmpresaUsuarioComponent {
             this.servicio.obtenerServicioId(response[index].id_servicio).subscribe(
               (servicio) => {
                 this.servicios.push(servicio[0]);
+                this.calificacionMediaFinal = [];
+                for (let index = 0; index < this.servicios.length; index++) {
+                  this.calificaciones.obtenerCalificacionServicio(this.servicios[index].id_servicio).subscribe({
+                    next: data => {
+                      this.calificacionMedia = data;
+                      const calificacionesServicio = this.calificacionMedia.filter(calificacion => calificacion.id_servicio === this.servicios[index].id_servicio);
+                      if (calificacionesServicio.length === 0) {
+                        this.calificacionMediaFinal[index] = 0;
+                      } else {
+                        const totalCalificaciones = calificacionesServicio.length;
+                        const sumaCalificaciones = calificacionesServicio.reduce((acumulador, calificacion) => acumulador + calificacion.nota, 0);
+                        const mediaCalificaciones = sumaCalificaciones / totalCalificaciones;
+                        this.calificacionMediaFinal[index] = Math.round(mediaCalificaciones);
+                      }
+                    }
+                  });
+                }
               }
+
             )
           }
         } 
-        
       },
       (error) => {
       }
     )
+    this.isLoading = false;
   }
-  elegirHora(hora :string){
+  
+  elegirHora(hora :string, index:number){
     this.horaSeleccionada = true;
     this.hora_reserva=hora;
+    if (this.horarioSeleccionado === index) {
+      this.horarioSeleccionado = -1;
+    } else {
+      this.horarioSeleccionado = index;
+    }
+    
     
   }
   reservar(){
@@ -279,7 +327,6 @@ export class ViewEmpresaUsuarioComponent {
         this.calificacion = data;
       },
       error => {
-        console.log(error);
       }
     );
   }
@@ -289,26 +336,45 @@ export class ViewEmpresaUsuarioComponent {
     const token = localStorage.getItem('token');
     const decodedToken = jwt_decode(token);
     this.id_usuario = decodedToken['data'].id;
-    console.log("Hola");
-    this.calificaciones.agregarCalificacion(this.y,this.descripcion,this.id_servicio,this.id_usuario,formattedDate).subscribe(
-      data => {
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Se ha agregado su comentario correctamente',
-          showConfirmButton: false,
-          timer: 1500
-        })
-        this.getCalificaciones(this.id_servicio);
-      },
-      error => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Ha habido un error creando su su comentario',
-        });
+    this.hasComentario = 0;
+    this.calificaciones.obtenerCalificaciones().subscribe({
+      next:data=>{
+        for (let index = 0; index < data.length; index++) {
+          if (data[index].id_usuario==this.id_usuario && data[index].id_servicio==this.id_servicio) {
+            this.hasComentario=1;
+          }
+
+        }
+        if (this.hasComentario==0) {
+          this.calificaciones.agregarCalificacion(this.y,this.descripcion,this.id_servicio,this.id_usuario,formattedDate).subscribe(
+            data => {
+              Swal.fire({
+                position: 'center',
+                icon: 'success',
+                title: 'Se ha agregado su comentario correctamente',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              this.getCalificaciones(this.id_servicio);
+            },
+            error => {
+              Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Ha habido un error creando su su comentario',
+              });
+            }
+          );
+        } else {
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Ya ha añadido un comentario',
+          });
+        }
       }
-    );
+    });
+
   }
 }
 
