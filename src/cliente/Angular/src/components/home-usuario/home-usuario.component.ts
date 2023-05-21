@@ -7,6 +7,7 @@ import { EmpresaHasServiciosService } from 'src/service/empresa_has_servicios/em
 import jwt_decode from 'jwt-decode';
 import { Storage, getDownloadURL, listAll, ref } from '@angular/fire/storage';
 import { ReservasService } from 'src/service/reservas/reservas.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-home-usuario',
@@ -16,9 +17,12 @@ import { ReservasService } from 'src/service/reservas/reservas.service';
 export class HomeUsuarioComponent {
   products:Empresa[] = [];
   cantEmpresas=10;
+  cancelarReservaText: string = '';
+  empresas = [];
+  datosEmpresa:Empresa[] = []
   reservas ;
   responsiveOptions: any[];
-  constructor(private router: Router, private empresa : EmpresaService,private storage : Storage, private reserva : ReservasService){}
+  constructor(private router: Router, private empresa : EmpresaService,private storage : Storage, private reserva : ReservasService, private empresaServicio : EmpresaHasServiciosService){}
 
   ngOnInit(){
     this.mostrarEmpresas();
@@ -54,15 +58,63 @@ export class HomeUsuarioComponent {
       const decodedToken = jwt_decode(token);
       this.reserva.obtenerReservasUsuario(decodedToken["data"].id).subscribe(
         (response) => {
-            this.reservas=response;
-            console.log(this.reservas);
+        const reservasActivas = response.filter(reserva => !this.reservaExpirada(reserva));
+        this.reservas = reservasActivas;
+        console.log(this.reservas);
+        
+        for (let index = 0; index < this.reservas.length; index++) {
+          this.empresaServicio.obtenerEmpresaServicioService(this.reservas[index].id_servicio).subscribe({
+            next:data => {
+              this.empresas.push(data[0]);
+              this.empresa.obtenerEmpresaCif(this.empresas[index].cif_Empresa).subscribe({
+                next:data => {
+                  this.datosEmpresa.push(data[0]);
+                }
+              })
+            }
+          })
+          
+        }
             
         }
       )
     }
 
 
+    mostrarTextoCancelarReserva() {
+      this.cancelarReservaText = 'Cancelar Reserva';
+    }
+
+    ocultarTextoCancelarReserva() {
+      this.cancelarReservaText = '';
+    }
+    reservaExpirada(reserva: any): boolean {
+      const fechaActual = new Date();
+      const fechaReserva = new Date(reserva.fecha);
+      return fechaReserva < fechaActual;
+    }
+    eliminarReserva(id_reserva:number){
+      this.reserva.eliminarReserva(id_reserva).subscribe({
+        next:data=>{
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Reserva eliminada correctamente',
+            showConfirmButton: false,
+            timer: 1500
+          })
+          this.mostrarReservas();
+        },
+        error:error=>{
+          Swal.fire({
+            icon: 'error',
+            title: 'Ha habido un error eliminando la reserva ',
+          })
+        }
+      })
+    }
 }
+  
 
     
 

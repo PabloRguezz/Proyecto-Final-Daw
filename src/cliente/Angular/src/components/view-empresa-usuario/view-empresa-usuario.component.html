@@ -1,24 +1,27 @@
-<app-header-usuario></app-header-usuario>
-  <div class="container-fluid" style="padding-top: 6%;">
-    <!-- Cuerpo -->
-    <div class="row">
-      <div class="col-md-12">
-        <div class="jumbotron">
-          <h1 class="display-4">{{datosEmpresa.nombre}}</h1>
-          <p>{{datosEmpresa.descripcion}}</p>
-          <hr class="my-4">
-          
+<div class="spinner-container" *ngIf="showSpinner">
+  <div class="spinner"></div>
+</div>
+<div *ngIf="!showSpinner" class="content">
+  <app-header-usuario></app-header-usuario>
+    <div class="container-fluid" style="padding-top: 2.4%;">
+      <section class="company-profile">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="jumbotron">
+                <h1 class="display-4">{{ datosEmpresa.nombre }}</h1>
+                <p class="lead">{{ datosEmpresa.descripcion }}</p>
+              </div>
+            </div>
         </div>
-      </div>
-    </div>
-    <div class="row equal-height">
-        <div class="col-md-6">
+      </section>
+      <div class="row equal-height" style="padding-top: 2%;">
+          <div class="col-md-6">
             <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="images.length > 0; else noEmpresa">
               <div class="carousel-indicators">
                 <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
               </div>
                 <div class="carousel-inner" *ngFor="let image of images; let i = index;">
-                  <div class="carousel-item" [class.active]="i === 0">
+                  <div class="carousel-item" [class.active]="i === 0" style="background-color: #f5f5f5;">
                     <img [src]="image" class="d-block w-100 img-fluid">
                   </div>
                 </div>
@@ -30,153 +33,184 @@
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
                   <span class="visually-hidden">Next</span>
                 </button>
-              </div> 
-                                               
-        <ng-template #noEmpresa>
-          <div class="card no-empresa-template">
-            <div class="card-body">
-              <p class="card-text">No existen imágenes.</p>
-            </div>
-          </div>
-        </ng-template>  
-    </div>
-
-
-    <div class="col-md-6">
-      <div class="container h-100  w-100">
-        <div class="col-md-12 h-100  w-100">
-          <div class="schedule-container h-100 w-100">
-            <table class="table h-100 w-100">
-              <thead>
-                <tr>
-                  <th>Día</th>
-                  <th>Horario</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Lunes</td>
-                  <td>{{horarioFinal[1].dia}}</td>
-                </tr>
-                <tr>
-                  <td>Martes</td>
-                  <td>{{horarioFinal[3].dia}}</td>
-                </tr>
-                <tr>
-                  <td>Miércoles</td>
-                  <td>{{horarioFinal[5].dia}}</td>
-                </tr>
-                <tr>
-                  <td>Jueves</td>
-                  <td>{{horarioFinal[7].dia}}</td>
-                </tr>
-                <tr>
-                  <td>Viernes</td>
-                  <td>{{horarioFinal[9].dia}}</td>
-                </tr>
-                <tr>
-                  <td>Sábado</td>
-                  <td>{{horarioFinal[11].dia}}</td>
-                </tr>
-                <tr>
-                  <td>Domingo</td>
-                  <td>{{horarioFinal[13].dia}}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="row" style="padding-top: 2%;">
-      <div class="col-md-12">
-        <h2>Servicios</h2>
-      </div>
-      <div class="col-md-4" *ngIf="servicios.length > 0; else noServicios" style="width: 100%;">
-        <div class="card" *ngFor="let service of servicios">
-          <div class="card-body">
-            <h5 class="card-title">{{service.nombre}}</h5>
-            <p class="card-text">{{service.descripcion}}</p>
-            <p class="card-text">{{service.precio}}€</p>
-            <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="obtenerDatosService(service.id_servicio,service.nombre)">Reserva</button>
-            <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResena" (click)="getCalificaciones(service.id_servicio)">Agregar reseña</button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <ng-template id="error" #noServicios>
-        <div class="card no-servicios-template">
-          <div class="card-body">
-            <p class="card-text">No existen servicios.</p>
-          </div>
-        </div>
-      </ng-template>
-      </div>
-      <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Reserva</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            <div class="wrapper-calendar">
-                <div class="header-calendar">
-                    <div>
-                        <button (click)="changeMonth(-1)" class="btn-prev">Antes</button>
-                    </div>
-                    <h1>{{dateSelect | date:'MMMM, yyyy'}}</h1>
-                    <div>
-                        <button (click)="changeMonth(1)" class="btn-next">Siguiente</button>
-                    </div>
-                </div>
-                <ol>
-                    <li *ngFor="let day of week" class="day-name">{{day | slice:0:3}}</li>
-    
-                    <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'" *ngFor="let day of monthSelect;let first = first">
-                        <span>{{day?.value}}</span>
-                    </li>
-                </ol>
-            </div>
-            <div>
-            </div>
-            <hr>
-            <div class="horario-container">
-              <div class="horario-buttons">
-                  <button *ngFor="let hora of horarioArray" class="horario-button" (click)="elegirHora(hora)">{{ hora }}</button>
+              </div>                                 
+          <ng-template #noEmpresa>
+            <div class="card no-empresa-template">
+              <div class="card-body">
+                <p class="card-text">No existen imágenes.</p>
               </div>
             </div>
-            <button class="reservar" (click)="reservar()">Reservar</button>
-        </div>
-    </div>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasResena" aria-labelledby="offcanvasResenaLabel">
-      <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasResenaLabel">Agregar reseña</h5>
-        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </ng-template>  
       </div>
-      <div class="offcanvas-body">
-          <div>
-            <rating [max]="10" [(ngModel)]="y" [customTemplate]="tt" name="rating"></rating>
-            <ng-template #tt let-i="index" let-v="value">
-              <button class="btn btn-{{i < v ? 'warning' : 'default'}}">
-                {{i < v ? '&#9733;' : '&#9734;'}}
-              </button>
-            </ng-template>
+
+
+      <div class="col-md-6">
+        <div class="container h-100  w-100">
+          <div class="col-md-12 h-100  w-100">
+            <div class="schedule-container h-100 w-100">
+              <table class="table h-100 w-100">
+                <thead>
+                  <tr>
+                    <th>Día</th>
+                    <th>Horario</th>
+                  </tr>
+                </thead>
+                <tbody style="background-color: #f5f5f5;">
+                  <tr>
+                    <td>Lunes</td>
+                    <td>{{horarioFinal[1].dia}}</td>
+                  </tr>
+                  <tr>
+                    <td>Martes</td>
+                    <td>{{horarioFinal[3].dia}}</td>
+                  </tr>
+                  <tr>
+                    <td>Miércoles</td>
+                    <td>{{horarioFinal[5].dia}}</td>
+                  </tr>
+                  <tr>
+                    <td>Jueves</td>
+                    <td>{{horarioFinal[7].dia}}</td>
+                  </tr>
+                  <tr>
+                    <td>Viernes</td>
+                    <td>{{horarioFinal[9].dia}}</td>
+                  </tr>
+                  <tr>
+                    <td>Sábado</td>
+                    <td>{{horarioFinal[11].dia}}</td>
+                  </tr>
+                  <tr>
+                    <td>Domingo</td>
+                    <td>{{horarioFinal[13].dia}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
-          <div class="mb-3">
-            <label for="calificacionTextarea" class="form-label">Descripción</label>
-            <textarea class="form-control" id="calificacionTextarea" [(ngModel)]="descripcion" name="descripcion"></textarea>
+        </div>
+      </div>
+      <div  class="container-fluid" style="padding-left: 1%;">
+        <div class="row" style="padding-top: 2%;">
+          <div class="col-md-12">
+            <h2>Servicios</h2>
           </div>
-          <button type="button" class="btn btn-primary" (click)="agregarCalificacion()">Enviar</button>
-        <div class="mb-3" *ngFor="let calificaciones of calificacion">
-          <h6>Nota: {{calificaciones.nota}}</h6>
-          <p>Descripción: {{calificaciones.descripcion}}</p>
+          <div class="card" style="width: 49%;">
+            <p-carousel [value]="servicios" [numVisible]="1" [numScroll]="1" [responsiveOptions]="responsiveOptions">
+              <ng-template let-product pTemplate="item" *ngFor="let calificacion of calificacionMediaFinal;let i = index">
+                <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
+                  <div>
+                    <div class="calificacion-container">
+                      <div class="card flex justify-content-center" style="width: 100%;"  class="calificacion">
+                        <p-rating [(ngModel)]="calificacionMediaFinal[i]" [readonly]="true" [cancel]="false" style="width: 100%;"></p-rating>
+                      </div>
+                  </div>
+                    <h4 class="mb-1">{{ product.nombre  }}</h4>
+                    <h6 class="mt-0 mb-3">{{ '€' + product.precio }}</h6>
+                    <div class="car-buttons mt-5" style="display: flex;justify-content: space-around;">
+                      <button icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="obtenerDatosService(product.id_servicio,product.nombre)">Hacer reserva</button>
+                      <button icon="pi pi-comments" class="md:align-self-end mb-2 p-button-rounded" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResena" (click)="getCalificaciones(product.id_servicio)">Hacer reseña</button>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+            </p-carousel>
+          </div> 
+        </div>  
+      </div>
+      <ng-template id="error" #noServicios>
+          <div class="card no-servicios-template">
+            <div class="card-body">
+              <p class="card-text">No existen servicios.</p>
+            </div>
+          </div>
+        </ng-template>
+        </div>
+        <div class="reservation-container">
+          <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasExampleLabel">Reserva</h5>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body" style="display: flex; justify-content: center;">
+              <div class="calendar-wrapper">
+                <div class="wrapper-calendar" style="width: 100%;">
+                  <div class="header-calendar">
+                    <button (click)="changeMonth(-1)" class="btn-prev"><h1>Antes</h1></button>
+                    <h1>{{ dateSelect | date:'MMMM, yyyy' }}</h1>
+                    <button (click)="changeMonth(1)" class="btn-next" style="padding-right: 20px;"><h1>Siguiente</h1></button>
+                  </div>
+                  <ol>
+                    <li *ngFor="let day of week" class="day-name">{{ day | slice:0:3 }}</li>
+                    <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'" [ngClass]="{'selected-day': day === selectedDay}" *ngFor="let day of monthSelect; let first = first">
+                      <span>{{ day?.value }}</span>
+                    </li>                    
+                  </ol>
+                </div>
+                
+                <hr>
+              <div class="schedule-container" style="padding-bottom: 2%;">
+                <div class="schedule-buttons">
+                  <button *ngFor="let hora of horarioArray;let i = index" class="schedule-button" [class.active]="horarioSeleccionado === i"   (click)="elegirHora(hora,i)" >{{ hora }}</button>
+                </div>
+              </div>
+              <button class="reservation-button" (click)="reservar()" >Reservar</button>
+            </div>
+          </div>
+        </div>
+        <div class="offcanvas offcanvas-end offcanvas-resena" tabindex="-1" id="offcanvasResena" aria-labelledby="offcanvasResenaLabel" style="width: 100%;">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasResenaLabel">Agregar reseña</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body custom-offcanvas-body d-flex justify-content-center align-items-center">
+            <div class="card" style="width:30%;display: flex;justify-content: center;">
+              <div class="rating-container" style="display:flex;justify-content: center;width: 100%;">
+                <p-rating [(ngModel)]="y" [cancel]="false"></p-rating>
+              </div>
+              <div class="mb-3" style="width: 100%;">
+                <label for="calificacionTextarea" class="form-label" >Descripción</label>
+                <textarea class="form-control" id="calificacionTextarea" [(ngModel)]="descripcion" name="descripcion" required></textarea>
+              </div>
+              <button type="button" class="btn btn-primary btn-enviar" (click)="agregarCalificacion()">Enviar</button>
+              <hr class="divider">
+              <div class="comentarios-container" style="max-height: 400px; overflow-y: auto;width: 100%;">
+                <div class="comentario" *ngFor="let calificaciones of calificacion" style="width: 100%;">
+                  <p-rating [(ngModel)]="calificaciones.nota" [readonly]="true" [cancel]="false"></p-rating>
+                  <p class="comentario-descripcion">Descripción: {{ calificaciones.descripcion }}</p>
+                </div>
+              </div>            
+            </div>
+          </div>
+        </div>    
+      
+    </div>
+    <footer class="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="contact-info">
+          <h3>Contacto</h3>
+          <div class="contact-info-grid">
+            <div class="info-item">
+              <strong><p>Teléfono:</p></strong>
+              <span>{{ datosEmpresa.tlf_contacto }}</span>
+            </div>
+            <div class="info-item">
+              <strong><p>Ubicación:</p></strong>
+              <span>{{ datosEmpresa.ubicacion }}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+  </div>
 
 
-
-  
+    

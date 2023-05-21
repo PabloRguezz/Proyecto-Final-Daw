@@ -1,58 +1,162 @@
-body{
-  background-image: url('../../assets/imgs/fondo.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-/* Estilos para el carrusel */
-.carousel-item img {
-  height: 720px;
-  object-fit: cover;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-.carousel-caption {
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 10px;
-  border-radius: 5px;
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('../../assets/imgs/fondoHome.jpg');
+  height: 100vh;
 }
 
-/* Estilos para las tarjetas */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 .card {
-  margin-right: 20px;
-  flex: 0 0 auto;
-  width: 300px;
-}
-.card img{
-  height: 400px;
-  
-}
-.card-img-top {
-  max-width: 100%;
-  max-height: 60%;
-  object-fit: cover;
+  width: calc(33.33% - 10px);
+  margin-bottom: 20px;
+  margin-right: 10px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
 }
 
-.card-title {
-  font-size: 18px;
-}
-
-.card-text {
-  font-size: 14px;
-}
-.carousel-container {
-  margin-bottom: 30px;
-}
-
-.card-deck .card {
-  width: calc(25% - 12px);
-  margin-right: 15px;
-  margin-bottom: 15px;
-}
-
-.card-deck .card:last-child {
+.card:last-child {
   margin-right: 0;
 }
 
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.card-img-top {
+  width: 100%;
+  height: auto;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.card-body {
+  padding: 20px;
+  height: 200px; /* Ajusta la altura de la carta */
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #777;
+  margin-bottom: 20px;
+  font-size: 1rem; /* Ajusta el tamaño de fuente del texto */
+}
+/* Estilo para el offcanvas */
+/* Estilo para el offcanvas */
+.offcanvas {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1050;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: visibility 0.3s ease;
+  overflow-y: auto;
+}
+
+/* Estilo para mostrar el offcanvas */
+.offcanvas.show {
+  visibility: visible;
+}
+
+/* Estilo para la posición del offcanvas */
+.offcanvas-end {
+  transform: translateX(100%);
+}
+
+/* Estilo para el encabezado del offcanvas */
+.offcanvas-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
+
+/* Estilo para el botón de cierre */
+.offcanvas-header .btn-close {
+  padding: 0.5rem 0.75rem;
+  margin: -0.5rem -0.75rem -0.5rem auto;
+}
+
+/* Estilo para el cuerpo del offcanvas */
+.offcanvas-body {
+  padding: 1rem;
+  background-color: #fff;
+}
+
+/* Estilo para los campos de entrada */
+.input-field {
+  margin-bottom: 1rem;
+}
+
+.input-field label {
+  display: block;
+  font-size: 0.8rem;
+  color: #495057;
+  margin-bottom: 0.2rem;
+}
+
+.input-field .input {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  color: #495057;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-field .input:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+/* Estilo para el botón de crear */
+.btn {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  transition: all 0.3s ease;
+}
+
 .btn-primary {
+  color: #fff;
   background-color: #007bff;
   border-color: #007bff;
 }
@@ -62,98 +166,17 @@ body{
   border-color: #0062cc;
 }
 
-.btn-primary:focus,
-.btn-primary.focus {
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
-}
-
-.card-deck {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.card-deck::-webkit-scrollbar {
-  display: none;
-}
-.carousel-inner .carousel-item:first-child {
-  position: relative;
-}
-
-.carousel-inner .carousel-item:first-child .carousel-caption {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 20px;
-  z-index: 1;
-}
-
-.carousel-inner .carousel-item:first-child .carousel-caption h5 {
-  color: white;
-}
-
-.carousel-inner .carousel-item:first-child .carousel-caption button {
-  background-color: white;
-  color: black;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  margin-top: 10px;
-}
-form {
-  display: flex;
-  flex-direction: column;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-.input-field {
-  position: relative;
-  margin-bottom: 20px;
-}
-
-.input {
-  font-size: 16px;
-  padding: 10px;
+.stretched-link {
   display: block;
   width: 100%;
-  border: none;
-  border-bottom: 1px solid #ccc;
-  background-color: transparent;
-}
-
-.input:focus, .input:valid {
-  border-bottom: 1px solid #008CBA;
-}
-
-label {
-  font-size: 16px;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  pointer-events: none;
-  transition: all 0.2s ease;
-}
-
-.input:focus ~ label, .input:valid ~ label {
-  font-size: 12px;
-  top: -20px;
-  color: #008CBA;
-}
-
-.btn {
-  background-color: #008CBA;
+  height: 100%;
   color: #fff;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-  cursor: pointer;
+  text-decoration: none;
 }
 
-.btn:hover {
-  background-color: #006C80;
+@media (max-width: 768px) {
+  .card {
+    width: 100%;
+    margin-right: 0;
+  }
 }

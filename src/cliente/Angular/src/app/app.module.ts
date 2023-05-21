@@ -24,7 +24,6 @@ import { CarouselModule } from 'primeng/carousel';
 import { HeaderUsuarioComponent } from 'src/components/header-usuario/header-usuario.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { RatingModule } from 'ngx-bootstrap/rating';
 import { EditarPerfilUsuarioComponent } from 'src/components/editar-perfil-usuario/editar-perfil-usuario.component';
 import { AvatarModule } from 'primeng/avatar';
 import { EditarPerfilEmpresaComponent } from 'src/components/editar-perfil-empresa/editar-perfil-empresa.component';
@@ -33,7 +32,10 @@ import { ImageModule } from 'primeng/image';
 import { PasswordModule } from 'primeng/password';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-
+import { DataViewModule } from 'primeng/dataview';
+import { RatingModule } from 'primeng/rating';
+import { GalleriaModule } from 'primeng/galleria';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -59,11 +61,14 @@ import { ButtonModule } from 'primeng/button';
     AppRoutingModule,
     CommonModule,
     FormsModule,
+    DataViewModule,
+    GalleriaModule,
     ReactiveFormsModule,
     SwiperModule,
     HttpClientModule,
     CarouselModule,
     FullCalendarModule,
+    ProgressSpinnerModule,
     ButtonModule,
     AvatarModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
@@ -74,7 +79,7 @@ import { ButtonModule } from 'primeng/button';
     PasswordModule,
     InputTextModule,
     ToastModule,
-    RatingModule.forRoot()
+    RatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

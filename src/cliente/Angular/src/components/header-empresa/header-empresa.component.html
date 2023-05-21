@@ -1,8 +1,7 @@
 <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
-    <a class="navbar-brand" href="#" style="color: #3d7c98; padding-left: 2%;">BookMe</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+  <div class="navbar-brand" style="padding-left: 2%;">
+    <img src="../../assets/imgs/logoEmpresaTransparente.png" class="img-fluid" alt="Logo de la empresa">
+  </div>
     <div class="collapse navbar-collapse" id="navbarCollapse">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
@@ -15,7 +14,7 @@
           <a class="nav-link" href="/empresa/calendario">Calendario</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/empresa/servicios">Servicios</a>
+          <a class="nav-link" data-bs-toggle="offcanvas" data-bs-target="#uploadModal">Añadir Imagen</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/empresa/editar/perfil">Editar perfil</a>
@@ -27,3 +26,12 @@
     </div>
 </nav>
   
+<div class="offcanvas offcanvas-end" tabindex="-1" id="uploadModal" aria-labelledby="uploadModalLabel">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title" id="uploadModalLabel">Subir imagen</h5>
+    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+  </div>
+  <div class="offcanvas-body">
+    <input type="file" (change)="uploadImage($event)">
+  </div>
+</div>

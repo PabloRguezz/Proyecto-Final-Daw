@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { getDownloadURL, listAll, ref } from '@angular/fire/storage';
+import { getDownloadURL, listAll, ref, uploadBytes } from '@angular/fire/storage';
 import { Router } from '@angular/router';
 import { Empresa } from 'src/model/empresa/empresa.model';
 import { EmpresaService } from 'src/service/empresa/empresa.service';
 import { Storage } from '@angular/fire/storage';
 import jwt_decode from 'jwt-decode';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-header-usuario',
@@ -45,6 +46,7 @@ export class HeaderUsuarioComponent {
       this.empresas = [];
     }
   }
+
   getImages(cif_Empresa: string): Promise<string[]> {
     const imagesRef = ref(this.storage, `perfil/${cif_Empresa}`);
     
