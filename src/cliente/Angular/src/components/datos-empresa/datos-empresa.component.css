@@ -9,6 +9,11 @@ body {
     background-size: cover;
     width: 100%;
   }
+  #offcanvasResena{
+    background-image: url('../../assets/imgs/fondoComentarios.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
   .spinner-container {
     display: flex;
     justify-content: center;
@@ -17,6 +22,85 @@ body {
     background-color: #3D7C98;
 
   }
+  #myOffcanvas {
+    width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #F5F5F5;
+    border-radius: 5px;
+  }
+  
+  #myOffcanvas .offcanvas-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #myOffcanvas .offcanvas-title {
+    color: #3D7C98;
+    font-size: 18px;
+  }
+  
+  #myOffcanvas .btn-close {
+    color: #000;
+    font-size: 20px;
+  }
+  
+  #myOffcanvas .offcanvas-body {
+    margin-top: 20px;
+  }
+  
+  #myOffcanvas .form-group {
+    margin-bottom: 15px;
+  }
+  
+  #myOffcanvas label {
+    display: block;
+    font-weight: bold;
+    color: #73B0CD;
+  }
+  
+  #myOffcanvas input[type="text"],
+  #myOffcanvas input[type="email"],
+  #myOffcanvas input[type="password"],
+  #myOffcanvas textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #A8DFF1;
+    border-radius: 4px;
+  }
+  
+  #myOffcanvas button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #3D7C98;
+    color: #FFF;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  #myOffcanvas button[type="submit"]:hover {
+    background-color: #73B0CD;
+  }
+  
+  
+  .comentarios-container {
+    background-color: #f9f9f9; 
+    padding: 10px;
+  }
+  
+  .comentario {
+    background-color: #ffffff; 
+    border: 1px solid #e0e0e0; 
+    padding: 10px; 
+    margin-bottom: 10px; 
+  }
+  
   
   .spinner {
     width: 80px;

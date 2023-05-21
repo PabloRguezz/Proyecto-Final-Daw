@@ -23,6 +23,7 @@ export class DatosEmpresaComponent {
   noEmpresa;
   datosEmpresa : Empresa;
   images;
+  comentario;
   horarioFinal = [];
   id_servicio;
   calificacion;
@@ -68,7 +69,8 @@ export class DatosEmpresaComponent {
     this.id_servicio=id;
     this.calificaciones.obtenerCalificacionServicio(this.id_servicio).subscribe(
       data => {
-        this.calificacion = data;
+        console.log(data);
+        this.comentario = data;
       },
       error => {
       }

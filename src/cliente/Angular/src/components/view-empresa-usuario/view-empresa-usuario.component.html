@@ -21,7 +21,7 @@
                 <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
               </div>
                 <div class="carousel-inner" *ngFor="let image of images; let i = index;">
-                  <div class="carousel-item" [class.active]="i === 0" style="max-height: 500px;min-height: 500px; background-color: #f5f5f5;">
+                  <div class="carousel-item" [class.active]="i === 0" style="background-color: #f5f5f5;">
                     <img [src]="image" class="d-block w-100 img-fluid">
                   </div>
                 </div>

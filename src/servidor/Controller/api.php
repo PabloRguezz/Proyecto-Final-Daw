@@ -17,6 +17,9 @@ $calificaciones = new Calificaciones();
 $empresa_has_servicios= new Empresa_has_Servicios();
 $reservas = new Reserva();
 
+/* El código anterior es un script PHP que maneja diferentes solicitudes relacionadas con la
+administración de usuarios. Comprueba el tipo de solicitud utilizando el parámetro "usuario" en la
+solicitud GET. */
 if (isset($_GET["user"])) {
     switch ($_GET["user"]) {
         case 'GetAll':
@@ -87,6 +90,13 @@ if (isset($_GET["user"])) {
             break;  
     }      
 }
+/* El código anterior es un script PHP que maneja solicitudes relacionadas con una empresa o entidad
+comercial. Comprueba el tipo de solicitud que se está realizando mediante el parámetro "empresa" en
+la URL y realiza la acción correspondiente. Las acciones disponibles incluyen obtener todas las
+empresas, obtener una empresa específica por su número de CIF, insertar una nueva empresa,
+actualizar una empresa existente, eliminar una empresa e iniciar sesión en una empresa. El script
+también verifica la autenticación mediante un token JWT y devuelve las respuestas adecuadas en
+formato JSON. */
 if(isset($_GET["empresa"])){
     switch ($_GET["empresa"]) {
         case 'GetAll':
@@ -158,6 +168,12 @@ if(isset($_GET["empresa"])){
     }
 }
 
+/* El código anterior es un script PHP que maneja diferentes solicitudes relacionadas con los
+servicios. Comprueba el tipo de solicitud mediante el parámetro "servicios" en la solicitud GET y
+realiza la acción correspondiente. Las acciones incluyen obtener todos los servicios, obtener un
+servicio específico por ID, insertar un nuevo servicio, actualizar un servicio existente y eliminar
+un servicio. El script también busca un token JWT válido en algunas de las solicitudes para
+garantizar el acceso autorizado. La respuesta se devuelve en formato JSON. */
 if(isset($_GET["servicios"])){
     switch ($_GET["servicios"]) {
         case 'GetAll':
@@ -215,6 +231,11 @@ if(isset($_GET["servicios"])){
     }
 }
 
+/* El código anterior es un script PHP que maneja solicitudes relacionadas con "calificaciones"
+(ratings) usando una declaración de cambio. Comprueba el tipo de solicitud (por ejemplo, "GetAll",
+"GetId", "insert", "update", "delete") y realiza la acción correspondiente utilizando métodos del
+objeto . También verifica si hay un token JWT válido en los encabezados de solicitud
+para ciertas acciones que requieren autorización. La respuesta se devuelve en formato JSON. */
 if(isset($_GET["calificaciones"])){
     switch ($_GET["calificaciones"]) {
         case 'GetAll':
@@ -356,6 +377,12 @@ if (isset($_GET["empresa_has_servicios"])) {
             break;
     }
 }
+/* El código anterior es un script PHP que maneja diferentes solicitudes de API relacionadas con las
+reservas. Comprueba el tipo de solicitud mediante el parámetro "reservas" en la solicitud GET y
+realiza la acción correspondiente. Las acciones incluyen obtener todas las reservas, obtener una
+reserva por ID, obtener reservas por usuario o servicio, insertar una nueva reserva, actualizar una
+reserva existente y eliminar una reserva. El script también busca un token JWT válido en los
+encabezados de solicitud antes de permitir el acceso a la API. */
 if(isset($_GET["reservas"])){
     switch ($_GET["reservas"]) {
         case 'GetAll':

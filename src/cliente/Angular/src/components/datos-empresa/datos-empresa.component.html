@@ -30,7 +30,7 @@
                     <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
                   </div>
                     <div class="carousel-inner" *ngFor="let image of images; let i = index;"  style="border-radius: 10px;">
-                      <div class="carousel-item" [class.active]="i === 0" style="max-height: 500px;min-height: 500px; background-color: #f5f5f5;">
+                      <div class="carousel-item" [class.active]="i === 0" style="background-color: #f5f5f5;">
                         <img [src]="image" class="d-block w-100 img-fluid">
                       </div>
                     </div>
@@ -110,12 +110,15 @@
                   <div  style="border-radius: 10px;">
                     <h4 class="mb-1">{{ product.nombre  }}</h4>
                     <h6 class="mt-0 mb-3">{{ '€' + product.precio }}</h6>
-                    <div class="car-buttons mt-5">
+                    <div class="car-buttons mt-5" style="display: flex; justify-content: space-around;">
                       <button type="button" class="btn btn-primary btn-rounded mr-2" data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" aria-controls="myOffcanvas" (click)="addDatos(product.id_servicio,product.nombre,product.descripcion,product.precio)">
                         <span class="pi pi-pencil"></span> Editar Servicio
                       </button>
                       <button type="button" class="btn btn-success btn-rounded mr-2" (click)="eliminarServicio(product.id_servicio)">
                         <span class="pi pi-delete-left"></span> Eliminar servicio
+                      </button>
+                      <button type="button" class="btn btn-success btn-rounded mr-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResena" aria-controls="offcanvasResena" (click)="getCalificaciones(product.id_servicio)">
+                        <span class="pi pi-comments"></span> Ver Comentarios
                       </button>
                     </div>
                   </div>
@@ -134,7 +137,7 @@
           </div>
           <div class="offcanvas offcanvas-start" tabindex="-1" id="myOffcanvas" aria-labelledby="offcanvasLabel" style="width: 100%;">
             <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasLabel">Búsqueda</h5>
+              <h5 class="offcanvas-title" id="offcanvasLabel">Editar Servicio</h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body">
@@ -153,7 +156,23 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Guardar cambios</button>
               </form>
-              
+            </div>
+          </div>
+          <div class="offcanvas offcanvas-end offcanvas-resena" tabindex="-1" id="offcanvasResena" aria-labelledby="offcanvasResenaLabel" style="width: 100%;">
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasResenaLabel">Comentarios</h5>
+              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body custom-offcanvas-body d-flex justify-content-center align-items-center">
+              <div class="card" style="width:30%;display: flex;justify-content: center;">
+                <h1 style="text-align: center;">Comentarios</h1>
+                <div class="comentarios-container" style="max-height: 600px; overflow-y: auto;width: 100%;">
+                  <div class="comentario" *ngFor="let calificaciones of comentario" style="width: 100%;">
+                    <p-rating [(ngModel)]="calificaciones.nota" [readonly]="true" [cancel]="false"></p-rating>
+                    <p class="comentario-descripcion">Descripción: {{ calificaciones.descripcion }}</p>
+                  </div>
+                </div>            
+              </div>
             </div>
           </div>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
