@@ -7,6 +7,7 @@
 <p align="center">
   <a href="./bbdd/"><strong>:card_file_box: Base de Datos</strong></a> ·
   <a href="./service/"><strong>:gear: Servicio</strong></a> 
+  <a href="./nginx/README.md"><strong>🔌 Api Nginx </a>
 </p>
 
  <a href="../../../"><strong>← Volver al inicio del proyecto</strong></a>
@@ -20,6 +21,7 @@
 <p align="center">
   <a href="./bbdd/"><strong>:card_file_box: Database</strong></a> ·
   <a href="./service/"><strong>:gear: Service</strong></a> 
+    <a href="./nginxEn/README.md"><strong>🔌 Api Nginx </a>
 </p>
 <a href="../../../"><strong>← Back to project root</strong></a>
 
