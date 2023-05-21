@@ -2,7 +2,7 @@
   
 This is the use case diagram for our application, which describes the possible actions of users within the application.
   
-<img src="../screenshots/diagrama-casos-uso-ingles-bookme.drawio.png">
+<img src="../screenshots/diagrama-casos-uso-ingles.png">
   
 <hr>
   
