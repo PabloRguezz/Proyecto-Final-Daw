@@ -198,7 +198,7 @@ if(isset($_GET["servicios"])){
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
             }
-            $datos=$servicios->update_servicio($_GET["id_Servicio"],$_GET["nombre"],$_GET["precio"],$_GET["descripcion"]);
+            $datos=$servicios->update_servicio($_GET["id_Servicio"],$_GET["precio"],$_GET["nombre"],$_GET["descripcion"]);
             echo json_encode("El servicio se ha actualizado correctamente");
             break;
         case "delete":
