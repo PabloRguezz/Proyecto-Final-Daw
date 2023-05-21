@@ -3,7 +3,7 @@
   
 Este es el diagrama de casos de uso sobre nuestra aplicación, en ella se encuentra una descripción de las posible acciones de los usuarios dentro de la aplicación
   
-<img src="../screenshots/diagrama-casos-uso-bookme.png">
+<img src="../screenshots/diagrama-casos-uso.png">
   
 <hr>
   
