@@ -9,6 +9,8 @@ import { CalendarioComponent } from 'src/components/calendario/calendario.compon
 import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empresa-servicios.component';
 import { ViewEmpresaUsuarioComponent } from 'src/components/view-empresa-usuario/view-empresa-usuario.component';
 import { AuthGuardGuard } from './auth-guard.guard';
+import { EditarPerfilUsuarioComponent } from 'src/components/editar-perfil-usuario/editar-perfil-usuario.component';
+import { EditarPerfilEmpresaComponent } from 'src/components/editar-perfil-empresa/editar-perfil-empresa.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -18,7 +20,9 @@ const routes: Routes = [
   { path: 'empresa/datos', component: DatosEmpresaComponent , canActivate : [AuthGuardGuard]},
   { path: 'empresa/calendario', component: CalendarioComponent , canActivate : [AuthGuardGuard]},
   { path: 'empresa/servicios', component: EmpresaServiciosComponent , canActivate : [AuthGuardGuard]},
-  { path: 'usuario/:cif_empresa', component: ViewEmpresaUsuarioComponent , canActivate : [AuthGuardGuard]}
+  { path: 'usuario/:cif_empresa', component: ViewEmpresaUsuarioComponent , canActivate : [AuthGuardGuard]},
+  { path: 'usuario/editar/perfil', component: EditarPerfilUsuarioComponent , canActivate : [AuthGuardGuard]},
+  { path: 'empresa/editar/perfil', component: EditarPerfilEmpresaComponent , canActivate : [AuthGuardGuard]}
 ];
 
 @NgModule({

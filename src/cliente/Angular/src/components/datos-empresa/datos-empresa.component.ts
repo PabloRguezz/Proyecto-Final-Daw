@@ -32,7 +32,6 @@ export class DatosEmpresaComponent {
 
     const token = localStorage.getItem('token');
     const decodedToken: Empresa = jwt_decode(token);
-
     this.servicioEmpresa.obtenerEmpresaServicioCif(decodedToken["data"].cif_Empresa).subscribe(
       (response) => {
         console.log();
@@ -58,7 +57,6 @@ export class DatosEmpresaComponent {
     const token = localStorage.getItem('token');
     const decodedToken: Empresa = jwt_decode(token);
     const imagesRef = ref(this.storage,`imagenesEmpresas/${decodedToken["data"].cif_Empresa}`);
-
     listAll(imagesRef)
     .then(async response => {
       this.images=[];
@@ -79,12 +77,11 @@ export class DatosEmpresaComponent {
       (response) => {
         this.datosEmpresa=response[0];
         let horario = this.datosEmpresa.horario;
-        let horarioArray = horario.split(", ");
-        console.log( horarioArray)
+        let horarioArray = horario.split(",");
         for (let i = 0; i < horarioArray.length; i++) {
           let info = horarioArray[i].split(" ");
-          let dia = info[0];
-          let hora = info[1] === "Cerrado" ? "Cerrado" : info[1] + " - " + info[2];
+          let dia = info[0];       
+          let hora = info[1] === "Cerrado" ? "Cerrado" : info[1] ;
           this.horarioFinal.push({ dia, hora });
         }
 
