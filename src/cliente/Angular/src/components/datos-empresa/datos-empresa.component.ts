@@ -169,10 +169,11 @@ export class DatosEmpresaComponent {
             this.servicios[index].precio=this.precio
           }
         }
-        Swal.fire(
-          'Se ha actualizado correctamente',
-          'success'
-        )
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title:'Se ha actualizado correctamente'
+        })
       },
       error:error=>{
         Swal.fire({
