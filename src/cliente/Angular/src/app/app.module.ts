@@ -17,7 +17,6 @@ import { environment } from '../environments/environment';
 import { provideStorage,getStorage } from '@angular/fire/storage';
 import { SwiperModule } from 'swiper/angular'
 import { CommonModule } from '@angular/common';
-import { EmpresaServiciosComponent } from 'src/components/empresa-servicios/empresa-servicios.component';
 import { HeaderEmpresaComponent } from 'src/components/header-empresa/header-empresa.component';
 import { ViewEmpresaUsuarioComponent } from 'src/components/view-empresa-usuario/view-empresa-usuario.component';
 import { CarouselModule } from 'primeng/carousel';
@@ -47,7 +46,6 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     CalendarioComponent,
     DatosEmpresaComponent,
     HomeEmpresaComponent,
-    EmpresaServiciosComponent,
     HeaderEmpresaComponent,
     ViewEmpresaUsuarioComponent, 
     HeaderUsuarioComponent,

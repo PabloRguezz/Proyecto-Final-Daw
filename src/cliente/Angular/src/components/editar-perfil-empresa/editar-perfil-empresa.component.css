@@ -1,61 +1,74 @@
-body{
+body {
   background-image: url('../../assets/imgs/editarEmpresa.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-    height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
 }
+
 .container {
-    margin: 0 auto;
-    max-width: 600px;
-    padding: 20px;
-    background-color: #f7f7f7;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  h2 {
-    margin-top: 0;
-    font-size: 24px;
-  }
-  
-  .input {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .horario {
-    margin-bottom: 10px;
-  }
-  
-  .horario label {
-    margin-right: 10px;
-  }
-  
-  .buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .btn {
-    padding: 10px 20px;
-    color: black;
-    background-color: #73B0CD;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  .btn:hover {
-    background-color: #A8DFF1;
-  }
-  button{
-    width: 100%;
-    background-color: #A8DFF1;
-    color: black;
-  }
-  button:hover{
-    background-color: #73B0CD;
-  }
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 24px;
+  text-align: center;
+  color: black;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: black;
+}
+
+.input {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.horario {
+  margin-bottom: 10px;
+}
+
+.horario label {
+  margin-right: 10px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  padding: 10px 20px;
+  color: black;
+  background-color: #73B0CD;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #A8DFF1;
+}
+
+button {
+  width: 100%;
+  background-color: #A8DFF1;
+  color: black;
+}
+
+button:hover {
+  background-color: #73B0CD;
+}

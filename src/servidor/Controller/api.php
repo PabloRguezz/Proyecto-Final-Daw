@@ -85,7 +85,7 @@ if (isset($_GET["user"])) {
         case "login":
             $email = $_GET["email"];
             $password = $_GET["password"];
-            $user = $usuario->get_usuario_id($email);
+            $user = $usuario->get_usuario_email($email);
             if (!$user) {
                 http_response_code(401);
                 echo json_encode(array("message" => "Credenciales incorrectas"));

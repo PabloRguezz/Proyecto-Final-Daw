@@ -1,7 +1,51 @@
-full-calendar{
-    max-height: 90vh;
-    max-width: 99%;
-    padding-left: 10px;
-}
 
   
+  /* Estilos para pantallas más pequeñas */
+  @media screen and (min-width: 300px) and (max-width: 425px){
+    full-calendar {
+      padding-top: 30%;
+      max-height: 85vh;
+      max-width: 99%;
+      padding-left: 10px;
+    }
+  }
+  @media screen and (min-width: 426px) and (max-width: 525px){
+    full-calendar {
+      padding-top: 20%;
+      max-height: 85vh;
+      max-width: 99%;
+      padding-left: 10px;
+    }
+  }
+  @media screen and (min-width: 525px) and (max-width: 768px){
+    full-calendar {
+      padding-top: 15%;
+      max-height: 85vh;
+      max-width: 99%;
+      padding-left: 10px;
+    }
+  }
+  @media screen and (min-width: 768px) and (max-width: 1023px){
+    full-calendar {
+      padding-top: 10%;
+      max-height: 85vh;
+      max-width: 99%;
+      padding-left: 10px;
+    }
+  }
+  @media screen and (min-width: 1024px) and (max-width: 1440px){
+    full-calendar {
+      padding-top: 6%;
+      max-height: 85vh;
+      max-width: 99%;
+      padding-left: 10px;
+    }
+  }
+  @media screen and (min-width: 1440px){
+    full-calendar {
+      padding-top: 4%;
+      max-height: 85vh;
+      max-width: 99%;
+      padding-left: 10px;
+    }
+  }

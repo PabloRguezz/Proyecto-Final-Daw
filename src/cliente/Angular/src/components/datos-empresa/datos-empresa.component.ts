@@ -11,6 +11,7 @@ import { Storage } from '@angular/fire/storage';
 import { CalificacionesService } from 'src/service/calificaciones/calificaciones.service';
 import { ReservasService } from 'src/service/reservas/reservas.service';
 import Swal from 'sweetalert2';
+import { UsuarioServiceService } from 'src/service/usuario/usuario-service.service';
 
 @Component({
   selector: 'app-datos-empresa',
@@ -54,7 +55,7 @@ export class DatosEmpresaComponent {
         numScroll: 1
     }
 ];
-  constructor(private servicio: ServiciosService,private reservas: ReservasService, private calificaciones:CalificacionesService, private storage : Storage ,private route: ActivatedRoute,private servicioEmpresa: EmpresaHasServiciosService, private empresa : EmpresaService){}
+  constructor(private servicio: ServiciosService,private reservas: ReservasService, private calificaciones:CalificacionesService, private storage : Storage ,private route: ActivatedRoute,private servicioEmpresa: EmpresaHasServiciosService, private empresa : EmpresaService,private Usuario : UsuarioServiceService){}
   ngOnInit(){
     setTimeout(() => {
       this.showSpinner = false;
@@ -66,16 +67,25 @@ export class DatosEmpresaComponent {
 
   }
   getCalificaciones(id): void {
-    this.id_servicio=id;
+    this.id_servicio = id;
     this.calificaciones.obtenerCalificacionServicio(this.id_servicio).subscribe(
       data => {
-        console.log(data);
         this.comentario = data;
+        for (let index = 0; index < this.comentario.length; index++) {
+          this.Usuario.obtenerUsuarioId(this.comentario[index].id_usuario).subscribe({
+            next: userData => {
+              this.comentario[index].nombre_usuario = userData[0].nombre;
+
+            }
+          });
+        }
       },
       error => {
+
       }
     );
   }
+  
 
   getServicios(){
     const token = localStorage.getItem('token');

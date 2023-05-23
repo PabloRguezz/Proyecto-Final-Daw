@@ -86,6 +86,7 @@ export class ViewEmpresaUsuarioComponent {
     this.getDatos();
     this.getImages();
     this.getDaysFromDate(this.currentMonth, this.currentYear);
+
   }
 
   getDaysFromDate(month, year) {
@@ -212,7 +213,7 @@ export class ViewEmpresaUsuarioComponent {
                         const totalCalificaciones = calificacionesServicio.length;
                         const sumaCalificaciones = calificacionesServicio.reduce((acumulador, calificacion) => acumulador + calificacion.nota, 0);
                         const mediaCalificaciones = sumaCalificaciones / totalCalificaciones;
-                        this.calificacionMediaFinal[index] = Math.round(mediaCalificaciones);
+                        this.calificacionMediaFinal[index+1] = Math.round(mediaCalificaciones);
                       }
                     }
                   });
