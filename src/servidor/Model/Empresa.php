@@ -110,9 +110,9 @@ class Empresa extends Conexion {
     $conectar = parent::connection();
     parent::set_name();
     $nombre_decodificado = rawurldecode($nombre);
-    $sql = "SELECT * FROM Empresa WHERE nombre=$nombre_decodificado";
+    $sql = "SELECT * FROM Empresa WHERE nombre=?";
     $sql=$conectar->prepare($sql);
-    $sql->bindValue(1,$nombre);
+    $sql->bindValue(1,$nombre_decodificado);
     $sql->execute();
     $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     if ($resultado) {
