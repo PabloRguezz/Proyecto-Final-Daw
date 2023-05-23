@@ -17,6 +17,10 @@ export class RegistroComponent {
     email: '',
     password: '',
   };
+  /**
+   * Esta función registra un nuevo usuario enviando su nombre, correo electrónico y contraseña a un
+   * servidor y mostrando un mensaje de éxito o error basado en la respuesta.
+   */
   registrarCliente() {
     const { nombre, email, password } = this.formularioRegistro;
     this.usuarioService.agregarUsuario(email, password, nombre).subscribe(
@@ -46,6 +50,16 @@ export class RegistroComponent {
     });
   }
 
+/**
+ * La función convierte una cadena de rango de tiempo dada en un formato legible o devuelve "Cerrado"
+ * (cerrado) si la entrada no es válida.
+ * @param horario - Una cadena que representa las horas de apertura y cierre de una empresa, separadas
+ * por un guión. Por ejemplo, "9:00-17:00".
+ * @returns La función `horarioToString` devuelve una cadena que representa el horario de apertura de
+ * un negocio. Si la entrada `horario` está vacía o indefinida, o si las horas de apertura y cierre son
+ * cadenas vacías, la función devuelve la cadena "Cerrado" (que significa "Cerrado" en español). De lo
+ * contrario, la función devuelve la entrada `horario` tal cual.
+ */
   horarioToString(horario) {
     let resultado=horario.split('-')
     if (!horario || resultado[0] == '' && resultado[1] == '') {
@@ -59,6 +73,10 @@ export class RegistroComponent {
     }
   }
   
+  /**
+   * Esta función registra una nueva empresa recopilando valores de entrada de un formulario y
+   * enviándolos a un servidor mediante una solicitud HTTP.
+   */
   registrarEmpresa() {
       const nombreEmpresaInput = document.getElementById('nombreEmpresa') as HTMLInputElement;
       const cifInput = document.getElementById('cif') as HTMLInputElement;

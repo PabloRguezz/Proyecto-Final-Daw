@@ -18,6 +18,10 @@ export class EditarPerfilUsuarioComponent {
   ngOnInit(){
     this.getUsuario();
   }
+/**
+ * Esta función recupera datos de usuario del almacenamiento local y un extremo de la API mediante la
+ * autenticación JWT.
+ */
   getUsuario(){
     const token = localStorage.getItem('token');
     const decodedToken = jwt_decode(token);
@@ -37,6 +41,10 @@ export class EditarPerfilUsuarioComponent {
       }
     })
   }
+  /**
+   * Esta función actualiza los datos del usuario en el backend y muestra un mensaje de éxito o error
+   * usando SweetAlert.
+   */
   updateUsuario(){
     const token = localStorage.getItem('token');
     const decodedToken = jwt_decode(token);
@@ -75,6 +83,11 @@ export class EditarPerfilUsuarioComponent {
       }
     })
   }
+/**
+ * La función "obtenerNombre" devuelve el primer carácter de una cadena dada.
+ * @param {string} nombre - Una cadena que representa un nombre.
+ * @returns El primer carácter de la cadena pasó como argumento 'nombre'.
+ */
   obtenerNombre(nombre:string){
     return nombre[0];
   }

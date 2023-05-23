@@ -66,6 +66,12 @@ export class DatosEmpresaComponent {
     this.getImages();
 
   }
+  /**
+   * Esta función recupera y asigna comentarios y calificaciones de usuarios para un ID de servicio
+   * dado, y también recupera y asigna los nombres de usuario correspondientes para cada comentario.
+   * @param id - El parámetro "id" es un número o cadena que representa el ID de un servicio para el
+   * cual la función está recuperando comentarios o calificaciones.
+   */
   getCalificaciones(id): void {
     this.id_servicio = id;
     this.calificaciones.obtenerCalificacionServicio(this.id_servicio).subscribe(
@@ -87,6 +93,10 @@ export class DatosEmpresaComponent {
   }
   
 
+  /**
+   * Esta función recupera servicios y sus calificaciones promedio para una empresa específica de una
+   * API y los almacena en una matriz.
+   */
   getServicios(){
     const token = localStorage.getItem('token');
     const decodedToken: Empresa = jwt_decode(token);
@@ -129,12 +139,26 @@ export class DatosEmpresaComponent {
     )
     this.isLoading = false;
   }
+/**
+ * La función "addDatos" establece los valores de "id_servicio", "nombre", "descripcion" y "precio" en
+ * base a los parámetros de entrada.
+ * @param id - El ID del servicio que se está agregando.
+ * @param nombre - El parámetro "nombre" es una cadena que representa el nombre de un servicio.
+ * @param descripcion - Este parámetro es una cadena que representa la descripción de un servicio.
+ * Podría incluir detalles sobre lo que ofrece el servicio, sus características o cualquier otra
+ * información relevante.
+ * @param precio - precio es un parámetro que representa el precio de un servicio. Es probable que sea
+ * un valor numérico que represente el costo del servicio que se ofrece.
+ */
   addDatos(id,nombre,descripcion,precio){
     this.id_servicio=id;
     this.nombre=nombre;
     this.descripcion=descripcion;
     this.precio=precio;
   }
+  /**
+   * Esta función actualiza un servicio y muestra un mensaje de éxito o error usando SweetAlert.
+   */
   editar(){
     this.servicio.actualizarServicio(this.id_servicio,this.precio,this.nombre,this.descripcion).subscribe({
       next:data=>{
@@ -159,6 +183,11 @@ export class DatosEmpresaComponent {
       }
     })
   }
+  /**
+   * Esta función solicita al usuario que confirme la eliminación de un servicio y luego envía una
+   * solicitud para eliminar el servicio del servidor y eliminarlo de la lista local de servicios.
+   * @param {number} id_servicio - un número que representa el ID del servicio que se va a eliminar.
+   */
   eliminarServicio(id_servicio:number){
     Swal.fire({
       title: '¿Está seguro de que desea eliminar este servicio?',
@@ -196,6 +225,10 @@ export class DatosEmpresaComponent {
       }
     })
   }
+  /**
+   * Esta función recupera imágenes de una ubicación de almacenamiento de Firebase en función del token
+   * decodificado de un usuario.
+   */
   getImages(){
     const token = localStorage.getItem('token');
     const decodedToken: Empresa = jwt_decode(token);
@@ -213,6 +246,10 @@ export class DatosEmpresaComponent {
       error => console.log(error)
     )
   }
+  /**
+   * Esta función recupera datos de un token, los usa para obtener información sobre una empresa y
+   * formatea el horario de apertura de la empresa en una matriz.
+   */
   getDatos(){
     const token = localStorage.getItem('token');
     const decodedToken: Empresa = jwt_decode(token);

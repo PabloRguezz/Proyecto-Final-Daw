@@ -15,6 +15,10 @@ export class LoginComponent {
   constructor(private http: HttpClient,private empresa :EmpresaService, private router: Router,private usuarioService: UsuarioServiceService, private empresaService : EmpresaService) {}
   email: string;
   password: string;
+  /**
+   * Esta función inicia sesión en un usuario o empresa en función de su correo electrónico y
+   * contraseña, y los redirige a su panel respectivo.
+   */
   iniciarSesion() {
     if (this.email.includes("@")) {
       this.usuarioService.login(this.email, this.password).subscribe(

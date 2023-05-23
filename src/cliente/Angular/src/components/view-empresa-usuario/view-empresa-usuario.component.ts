@@ -89,6 +89,13 @@ export class ViewEmpresaUsuarioComponent {
 
   }
 
+  /**
+   * Esta función genera una matriz de objetos que representan los días de un mes y año determinados,
+   * incluidos sus nombres e índice dentro de la semana.
+   * @param month - El parámetro de mes es un número que representa el mes para el que se calculan los
+   * días. Debe ser un número entre 1 y 12, donde 1 representa enero y 12 representa diciembre.
+   * @param year - El año para el que se calculan los días.
+   */
   getDaysFromDate(month, year) {
 
     const startDate = moment.utc(`${year}/${month}/01`)
@@ -111,6 +118,12 @@ export class ViewEmpresaUsuarioComponent {
     this.monthSelect = arrayDays;
   }
 
+/**
+ * La función cambia el mes que se muestra en un calendario en función de un valor de bandera dado.
+ * @param flag - El parámetro flag es un número que determina si se debe pasar al mes anterior o al mes
+ * siguiente. Si la bandera es menor que 0, significa que queremos pasar al mes anterior. Si flag es
+ * mayor o igual a 0, significa que queremos pasar al siguiente mes
+ */
   changeMonth(flag) {
     if (flag < 0) {
       const prevDate = this.dateSelect.clone().subtract(1, "month");
@@ -121,6 +134,12 @@ export class ViewEmpresaUsuarioComponent {
     }
   }
 
+  /**
+   * La función selecciona un día y comprueba si está disponible para reservar, y si no, elimina las
+   * franjas horarias no disponibles de las franjas horarias disponibles.
+   * @param day - El parámetro "día" es un objeto que representa un día en un calendario. Contiene una
+   * propiedad de "valor" que es un número que representa el día del mes.
+   */
   clickDay(day) {
     this.selectedDay = day;
     const monthYear = this.dateSelect.format('YYYY-MM')
@@ -179,6 +198,14 @@ export class ViewEmpresaUsuarioComponent {
     }
     this.fechaSeleccionada=true;
   }
+/**
+ * Esta función toma una cadena que representa un rango de tiempo y devuelve una matriz de intervalos
+ * de tiempo en intervalos de 30 minutos dentro de ese rango.
+ * @param {string} horario - Una cadena que representa un rango de tiempo en el formato "HH:mm-HH:mm",
+ * donde la primera vez es la hora de inicio y la segunda es la hora de finalización.
+ * @returns una matriz de cadenas que representa un rango de intervalos de tiempo entre una hora de
+ * inicio y una hora de finalización, con intervalos de 30 minutos.
+ */
   getHorarioArray(horario: string): string[] {
     const [inicio, fin] = horario.split('-');
     const horarioArray = [];
@@ -192,6 +219,9 @@ export class ViewEmpresaUsuarioComponent {
     return horarioArray;
   }
   
+ /**
+  * Esta función recupera los servicios y sus calificaciones promedio para una empresa determinada.
+  */
   getServicios() {
     this.cifEmpresa = this.route.snapshot.paramMap.get('cif_empresa');
     this.servicioEmpresa.obtenerEmpresaServicioCif(this.cifEmpresa).subscribe(
@@ -230,6 +260,13 @@ export class ViewEmpresaUsuarioComponent {
     this.isLoading = false;
   }
   
+/**
+ * La función "elegirHora" establece el tiempo seleccionado y alterna el índice seleccionado.
+ * @param {string} hora - una cadena que representa una hora seleccionada para una reserva.
+ * @param {number} index - El parámetro de índice es un número que representa la posición de un
+ * elemento en una matriz o lista. En esta función específica, se utiliza para realizar un seguimiento
+ * de la franja horaria seleccionada en una lista de franjas horarias disponibles.
+ */
   elegirHora(hora :string, index:number){
     this.horaSeleccionada = true;
     this.hora_reserva=hora;
@@ -241,6 +278,10 @@ export class ViewEmpresaUsuarioComponent {
     
     
   }
+  /**
+   * Esta función realiza una reserva para un servicio y muestra un mensaje de éxito o error según el
+   * resultado.
+   */
   reservar(){
     this.reservas.agregarReserva(this.hora_reserva,this.nombreServicio,this.id_servicio,this.id_usuario,this.date).subscribe(
       (response) => {
@@ -278,6 +319,12 @@ export class ViewEmpresaUsuarioComponent {
       }
     )
   }
+  /**
+   * Esta función establece el ID y el nombre de un servicio y recupera sus reservas.
+   * @param {number} id - Número que representa el ID de un servicio.
+   * @param {string} nombre - El parámetro "nombre" es una variable de cadena que representa el nombre
+   * de un servicio. Se utiliza como parámetro de entrada para la función "obtenerDatosService".
+   */
   obtenerDatosService(id:number,nombre:string){
     this.id_servicio=id;
     this.nombreServicio=nombre;
@@ -291,6 +338,10 @@ export class ViewEmpresaUsuarioComponent {
       }
     )
   }
+/**
+ * Esta función recupera imágenes de una ubicación de almacenamiento de Firebase y agrega sus URL a una
+ * matriz.
+ */
   getImages(){
     const token = localStorage.getItem('token');
     const decodedToken = jwt_decode(token);
@@ -306,6 +357,10 @@ export class ViewEmpresaUsuarioComponent {
       }
     })
   }
+  /**
+   * Esta función recupera datos de una API y formatea la información del horario comercial en una
+   * matriz.
+   */
   getDatos(){
     this.empresa.obtenerEmpresaCif(this.route.snapshot.paramMap.get('cif_empresa')).subscribe(
       (response) => {
@@ -321,6 +376,11 @@ export class ViewEmpresaUsuarioComponent {
       }
     )
   }
+/**
+ * Esta función recupera las calificaciones de un ID de servicio dado.
+ * @param id - El parámetro "id" es una variable que representa el ID de un servicio del que queremos
+ * obtener las valoraciones correspondientes.
+ */
   getCalificaciones(id): void {
     this.id_servicio=id;
     this.calificaciones.obtenerCalificacionServicio(this.id_servicio).subscribe(
@@ -332,6 +392,10 @@ export class ViewEmpresaUsuarioComponent {
     );
   }
 
+/**
+ * Esta función agrega una nueva calificación y comentario a un servicio, pero primero verifica si el
+ * usuario ya ha agregado un comentario.
+ */
   agregarCalificacion() {
     const formattedDate = moment().format('YYYY-MM-DD HH:mm:ss');
     const token = localStorage.getItem('token');

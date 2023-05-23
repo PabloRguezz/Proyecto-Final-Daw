@@ -23,6 +23,10 @@ export class HomeEmpresaComponent {
   ngOnInit(){
     this.getImages();
   }
+  /**
+   * Esta función agrega un nuevo servicio a la lista de servicios de una empresa y muestra un mensaje
+   * de éxito o error.
+   */
   agregarServicio(){
     this.servicio.agregarServicio(this.precio,this.nombre,this.descripcion).subscribe(
       (data) => {
@@ -60,6 +64,11 @@ export class HomeEmpresaComponent {
       }
     )
   }
+ /**
+  * Esta función carga un archivo de imagen en el almacenamiento de Firebase y muestra un mensaje de
+  * éxito o un mensaje de error usando Swal.
+  * @param {any}  - un objeto de evento que se activa cuando se selecciona un archivo para cargar
+  */
   uploadImage($event : any){
     const file = $event.target.files[0];
     const token = localStorage.getItem('token');
@@ -85,6 +94,10 @@ export class HomeEmpresaComponent {
     }))
   }
 
+  /**
+   * Esta función recupera imágenes de una ubicación de almacenamiento de Firebase en función del token
+   * decodificado de un usuario.
+   */
   getImages(){
     const token = localStorage.getItem('token');
     const decodedToken: Empresa = jwt_decode(token);

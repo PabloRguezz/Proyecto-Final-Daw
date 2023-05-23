@@ -46,6 +46,10 @@ export class HomeUsuarioComponent {
   ];
 
   }
+  /**
+   * La función "mostrarEmpresas" recupera una lista de empresas a través de una llamada API y asigna
+   * la respuesta a una variable llamada "productos".
+   */
   mostrarEmpresas(){
     this.empresa.obtenerEmpresas().subscribe(
       (response) => {
@@ -53,6 +57,10 @@ export class HomeUsuarioComponent {
       }
     )
   }
+    /**
+     * Esta función recupera las reservas activas de un usuario y recupera información sobre las
+     * empresas asociadas a cada reserva.
+     */
     mostrarReservas(){
       const token = localStorage.getItem('token');
       const decodedToken = jwt_decode(token);
@@ -80,19 +88,40 @@ export class HomeUsuarioComponent {
       )
     }
 
+/**
+ * La función asigna el texto "Cancelar Reserva" a una variable llamada "cancelarReservaText".
+ */
 
     mostrarTextoCancelarReserva() {
       this.cancelarReservaText = 'Cancelar Reserva';
     }
 
+/**
+ * La función "ocultarTextoCancelarReserva" establece la variable "cancelarReservaText" en una cadena
+ * vacía.
+ */
     ocultarTextoCancelarReserva() {
       this.cancelarReservaText = '';
     }
+/**
+ * La función comprueba si una reserva ha caducado en función de la fecha actual y la fecha de la
+ * reserva.
+ * @param {any} reserva - El parámetro "reserva" es de tipo "cualquiera", lo que significa que puede
+ * ser cualquier tipo de dato. Sin embargo, según el nombre de la función y el código dentro de la
+ * función, es probable que "reserva" sea un objeto que tiene una propiedad "fecha" que representa una
+ * fecha.
+ * @returns Un valor booleano que indica si la reserva ha caducado o no.
+ */
     reservaExpirada(reserva: any): boolean {
       const fechaActual = new Date();
       const fechaReserva = new Date(reserva.fecha);
       return fechaReserva < fechaActual;
     }
+    /**
+     * Esta función elimina una reserva y muestra un mensaje de éxito o error utilizando SweetAlert.
+     * @param {number} id_reserva - El parámetro "id_reserva" es un número que representa el ID de una
+     * reserva que necesita ser eliminada.
+     */
     eliminarReserva(id_reserva:number){
       this.reserva.eliminarReserva(id_reserva).subscribe({
         next:data=>{
