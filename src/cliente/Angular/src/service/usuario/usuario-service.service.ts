@@ -21,6 +21,11 @@ export class UsuarioServiceService {
     return this.http.get(`${this.apiUrl}=GetEmail&email=${email}`, { headers });
   }
 
+  obtenerUsuarioId(id: string): Observable<any> {
+    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + localStorage.getItem('token'));
+    return this.http.get(`${this.apiUrl}=GetId&id=${id}`, { headers });
+  }
+
   agregarUsuario(email: string, password: string, nombre: string): Observable<any> {
     return this.http.get(`${this.apiUrl}=insert&email=${email}&password=${password}&nombre=${nombre}`);
   }

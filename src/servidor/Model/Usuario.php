@@ -14,17 +14,19 @@ class Usuario extends Conexion{
     $sql->execute();
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }
-
 /**
- * Esta función de PHP recupera la ID de usuario de la base de datos en función de su dirección de
- * correo electrónico.
+ * Esta función de PHP recupera la información del usuario de una base de datos en función de su
+ * dirección de correo electrónico.
  * 
- * @param email El correo electrónico del usuario cuyo ID se está recuperando de la tabla "Usuario".
+ * @param email La dirección de correo electrónico del usuario cuya información se está recuperando de
+ * la base de datos.
  * 
- * @return una matriz de matrices asociativas que contienen la información del usuario con la dirección
- * de correo electrónico especificada.
+ * @return una matriz de matrices asociativas, donde cada matriz asociativa representa una fila de la
+ * tabla "Usuario" en la base de datos que coincide con el correo electrónico proporcionado.
  */
-  public function get_usuario_id($email){
+
+
+  public function get_usuario_email($email){
     $conectar=parent::connection();
     parent::set_name();
     $sql = "SELECT * FROM Usuario WHERE email=?";
@@ -33,6 +35,26 @@ class Usuario extends Conexion{
     $sql->execute();
     return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
   }
+
+/**
+ * Esta función de PHP recupera la información de un usuario de una base de datos en función de su ID.
+ * 
+ * @param id El parámetro "id" es el identificador único del usuario que queremos recuperar de la base
+ * de datos. Se usa en la consulta SQL para filtrar los resultados y devolver solo el usuario con la
+ * identificación coincidente.
+ * 
+ * @return una matriz de matrices asociativas que contienen la información del usuario con el ID
+ * especificado.
+ */
+public function get_usuario_id($id){
+  $conectar=parent::connection();
+  parent::set_name();
+  $sql = "SELECT * FROM Usuario WHERE id=?";
+  $sql=$conectar->prepare($sql);
+  $sql->bindValue(1,$id);
+  $sql->execute();
+  return $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+}
 /**
  * Esta función inserta un nuevo usuario en una base de datos, verifica si el correo electrónico ya
  * está en uso y codifica la contraseña antes de la inserción.
