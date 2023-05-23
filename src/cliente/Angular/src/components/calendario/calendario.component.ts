@@ -39,6 +39,10 @@ export class CalendarioComponent {
     this.obtenerDatos();
   }
 
+  /**
+   * Esta función obtiene datos de un servidor y llena un calendario con eventos basados en los datos
+   * recuperados.
+   */
   obtenerDatos(){
     const token = localStorage.getItem('token');
     const decodedToken: Empresa = jwt_decode(token);

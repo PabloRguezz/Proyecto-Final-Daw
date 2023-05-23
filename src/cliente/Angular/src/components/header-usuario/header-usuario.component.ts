@@ -21,10 +21,17 @@ export class HeaderUsuarioComponent {
   ngOnInit(){
     this.mostrarEmpresas();
   }
+/**
+ * La función elimina el token del almacenamiento local y navega a la página de inicio.
+ */
   logOut(){
     localStorage.removeItem("token");
     this.router.navigate(['']);
   }
+/**
+ * La función "mostrarEmpresas" recupera una lista de empresas a través de una llamada API y la asigna
+ * a la variable "listaEmpresas".
+ */
   mostrarEmpresas(){
     this.empresa.obtenerEmpresas().subscribe(
       (response) => {
@@ -32,13 +39,14 @@ export class HeaderUsuarioComponent {
       }
     )
   }
+/**
+ * Esta función busca empresas en función de un nombre dado y recupera sus imágenes.
+ */
   async buscarEmpresas() {
     if (this.nombreEmpresa && this.nombreEmpresa.length > 0) {
       this.empresas = this.listaEmpresas.filter((empresa) =>
         empresa.nombre && empresa.nombre.toLowerCase().includes(this.nombreEmpresa.toLowerCase())
       );
-  
-      // Fetch images for each empresa
       for (let empresa of this.empresas) {
         empresa.images = await this.getImages(empresa.cif_Empresa);
       }
@@ -47,6 +55,16 @@ export class HeaderUsuarioComponent {
     }
   }
 
+/**
+ * Esta función recupera una lista de URL de imágenes de una ubicación de almacenamiento de Firebase en
+ * función de una identificación de empresa determinada.
+ * @param {string} cif_Empresa - una cadena que representa el CIF (código de identificación fiscal) de
+ * una empresa. Esta función recupera una lista de URL de imágenes almacenadas en Firebase Storage en
+ * la carpeta "perfil" con el nombre del CIF de la empresa como subcarpeta.
+ * @returns Una promesa que se resuelve en una matriz de cadenas que representan las URL de descarga de
+ * las imágenes almacenadas en Firebase Storage en la ruta `perfil/`. Si hay un error, se
+ * devuelve una matriz vacía.
+ */
   getImages(cif_Empresa: string): Promise<string[]> {
     const imagesRef = ref(this.storage, `perfil/${cif_Empresa}`);
     
