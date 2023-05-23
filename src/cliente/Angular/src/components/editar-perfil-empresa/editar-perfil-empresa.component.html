@@ -30,8 +30,11 @@
   
   
   <form (submit)="updateData()">
+    <label class="form-label">Nombre</label>
     <input class="input" type="text" name="nombreEmpresa" id="nombreEmpresa" placeholder="Nombre de la empresa" [value]="nombre" required [(ngModel)]="nombre">
+    <label class="form-label">Télefono de contacto</label>
     <input class="input" type="tel" name="telefono" id="telefono" placeholder="Teléfono de contacto" [value]="telefono" required [(ngModel)]="telefono">
+    <label class="form-label">Horario</label>
     <div class="horario">
       <label for="lunes">Lunes:</label>
       <input type="time" id="lunesInicio" name="lunesInicio" [value]="horarioFinal[0][0]" [(ngModel)]="horarioFinal[0][0]"> - <input type="time" id="lunesFin" name="lunesFin" [value]="horarioFinal[0][1]" [(ngModel)]="horarioFinal[0][1]"><br>
@@ -54,9 +57,11 @@
       <label for="domingo">Domingo:</label>
       <input type="time" id="domingoInicio" name="domingoInicio" [value]="horarioFinal[6][0]" [(ngModel)]="horarioFinal[6][0]"> - <input type="time" id="domingoFin" name="domingoFin" [value]="horarioFinal[6][1]" [(ngModel)]="horarioFinal[6][1]"><br>
     </div>
-
+    <label class="form-label">Ubicacion</label>
     <input class="input" type="text" name="ubicacion" id="ubicacion" placeholder="Ubicación" [value]="ubicacion" required [(ngModel)]="ubicacion">
+    <label class="form-label">Descripcion</label>
     <input class="input" type="text" name="descripcion" id="descripcion" placeholder="Descripción" [value]="descripcion" required [(ngModel)]="descripcion">
+    <label class="form-label">Contraseña</label>
     <input class="input" type="password" name="password" id="password" placeholder="Contraseña" required [(ngModel)]="password">
     <div class="buttons">
       <button type="submit" class="btn btn-dark">Editar Perfil</button>
