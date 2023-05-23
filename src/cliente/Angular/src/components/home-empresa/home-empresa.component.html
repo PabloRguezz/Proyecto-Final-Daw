@@ -41,21 +41,23 @@
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <form (submit)="agregarServicio()">
-        <div class="input-field">
-          <input type="text" class="input" id="nombre" name="nombre" required="required" autocomplete="off" [(ngModel)]="nombre">
-          <label for="nombre">Nombre</label>
-        </div>
-        <div class="input-field">
-          <textarea type="descripcion" class="input" id="descripcion" name="descripcion" required="required" [(ngModel)]="descripcion"></textarea>
-          <label for="descripcion">Descripcion</label>
-        </div>
-        <div class="input-field">
-          <input type="number" class="input" id="precio" name="precio" required="required" [(ngModel)]="precio">
-          <label for="precio">Precio</label>
-        </div>
-        <button type="submit" class="btn btn-primary">Crear</button>
-      </form>
+      <div class="contenedor" style="background-color: white; border-radius: 10px; padding: 2%; width: 20%;">
+        <form (submit)="agregarServicio()">
+          <div class="input-field">
+            <input type="text" class="input" id="nombre" name="nombre" required="required" autocomplete="off" [(ngModel)]="nombre">
+            <label for="nombre">Nombre</label>
+          </div>
+          <div class="input-field">
+            <textarea type="descripcion" class="input" id="descripcion" name="descripcion" required="required" [(ngModel)]="descripcion"></textarea>
+            <label for="descripcion">Descripcion</label>
+          </div>
+          <div class="input-field">
+            <input type="number" class="input" id="precio" name="precio" required="required" [(ngModel)]="precio">
+            <label for="precio">Precio</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Crear</button>
+        </form>
+      </div>
     </div>
   </div>
 </body>

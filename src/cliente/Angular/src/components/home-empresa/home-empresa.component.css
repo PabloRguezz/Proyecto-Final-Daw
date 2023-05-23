@@ -154,6 +154,84 @@ body {
   border-radius: 0.25rem;
   transition: all 0.3s ease;
 }
+#crearServicio .offcanvas-header {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  text-align: center;
+}
+
+#crearServicio .offcanvas-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  background-image: url('../../assets/imgs/editarServicio.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#crearServicio .offcanvas-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#crearServicio .offcanvas-body form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#crearServicio .offcanvas-body form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+#crearServicio .offcanvas-body form label {
+  font-weight: bold;
+}
+
+#crearServicio .offcanvas-body form input[type="text"],
+#crearServicio .offcanvas-body form textarea,
+#crearServicio .offcanvas-body form input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#crearServicio .offcanvas-body form input[type="text"]:focus,
+#crearServicio .offcanvas-body form textarea:focus,
+#crearServicio .offcanvas-body form input[type="number"]:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#crearServicio .offcanvas-body form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#crearServicio .offcanvas-body form button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+
+#crearServicio .btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+#crearServicio .btn-primary:hover {
+  background-color: #0069d9;
+}
 
 .btn-primary {
   color: #fff;
