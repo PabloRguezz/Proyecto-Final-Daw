@@ -9,7 +9,7 @@ body {
     background-size: cover;
     width: 100%;
   }
-  #offcanvasResena{
+  #offcanvasResena .offcanvas-body{
     background-image: url('../../assets/imgs/fondoComentarios.jpg');
     background-repeat: no-repeat;
     background-size: cover;
@@ -22,71 +22,86 @@ body {
     background-color: #3D7C98;
 
   }
-  #myOffcanvas {
-    width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #F5F5F5;
-    border-radius: 5px;
-  }
+
   
   #myOffcanvas .offcanvas-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ddd;
-  }
-  
-  #myOffcanvas .offcanvas-title {
-    color: #3D7C98;
-    font-size: 18px;
-  }
-  
-  #myOffcanvas .btn-close {
-    color: #000;
-    font-size: 20px;
+    background-color: #f8f9fa;
+    padding: 1rem;
+    text-align: center;
   }
   
   #myOffcanvas .offcanvas-body {
-    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+    background-image: url('../../assets/imgs/editarServicio.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   
-  #myOffcanvas .form-group {
-    margin-bottom: 15px;
+  #myOffcanvas .offcanvas-title {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  #myOffcanvas .offcanvas-body form {
+    max-width: 400px;
+    margin: 0 auto;
   }
   
-  #myOffcanvas label {
-    display: block;
+  #myOffcanvas .offcanvas-body form .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  #myOffcanvas .offcanvas-body form label {
     font-weight: bold;
-    color: #73B0CD;
   }
   
-  #myOffcanvas input[type="text"],
-  #myOffcanvas input[type="email"],
-  #myOffcanvas input[type="password"],
-  #myOffcanvas textarea {
+  #myOffcanvas .offcanvas-body form input[type="text"],
+  #myOffcanvas .offcanvas-body form textarea,
+  #myOffcanvas .offcanvas-body form input[type="number"] {
     width: 100%;
-    padding: 8px;
-    border: 1px solid #A8DFF1;
+    padding: 0.5rem;
+    border: 1px solid #ced4da;
     border-radius: 4px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
   
-  #myOffcanvas button[type="submit"] {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #3D7C98;
-    color: #FFF;
+  #myOffcanvas .offcanvas-body form input[type="text"]:focus,
+  #myOffcanvas .offcanvas-body form textarea:focus,
+  #myOffcanvas .offcanvas-body form input[type="number"]:focus {
+    outline: none;
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  #myOffcanvas .offcanvas-body form button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
     border: none;
+    padding: 0.5rem 1rem;
     border-radius: 4px;
     cursor: pointer;
   }
   
-  #myOffcanvas button[type="submit"]:hover {
-    background-color: #73B0CD;
+  #myOffcanvas .offcanvas-body form button[type="submit"]:hover {
+    background-color: #0069d9;
   }
+
+  #myOffcanvas .btn-primary {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+  
+  #myOffcanvas .btn-primary:hover {
+    background-color: #0069d9;
+  }
+  
   
   
   .comentarios-container {

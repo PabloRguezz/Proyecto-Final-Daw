@@ -2,6 +2,7 @@ body {
   background-image: url('../../assets/imgs/editarEmpresa.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: bottom;
 }
 
 .container {

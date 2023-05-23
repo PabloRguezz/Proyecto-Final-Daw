@@ -61,12 +61,61 @@ body {
     background-color: #A8DFF1;
     color: white;
   }
-  
   .footer {
-    width: 100%;
     background-color: #f5f5f5;
+    padding: 30px;
+    border-radius: 10px;
+  }
+  
+  .contact-info {
     text-align: center;
   }
+  
+  .contact-info-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .info-item {
+    margin: 10px;
+    padding: 10px;
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .info-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-item p {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #333333;
+  }
+  
+  .info-item span {
+    color: #777777;
+  }
+  
+  /* Estilos adicionales para hacerlo más vistoso */
+  .footer {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .info-item p {
+    font-size: 16px;
+  }
+  
+  .info-item span {
+    font-size: 14px;
+  }
+  
+  
   .horario-container {
     display: flex;
     flex-direction: column;
