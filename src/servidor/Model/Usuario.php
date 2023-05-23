@@ -83,9 +83,10 @@ class Usuario extends Conexion{
   public function update_usuario($id,$email,$password,$nombre){
     $conectar=parent::connection();
     parent::set_name(); 
+    $email_decodificado = rawurldecode($email);
     $sql = "SELECT * FROM Usuario WHERE email=?";
     $sql=$conectar->prepare($sql);
-    $sql->bindValue(1,$email);
+    $sql->bindValue(1,$email_decodificado);
     $sql->execute();
     $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     if ($resultado) {
@@ -100,7 +101,7 @@ class Usuario extends Conexion{
   
     $sql = "UPDATE Usuario set email=? , password=?, nombre=? WHERE id_usuario=?";
     $sql=$conectar->prepare($sql);
-    $sql->bindValue(1,$email);
+    $sql->bindValue(1,$email_decodificado);
     $sql->bindValue(2,$password_hasheada);
     $sql->bindValue(3,$nombre_decodificado);
     $sql->bindValue(4,$id);
