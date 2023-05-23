@@ -33,6 +33,17 @@ if (isset($_GET["user"])) {
             $datos = $usuario->get_usuario();
             echo json_encode($datos);
             break;
+        case 'GetId':
+            $headers = apache_request_headers();
+            $token = $headers['Authorization'] ?? null;
+            $token = str_replace("Bearer ", "", $token);
+            if (!$token || !Jwt_Token::verify_token($token)) {
+                http_response_code(401);
+                exit(json_encode(array("message" => "Acceso denegado")));
+            }
+            $datos=$usuario->get_usuario_id($_GET["id"]);
+            echo json_encode($datos);
+            break;
         case 'GetEmail':
             $headers = apache_request_headers();
             $token = $headers['Authorization'] ?? null;
@@ -41,7 +52,7 @@ if (isset($_GET["user"])) {
                 http_response_code(401);
                 exit(json_encode(array("message" => "Acceso denegado")));
             }
-            $datos=$usuario->get_usuario_id($_GET["email"]);
+            $datos=$usuario->get_usuario_email($_GET["email"]);
             echo json_encode($datos);
             break;
         case "insert":
