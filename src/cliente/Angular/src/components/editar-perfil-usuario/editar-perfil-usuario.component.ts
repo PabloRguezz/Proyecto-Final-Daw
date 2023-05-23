@@ -22,7 +22,7 @@ export class EditarPerfilUsuarioComponent {
     const token = localStorage.getItem('token');
     const decodedToken = jwt_decode(token);
     this.id_usuario=decodedToken['data'].id;
-    this.usuario.obtenerUsuarioEmail(decodedToken['data'].email).subscribe({
+    this.usuario.obtenerUsuarioId(this.id_usuario).subscribe({
       next : (data) => {
         this.datosUsuario = data;
         this.nombre=this.datosUsuario[0].nombre;

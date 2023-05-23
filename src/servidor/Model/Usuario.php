@@ -49,7 +49,7 @@ class Usuario extends Conexion{
 public function get_usuario_id($id){
   $conectar=parent::connection();
   parent::set_name();
-  $sql = "SELECT * FROM Usuario WHERE id=?";
+  $sql = "SELECT * FROM Usuario WHERE id_usuario=?";
   $sql=$conectar->prepare($sql);
   $sql->bindValue(1,$id);
   $sql->execute();
