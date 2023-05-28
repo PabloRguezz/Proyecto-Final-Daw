@@ -1,59 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+
   <div class="spinner-container" *ngIf="showSpinner">
     <div class="spinner"></div>
   </div>
-  <div *ngIf="!showSpinner">
+  <div *ngIf="!showSpinner" class="content">
     <app-header-empresa></app-header-empresa>
-    <div class="container-fluid" style="padding-top: 3%;">
+    <div class="container-fluid">
       <section class="company-profile">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="jumbotron" style="border-radius: 10px;">
-                <h1 class="display-4">{{ datosEmpresa.nombre }}</h1>
-                <p class="lead">{{ datosEmpresa.descripcion }}</p>
-              </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="jumbotron">
+              <h1 class="display-4" style="color: white;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">{{ datosEmpresa.nombre }}</h1>
+              <p class="lead" style="color: white;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">{{ datosEmpresa.descripcion }}</p>
             </div>
+          </div>
         </div>
       </section>
-        <div class="row equal-height" style="padding-top: 2%;">
-            <div class="col-md-6">
-                <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="images.length > 0; else noEmpresa">
-                  <div class="carousel-indicators">
-                    <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
-                  </div>
-                    <div class="carousel-inner" *ngFor="let image of images; let i = index;"  style="border-radius: 10px;">
-                      <div class="carousel-item" [class.active]="i === 0" style="background-color: #f5f5f5;">
-                        <img [src]="image" class="d-block w-100 img-fluid">
-                      </div>
-                    </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span class="visually-hidden">Next</span>
-                    </button>
-                  </div>                                  
-            <ng-template #noEmpresa>
-              <div class="card no-empresa-template">
-                <div class="card-body">
-                  <p class="card-text">No existen imágenes.</p>
-                </div>
+      <div class="row equal-height" style="padding-top: 2%;">
+        <div class="col-md-6">
+          <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="images.length > 0; else noEmpresa" style="border-radius: 10px;">
+            <div class="carousel-indicators">
+              <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
+            </div>
+            <div class="carousel-inner">
+              <div class="carousel-item" *ngFor="let image of images; let i = index;" [class.active]="i === 0">
+                <img [src]="image" class="d-block w-100 img-fluid">
               </div>
-            </ng-template>  
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+          <ng-template #noEmpresa>
+            <div class="card no-empresa-template">
+              <div class="card-body">
+                <p class="card-text">No existen imágenes.</p>
+              </div>
+            </div>
+          </ng-template>
         </div>
         <div class="col-md-6">
-          <div class="container h-100  w-100">
-            <div class="col-md-12 h-100  w-100">
+          <div class="container h-100 w-100">
+            <div class="col-md-12 h-100 w-100">
               <div class="schedule-container h-100 w-100">
                 <table class="table h-100 w-100">
                   <thead>
@@ -63,33 +55,9 @@
                     </tr>
                   </thead>
                   <tbody style="background-color: #f5f5f5;">
-                    <tr>
-                      <td>Lunes</td>
-                      <td>{{horarioFinal[0].hora}}</td>
-                    </tr>
-                    <tr>
-                      <td>Martes</td>
-                      <td>{{horarioFinal[1].hora}}</td>
-                    </tr>
-                    <tr>
-                      <td>Miércoles</td>
-                      <td>{{horarioFinal[2].hora}}</td>
-                    </tr>
-                    <tr>
-                      <td>Jueves</td>
-                      <td>{{horarioFinal[3].hora}}</td>
-                    </tr>
-                    <tr>
-                      <td>Viernes</td>
-                      <td>{{horarioFinal[4].hora}}</td>
-                    </tr>
-                    <tr>
-                      <td>Sábado</td>
-                      <td>{{horarioFinal[5].hora}}</td>
-                    </tr>
-                    <tr>
-                      <td>Domingo</td>
-                      <td>{{horarioFinal[6].hora}}</td>
+                    <tr *ngFor="let horario of horarioFinal; let i = index">
+                      <td><strong>{{ horario.dia }}</strong></td>
+                      <td><strong>{{ horario.hora }}</strong></td>
                     </tr>
                   </tbody>
                 </table>
@@ -97,27 +65,30 @@
             </div>
           </div>
         </div>
-    </div>
-      <div class="container-fluid">
-        <div class="row" style="padding-top: 2%;">
+      </div>
+      <div class="container-fluid" style="padding-top: 2%;">
+        <div class="row">
           <div class="col-md-12">
-            <h2 style="color: white;">Servicios</h2>
+            <h2 style="color: white;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Servicios</h2>
           </div>
-          <div class="card" style="width: 100%;" >
-            <p-carousel [value]="servicios" [numVisible]="1" [numScroll]="1" [responsiveOptions]="responsiveOptions">
-              <ng-template let-product pTemplate="item">
-                <div class="border-1 surface-border border-round m-2 text-center py-5 px-3" >
-                  <div  style="border-radius: 10px;">
-                    <h4 class="mb-1">{{ product.nombre  }}</h4>
-                    <h6 class="mt-0 mb-3">{{ '€' + product.precio }}</h6>
+        </div>
+        <div class="row">
+          <div class="col-md-12" *ngIf="servicios.length > 0; else noServicios">
+            <p-carousel [value]="servicios" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="5000">
+              <ng-template let-servicio pTemplate="item">
+                <div class="card servicio-card">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ servicio.nombre }}</h5>
+                    <p class="card-text">{{ servicio.descripcion }}</p>
+                    <p class="card-text">{{ servicio.precio }} €</p>
                     <div class="car-buttons mt-5" style="display: flex; justify-content: space-around;">
-                      <button type="button" class="btn btn-primary btn-rounded mr-2" data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" aria-controls="myOffcanvas" (click)="addDatos(product.id_servicio,product.nombre,product.descripcion,product.precio)">
+                      <button type="button" class="btn btn-primary btn-rounded mr-2" data-bs-toggle="offcanvas" data-bs-target="#myOffcanvas" aria-controls="myOffcanvas" (click)="addDatos(servicio.id_servicio,servicio.nombre,servicio.descripcion,servicio.precio)">
                         <span class="pi pi-pencil"></span> Editar Servicio
                       </button>
-                      <button type="button" class="btn btn-success btn-rounded mr-2" (click)="eliminarServicio(product.id_servicio)">
+                      <button type="button" class="btn btn-success btn-rounded mr-2" (click)="eliminarServicio(servicio.id_servicio)">
                         <span class="pi pi-delete-left"></span> Eliminar servicio
                       </button>
-                      <button type="button" class="btn btn-success btn-rounded mr-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResena" aria-controls="offcanvasResena" (click)="getCalificaciones(product.id_servicio)">
+                      <button type="button" class="btn btn-success btn-rounded mr-2" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResena" aria-controls="offcanvasResena" (click)="getCalificaciones(servicio.id_servicio)">
                         <span class="pi pi-comments"></span> Ver Comentarios
                       </button>
                     </div>
@@ -126,71 +97,75 @@
               </ng-template>
             </p-carousel>
           </div>
-        </div>
-        <ng-template id="error" #noServicios>
+          <ng-template #noServicios>
             <div class="card no-servicios-template">
               <div class="card-body">
-                <p class="card-text">No existen servicios.</p>
+                <p class="card-text">No existen servicios disponibles.</p>
               </div>
             </div>
           </ng-template>
+        </div>
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="myOffcanvas" aria-labelledby="offcanvasLabel" style="width: 100%;">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasLabel">Editar Servicio</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
           </div>
-          <div class="offcanvas offcanvas-start" tabindex="-1" id="myOffcanvas" aria-labelledby="offcanvasLabel" style="width: 100%;">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasLabel">Editar Servicio</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <div class="contenedor" style="background-color: white; border-radius: 10px; padding: 2%; width: 20%;">
-                <form (submit)="editar()">
-                  <div class="form-group">
-                    <label for="nombre">Nombre del servicio:</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del servicio" [(ngModel)]="nombre">
-                  </div>
-                  <div class="form-group">
-                    <label for="descripcion">Descripción del servicio:</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese la descripción del servicio" [(ngModel)]="descripcion"></textarea>
-                  </div>
-                  <div class="form-group">
-                    <label for="precio">Precio del servicio:</label>
-                    <input type="number" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio del servicio" [(ngModel)]="precio">
-                  </div>
-                  <button type="submit" class="btn btn-primary">Guardar cambios</button>
-                </form>
-              </div>
+          <div class="offcanvas-body">
+            <div class="contenedor" style="background-color: white; border-radius: 10px; padding: 2%; width: 20%;">
+              <form (submit)="editar()">
+                <div class="form-group">
+                  <label for="nombre">Nombre del servicio:</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del servicio" [(ngModel)]="nombre">
+                </div>
+                <div class="form-group">
+                  <label for="descripcion">Descripción del servicio:</label>
+                  <textarea class="form-control" id="descripcion" name="descripcion" placeholder="Ingrese la descripción del servicio" [(ngModel)]="descripcion"></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="precio">Precio del servicio:</label>
+                  <input type="number" class="form-control" id="precio" name="precio" placeholder="Ingrese el precio del servicio" [(ngModel)]="precio">
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar cambios</button>
+              </form>
             </div>
           </div>
-          <div class="offcanvas offcanvas-end offcanvas-resena" tabindex="-1" id="offcanvasResena" aria-labelledby="offcanvasResenaLabel" style="width: 100%;">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasResenaLabel">Comentarios</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body custom-offcanvas-body d-flex justify-content-center align-items-center">
-              <div class="card" style="width:30%;display: flex;justify-content: center;">
-                <h1 style="text-align: center;">Comentarios</h1>
-                <div class="comentarios-container" style="max-height: 600px; overflow-y: auto; width: 100%;">
-                  <div *ngIf="comentario" style="width: 100%;">
-                    <div *ngIf="comentario.length === 0">
-                      <p style="text-align: center;">Aún no hay comentarios</p>
-                    </div>
-                    <div class="comentario" *ngFor="let calificaciones of comentario" style="width: 100%;">
+        </div>
+        <div class="offcanvas offcanvas-end offcanvas-resena" tabindex="-1" id="offcanvasResena" aria-labelledby="offcanvasResenaLabel" style="width: 100%;">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasResenaLabel">Comentarios</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body custom-offcanvas-body d-flex justify-content-center align-items-center">
+            <div class="card" style="width:30%;display: flex;justify-content: center;">
+              <h1 style="text-align: center;">Comentarios</h1>
+              <div class="comentarios-container" style="max-height: 600px; overflow-y: auto; width: 100%;">
+                <div *ngIf="comentario" style="width: 100%;">
+                  <div *ngIf="comentario.length === 0">
+                    <p style="text-align: center;">Aún no hay comentarios</p>
+                  </div>
+                  <div class="comentario" *ngFor="let calificaciones of comentario" style="width: 100%;padding: 2%;">
+                    <div style=" padding:2%;background-color: lightblue;width: 100%;border-radius: 10px;">
                       <i class="pi pi-user" style="font-size: 2.5rem"></i>
                       <p>{{ calificaciones.nombre_usuario }}</p>
                       <p-rating [(ngModel)]="calificaciones.nota" [readonly]="true" [cancel]="false"></p-rating>
                       <p class="comentario-descripcion">Descripción: {{ calificaciones.descripcion }}</p>
                     </div>
-                  </div>
-                </div>            
-              </div>
-            </div>
-          </div>          
-      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-      
-    </div>
-  </div>
-  
 
-</body>
-</html>
+                  </div>
+                </div>
+              </div>            
+            </div>
+          </div>
+        </div>    
+      </div>
+      <footer class="footer">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <p><strong>Contacto:</strong> {{ datosEmpresa.tlf_contacto }}</p>
+              <p><strong>Dirección:</strong> {{ datosEmpresa.ubicacion }}</p>
+            </div>
+          </div>
+        </div>
+      </footer>
+

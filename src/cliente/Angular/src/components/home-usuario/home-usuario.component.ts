@@ -68,22 +68,21 @@ export class HomeUsuarioComponent {
         (response) => {
         const reservasActivas = response.filter(reserva => !this.reservaExpirada(reserva));
         this.reservas = reservasActivas;
-        console.log(this.reservas);
-        
         for (let index = 0; index < this.reservas.length; index++) {
           this.empresaServicio.obtenerEmpresaServicioService(this.reservas[index].id_servicio).subscribe({
             next:data => {
               this.empresas.push(data[0]);
               this.empresa.obtenerEmpresaCif(this.empresas[index].cif_Empresa).subscribe({
                 next:data => {
-                  this.datosEmpresa.push(data[0]);
+                  this.datosEmpresa.push(data[0]);                  
+                  this.reservas[index].nombre=this.datosEmpresa[index].nombre;
+                  this.reservas[index].ubicacion=this.datosEmpresa[index].ubicacion;
                 }
               })
             }
           })
           
-        }
-            
+        } 
         }
       )
     }

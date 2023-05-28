@@ -3,50 +3,48 @@
 </div>
 <div *ngIf="!showSpinner" class="content">
   <app-header-usuario></app-header-usuario>
-    <div class="container-fluid" style="padding-top: 4%;">
-      <section class="company-profile">
-          <div class="row">
-            <div class="col-md-12">
-              <div class="jumbotron">
-                <h1 class="display-4">{{ datosEmpresa.nombre }}</h1>
-                <p class="lead">{{ datosEmpresa.descripcion }}</p>
-              </div>
-            </div>
+  <div class="container-fluid">
+    <section class="company-profile">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="jumbotron">
+            <h1 class="display-4" style="color: white;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">{{ datosEmpresa.nombre }}</h1>
+            <p class="lead" style="color: white;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">{{ datosEmpresa.descripcion }}</p>
+          </div>
         </div>
-      </section>
-      <div class="row equal-height" style="padding-top: 2%;">
-          <div class="col-md-6">
-            <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="images.length > 0; else noEmpresa" style="border-radius: 10px;" >
-              <div class="carousel-indicators">
-                <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
-              </div>
-                <div class="carousel-inner" *ngFor="let image of images; let i = index;">
-                  <div class="carousel-item" [class.active]="i === 0" style="background-color: #f5f5f5;">
-                    <img [src]="image" class="d-block w-100 img-fluid">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>                                 
-          <ng-template #noEmpresa>
-            <div class="card no-empresa-template">
-              <div class="card-body">
-                <p class="card-text">No existen imágenes.</p>
-              </div>
-            </div>
-          </ng-template>  
       </div>
-
-
+    </section>
+    <div class="row equal-height" style="padding-top: 2%;">
       <div class="col-md-6">
-        <div class="container h-100  w-100">
-          <div class="col-md-12 h-100  w-100">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" *ngIf="images.length > 0; else noEmpresa" style="border-radius: 10px;">
+          <div class="carousel-indicators">
+            <button *ngFor="let image of images; let i = index" type="button" [attr.data-bs-target]="'#carouselExampleCaptions'" [attr.data-bs-slide-to]="i" [class.active]="i === 0"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item" *ngFor="let image of images; let i = index;" [class.active]="i === 0">
+              <img [src]="image" class="d-block w-100 img-fluid">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <ng-template #noEmpresa>
+          <div class="card no-empresa-template">
+            <div class="card-body">
+              <p class="card-text">No existen imágenes.</p>
+            </div>
+          </div>
+        </ng-template>
+      </div>
+      <div class="col-md-6">
+        <div class="container h-100 w-100">
+          <div class="col-md-12 h-100 w-100">
             <div class="schedule-container h-100 w-100">
               <table class="table h-100 w-100">
                 <thead>
@@ -57,156 +55,144 @@
                 </thead>
                 <tbody style="background-color: #f5f5f5;">
                   <tr>
-                    <td>Lunes</td>
-                    <td>{{horarioFinal[1].dia}}</td>
+                    <td><strong>Lunes</strong></td>
+                    <td><strong>{{horarioFinal[1].dia}}</strong></td>
                   </tr>
                   <tr>
-                    <td>Martes</td>
-                    <td>{{horarioFinal[3].dia}}</td>
+                    <td><strong>Martes</strong></td>
+                    <td><strong>{{horarioFinal[3].dia}}</strong></td>
                   </tr>
                   <tr>
-                    <td>Miércoles</td>
-                    <td>{{horarioFinal[5].dia}}</td>
+                    <td><strong>Miércoles</strong></td>
+                    <td><strong>{{horarioFinal[5].dia}}</strong></td>
                   </tr>
                   <tr>
-                    <td>Jueves</td>
-                    <td>{{horarioFinal[7].dia}}</td>
+                    <td><strong>Jueves</strong></td>
+                    <td><strong>{{horarioFinal[7].dia}}</strong></td>
                   </tr>
                   <tr>
-                    <td>Viernes</td>
-                    <td>{{horarioFinal[9].dia}}</td>
+                    <td><strong>Viernes</strong></td>
+                    <td><strong>{{horarioFinal[9].dia}}</strong></td>
                   </tr>
                   <tr>
-                    <td>Sábado</td>
-                    <td>{{horarioFinal[11].dia}}</td>
+                    <td><strong>Sábado</strong></td>
+                    <td><strong>{{horarioFinal[11].dia}}</strong></td>
                   </tr>
                   <tr>
-                    <td>Domingo</td>
-                    <td>{{horarioFinal[13].dia}}</td>
+                    <td><strong>Domingo</strong></td>
+                    <td><strong>{{horarioFinal[13].dia}}</strong></td>
                   </tr>
-                </tbody>
+                </tbody>                
               </table>
             </div>
           </div>
         </div>
       </div>
-      <div  class="container-fluid" style="padding-left: 1%;">
-        <div class="row" style="padding-top: 2%;">
-          <div class="col-md-12">
-            <h2>Servicios</h2>
-          </div>
-          <div class="card" style="width: 49%; border-radius: 10px;">
-            <p-carousel [value]="servicios" [numVisible]="1" [numScroll]="1" [responsiveOptions]="responsiveOptions">
-              <ng-template let-product pTemplate="item" >
-                <div class="border-1 surface-border border-round m-2 text-center py-5 px-3">
-                  <div>
-                    <h4 class="mb-1">{{ product.nombre }}</h4>
-                    <h6 class="mt-0 mb-3">{{ '€' + product.precio }}</h6>
-                    <div class="car-buttons mt-5" style="display: flex; justify-content: space-around;">
-                      <button icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="obtenerDatosService(product.id_servicio, product.nombre)">Hacer reserva</button>
-                      <button icon="pi pi-comments" class="md:align-self-end mb-2 p-button-rounded" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResena" (click)="getCalificaciones(product.id_servicio)">Hacer reseña</button>
-                    </div>
+    </div>
+    <div class="container-fluid" style="padding-top: 2%;">
+      <div class="row">
+        <div class="col-md-12">
+          <h2 style="color: white;text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);">Servicios</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12" *ngIf="servicios.length > 0; else noServicios" style="padding: 2%;">
+          <p-carousel [value]="servicios" [numVisible]="3" [numScroll]="1" [circular]="true" [autoplayInterval]="5000" class="servicio-carousel">
+            <ng-template let-servicio pTemplate="item">
+              <div class="card servicio-card" >
+                <div class="card-body" style="height: 250px;max-height: 250px;">
+                  <h5 class="card-title">{{ servicio.nombre }}</h5>
+                  <p class="card-text">{{ servicio.descripcion }}</p>
+                  <p class="card-text">{{ servicio.precio }} €</p>
+                  <div class="car-buttons mt-5" style="display: flex; justify-content: space-around;">
+                    <button icon="pi pi-shopping-cart" class="md:align-self-end mb-2 p-button-rounded" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" (click)="obtenerDatosService(servicio.id_servicio, servicio.nombre)"><strong>Hacer reserva</strong></button>
+                    <button icon="pi pi-comments" class="md:align-self-end mb-2 p-button-rounded" data-bs-toggle="offcanvas" data-bs-target="#offcanvasResena" (click)="getCalificaciones(servicio.id_servicio)"><strong>Hacer reseña</strong></button>
                   </div>
                 </div>
-              </ng-template>                           
-            </p-carousel>
-          </div> 
-        </div>  
-      </div>
-      <ng-template id="error" #noServicios>
+              </div>
+            </ng-template>
+          </p-carousel>          
+        </div>
+        <ng-template #noServicios>
           <div class="card no-servicios-template">
             <div class="card-body">
-              <p class="card-text">No existen servicios.</p>
+              <p class="card-text">No existen servicios disponibles.</p>
             </div>
           </div>
         </ng-template>
+      </div>
+      <div class="offcanvas offcanvas-end offcanvas-resena" tabindex="-1" id="offcanvasResena" aria-labelledby="offcanvasResenaLabel" style="width: 100%;">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasResenaLabel">Agregar reseña</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="reservation-container">
-          <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
-            <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasExampleLabel">Reserva</h5>
-              <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        <div class="offcanvas-body custom-offcanvas-body d-flex justify-content-center align-items-center">
+          <div class="card" style="width:30%;display: flex;justify-content: center;padding: 2%;">
+            <div class="rating-container" style="display:flex;justify-content: center;width: 100%;">
+              <p-rating [(ngModel)]="y" [cancel]="false"></p-rating>
             </div>
-            <div class="offcanvas-body" style="display: flex; justify-content: center;">
-              <div class="calendar-wrapper">
-                <div class="wrapper-calendar" style="width: 100%;">
-                  <div class="header-calendar">
-                    <button (click)="changeMonth(-1)" class="btn-prev"><h1>Antes</h1></button>
-                    <h1>{{ dateSelect | date:'MMMM, yyyy' }}</h1>
-                    <button (click)="changeMonth(1)" class="btn-next" style="padding-right: 20px;"><h1>Siguiente</h1></button>
-                  </div>
-                  <ol>
-                    <li *ngFor="let day of week" class="day-name">{{ day | slice:0:3 }}</li>
-                    <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'" [ngClass]="{'selected-day': day === selectedDay}" *ngFor="let day of monthSelect; let first = first">
-                      <span>{{ day?.value }}</span>
-                    </li>                    
-                  </ol>
-                </div>
-                
-                <hr>
-              <div class="schedule-container" style="padding-bottom: 2%;">
-                <div class="schedule-buttons">
-                  <button *ngFor="let hora of horarioArray;let i = index" class="schedule-button" [class.active]="horarioSeleccionado === i"   (click)="elegirHora(hora,i)" >{{ hora }}</button>
-                </div>
-              </div>
-              <button class="reservation-button" (click)="reservar()" >Reservar</button>
+            <div class="mb-3" style="width: 100%;">
+              <label for="calificacionTextarea" class="form-label">Descripción</label>
+              <textarea class="form-control" id="calificacionTextarea" [(ngModel)]="descripcion" name="descripcion" required></textarea>
             </div>
-          </div>
-        </div>
-        <div class="offcanvas offcanvas-end offcanvas-resena" tabindex="-1" id="offcanvasResena" aria-labelledby="offcanvasResenaLabel" style="width: 100%;">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasResenaLabel">Agregar reseña</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body custom-offcanvas-body d-flex justify-content-center align-items-center">
-            <div class="card" style="width:30%;display: flex;justify-content: center;">
-              <div class="rating-container" style="display:flex;justify-content: center;width: 100%;">
-                <p-rating [(ngModel)]="y" [cancel]="false"></p-rating>
-              </div>
-              <div class="mb-3" style="width: 100%;">
-                <label for="calificacionTextarea" class="form-label" >Descripción</label>
-                <textarea class="form-control" id="calificacionTextarea" [(ngModel)]="descripcion" name="descripcion" required></textarea>
-              </div>
-              <button type="button" class="btn btn-primary btn-enviar" (click)="agregarCalificacion()">Enviar</button>
-              <hr class="divider">
-              <div class="comentarios-container" style="max-height: 400px; overflow-y: auto;width: 100%;">
+            <button type="button" class="btn btn-primary btn-enviar" (click)="agregarCalificacion()">Enviar</button>
+            <hr class="divider">
+            <div class="comentarios-container" style="max-height: 400px; overflow-y: auto;width: 100%;">
+              <ng-container *ngIf="calificacion.length === 0; else comentariosTemplate">
+                <p>Aún no se han añadido comentarios. Sé el primero en comentar.</p>
+              </ng-container>
+              <ng-template #comentariosTemplate>
                 <div class="comentario" *ngFor="let calificaciones of calificacion" style="width: 100%;">
-                  
                   <p-rating [(ngModel)]="calificaciones.nota" [readonly]="true" [cancel]="false"></p-rating>
                   <p class="comentario-descripcion">Descripción: {{ calificaciones.descripcion }}</p>
                 </div>
-              </div>            
-            </div>
+              </ng-template>
+            </div>            
           </div>
-        </div>    
-      
+        </div>
+      </div>      
+      <div class="reservation-container">  
+        <div class="offcanvas offcanvas-start bg-light" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Reserva</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <div class="calendar-wrapper">
+              <div class="wrapper-calendar" style="width: 100%;">
+                <div class="header-calendar">
+                  <button (click)="changeMonth(-1)" class="btn-prev"><h1>Antes</h1></button>
+                  <h1>{{ dateSelect | date:'MMMM, yyyy' }}</h1>
+                  <button (click)="changeMonth(1)" class="btn-next" style="padding-right: 20px;"><h1>Siguiente</h1></button>
+                </div>
+                <ol>
+                  <li *ngFor="let day of week" class="day-name">{{ day | slice:0:3 }}</li>
+                  <li (click)="clickDay(day)" [style.gridColumnStart]="first ? day?.indexWeek : 'auto'" [ngClass]="{'selected-day': day === selectedDay}" *ngFor="let day of monthSelect; let first = first">
+                    <span>{{ day?.value }}</span>
+                  </li>                    
+                </ol>
+              </div>
+              
+              <hr>
+            <div class="schedule-container" style="padding-bottom: 2%;">
+              <div class="schedule-button">
+                <button *ngFor="let hora of horarioArray;let i = index" class="schedule-button" [class.active]="horarioSeleccionado === i"   (click)="elegirHora(hora,i)" >{{ hora }}</button>
+              </div>
+            </div>
+            <button class="reservation-button" (click)="reservar()" style="border-radius: 10px;">Reservar</button>
+          </div>
+        </div>
+      </div>
     </div>
-    <footer class="footer" style="border-radius: 10px;">
+    <footer class="footer">
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <div class="contact-info">
-              <div class="contact-info-grid">
-                <div class="info-item">
-                  <strong><p>Teléfono:</p></strong>
-                  <span>{{ datosEmpresa.tlf_contacto }}</span>
-                </div>
-                <div class="info-item">
-                  <strong><p>Ubicación:</p></strong>
-                  <span>{{ datosEmpresa.ubicacion }}</span>
-                </div>
-              </div>
-            </div>
+            <p><strong>Contacto:</strong>  {{ datosEmpresa.tlf_contacto }}</p>
+            <p><strong>Ubicación:</strong> {{ datosEmpresa.ubicacion }}</p>
           </div>
         </div>
       </div>
     </footer>
-    <div style="padding-bottom: 2%;"></div>
-
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
   </div>
-
-
-    
+</div>
