@@ -38,6 +38,29 @@ img{
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   overflow-x: hidden;
 }
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: black;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background-color: #80bdff;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: left center;
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+}
+
 
 .offcanvas-header {
   background-color: #f0f0f0;

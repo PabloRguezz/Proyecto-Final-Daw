@@ -23,7 +23,7 @@ export class ViewEmpresaUsuarioComponent {
   y = 3;
   selectedDay: any;
   horarioSeleccionado: number = -1;
-  calificacion;
+  calificacion = [];
   calificacionMedia:any[];
   calificacionMediaFinal:number[];
   descripcion;
@@ -373,6 +373,7 @@ export class ViewEmpresaUsuarioComponent {
           let hora = info[1] === "Cerrado" ? "Cerrado" : info[1] + " - " + info[2];
           this.horarioFinal.push({ dia, hora });
         }
+        
       }
     )
   }

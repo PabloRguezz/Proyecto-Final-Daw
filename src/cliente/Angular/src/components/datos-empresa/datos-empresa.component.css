@@ -1,535 +1,311 @@
-/* Estilo para el cuerpo del sitio */
 body {
-    font-family: 'Open Sans', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    color: #333;
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.com/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1000%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='rgba(78%2c 165%2c 255%2c 1)'%3e%3c/rect%3e%3cpath d='M144.1202275943935 8.134741326423281L272.47100219817537 79.4407272174132 272.47100219817537-48.9100473863687z' fill='rgba(255%2c 255%2c 255%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M268.6330843553523 71.17572231763535L320.33018911116545 164.43976810639174 413.59423489992184 112.7426633505786 361.8971301441087 19.478617561822198z' fill='rgba(255%2c 255%2c 255%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1201.032853391331 279.87510555010397L1282.3290186140403 446.9609053684141 1375.4952672014101 313.90571315272155z' fill='rgba(255%2c 255%2c 255%2c 0.4)' class='triangle-float3'%3e%3c/path%3e%3cpath d='M1318.5892861199504 21.675851123873763L1222.1944261026088 21.67585112387377 1222.1944261026088 118.07071114121536 1318.5892861199504 118.07071114121536z' fill='rgba(255%2c 255%2c 255%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M566.5338636423545 310.92528163592226L475.7304901084399 312.5102604166579 568.1188424230902 401.7286551698369z' fill='rgba(255%2c 255%2c 255%2c 0.4)' class='triangle-float2'%3e%3c/path%3e%3cpath d='M1187.005%2c419.604C1226.784%2c420.549%2c1270.705%2c415.507%2c1291.742%2c381.733C1313.662%2c346.541%2c1305.637%2c300.546%2c1282.654%2c266.04C1262%2c235.031%2c1224.206%2c222.425%2c1187.005%2c224.486C1153.447%2c226.345%2c1126.071%2c247.307%2c1108.102%2c275.709C1088.475%2c306.733%2c1072.897%2c344.764%2c1090.548%2c376.953C1108.664%2c409.992%2c1149.336%2c418.709%2c1187.005%2c419.604' fill='rgba(255%2c 255%2c 255%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M1083.4901468871124 570.8232456155921L1119.344128789368 515.6129550710668 1018.6017020214522 489.4371274899463z' fill='rgba(255%2c 255%2c 255%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3cpath d='M279.01794731332967 450.55515047036715L405.43187936033667 437.26851081563933 392.1452397056088 310.85457876863234 265.73130765860185 324.14121842336016z' fill='rgba(255%2c 255%2c 255%2c 0.4)' class='triangle-float1'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1000'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cstyle%3e %40keyframes float1 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-10px%2c 0)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float1 %7b animation: float1 5s infinite%3b %7d %40keyframes float2 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(-5px%2c -5px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float2 %7b animation: float2 4s infinite%3b %7d %40keyframes float3 %7b 0%25%7btransform: translate(0%2c 0)%7d 50%25%7btransform: translate(0%2c -10px)%7d 100%25%7btransform: translate(0%2c 0)%7d %7d .triangle-float3 %7b animation: float3 6s infinite%3b %7d %3c/style%3e%3c/defs%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-size: cover;
-    width: 100%;
-  }
-  #offcanvasResena .offcanvas-body{
-    background-image: url('../../assets/imgs/fondoComentarios.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  .spinner-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #3D7C98;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+}
 
-  }
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #3D7C98;
 
-  
-  #myOffcanvas .offcanvas-header {
-    background-color: #f8f9fa;
-    padding: 1rem;
+}
+
+.spinner {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 8px solid rgba(255, 255, 255, 0.5);
+  border-top-color: #FFF;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+#myOffcanvas .offcanvas-header {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  text-align: center;
+}
+
+#myOffcanvas .offcanvas-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  background-image: url('../../assets/imgs/editarServicio.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#myOffcanvas .offcanvas-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+#myOffcanvas .offcanvas-body form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#myOffcanvas .offcanvas-body form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+#myOffcanvas .offcanvas-body form label {
+  font-weight: bold;
+}
+
+#myOffcanvas .offcanvas-body form input[type="text"],
+#myOffcanvas .offcanvas-body form textarea,
+#myOffcanvas .offcanvas-body form input[type="number"] {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+#myOffcanvas .offcanvas-body form input[type="text"]:focus,
+#myOffcanvas .offcanvas-body form textarea:focus,
+#myOffcanvas .offcanvas-body form input[type="number"]:focus {
+  outline: none;
+  border-color: #80bdff;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+#myOffcanvas .offcanvas-body form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.servicio-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+#myOffcanvas .offcanvas-body form button[type="submit"]:hover {
+  background-color: #0069d9;
+}
+.car-buttons button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background-color: #A8DFF1;
+}
+.car-buttons button {
+  border-radius: 10px;
+  background-color:#73B0CD;
+  border-color: #73B0CD;
+  color: black;
+}
+img {
+  background-color: transparent;
+}
+
+#myOffcanvas .btn-primary {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+#myOffcanvas .btn-primary:hover {
+  background-color: #0069d9;
+}
+.servicio-card {
+  margin: 20px;
+}
+.content {
+  padding-top: 4%;
+  font-family: 'Montserrat', sans-serif;
+  background-image: url('../../assets/imgs/editarUsuario.jpg');
+  font-size: 16px;
+  color: #333;
+}
+
+.company-profile {
+  padding-top: 2%;
+}
+
+.carousel-indicators {
+  justify-content: center;
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%;
+}
+
+.carousel-item img {
+  border-radius: 10px;
+}
+
+.no-empresa-template {
+  border: none;
+  text-align: center;
+}
+
+.schedule-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: Arial, sans-serif;
+  border-radius: 1000px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+.table th {
+  background-color: #73B0CD;
+  color: white;
+}
+
+.table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tbody td {
+  color: #333;
+}
+
+.table tbody tr:hover {
+  background-color: #A8DFF1;
+  color: white;
+}
+
+.servicio-card {
+  margin-bottom: 20px;
+}
+
+.no-servicios-template {
+  border: none;
+  text-align: center;
+}
+
+.footer {
+  padding-top: 2%;
+  background-color: #f5f5f5;
+  text-align: center;
+}
+.offcanvas {
+  width: 100%;
+  transition: transform 0.3s ease-in-out;
+}
+
+.offcanvas:not(.show) {
+  transform: translateX(-100%);
+}
+.offcanvas-body *{
+  outline: none !important
+}
+
+.offcanvas-body .wrapper-calendar{
+  margin:1rem;
+  padding: .5rem;
+  border: solid 1px #eaeaea;
+  box-shadow: 0 0 10px #e4e4e4;
+}
+
+.offcanvas-body div {
     text-align: center;
+    width: 300px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   }
   
-  #myOffcanvas .offcanvas-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    padding: 1rem;
-    background-image: url('../../assets/imgs/editarServicio.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-  
-  #myOffcanvas .offcanvas-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  #myOffcanvas .offcanvas-body form {
-    max-width: 400px;
-    margin: 0 auto;
-  }
-  
-  #myOffcanvas .offcanvas-body form .form-group {
-    margin-bottom: 1.5rem;
-  }
-  
-  #myOffcanvas .offcanvas-body form label {
-    font-weight: bold;
-  }
-  
-  #myOffcanvas .offcanvas-body form input[type="text"],
-  #myOffcanvas .offcanvas-body form textarea,
-  #myOffcanvas .offcanvas-body form input[type="number"] {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-  }
-  
-  #myOffcanvas .offcanvas-body form input[type="text"]:focus,
-  #myOffcanvas .offcanvas-body form textarea:focus,
-  #myOffcanvas .offcanvas-body form input[type="number"]:focus {
-    outline: none;
-    border-color: #80bdff;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
-  }
-  
-  #myOffcanvas .offcanvas-body form button[type="submit"] {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  
-  #myOffcanvas .offcanvas-body form button[type="submit"]:hover {
-    background-color: #0069d9;
-  }
-
-  #myOffcanvas .btn-primary {
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    cursor: pointer;
-  }
-  
-  #myOffcanvas .btn-primary:hover {
-    background-color: #0069d9;
-  }
-  
-  
-  
-  .comentarios-container {
-    background-color: #f9f9f9; 
-    padding: 10px;
-  }
-  
-  .comentario {
-    background-color: #ffffff; 
-    border: 1px solid #e0e0e0; 
-    padding: 10px; 
-    margin-bottom: 10px; 
-  }
-  
-  
-  .spinner {
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 8px solid rgba(255, 255, 255, 0.5);
-    border-top-color: #FFF;
-    animation: spin 1s linear infinite;
-  }
-  
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  
-  
-  /* Estilo para los encabezados */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    margin-top: 0;
-    margin-bottom: 1rem;
-    color: #333;
-  }
-  
-  /* Estilo para los enlaces */
-  a {
-    color: #007bff;
-    text-decoration: none;
-  }
-  
-  a:hover {
-    color: #0056b3;
-    text-decoration: underline;
-  }
-  
-  /* Estilo para los botones */
-  .btn {
-    display: inline-block;
-    font-weight: 400;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: middle;
-    cursor: pointer;
-    background-color: #007bff;
-    border: 1px solid #007bff;
-    border-radius: 0.25rem;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #fff;
-  }
-  
-  .btn:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
-    color: #fff;
-  }
-  
-  /* Estilo para los contenedores */
-  .container {
-    width: 100%;
-    max-width: 1140px;
-    margin: 0 auto;
-    padding: 0 15px;
-  }
-    
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    
-  }
-  
-  .contact-info h3 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .contact-info p {
+.offcanvas-body ol {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
     margin: 0;
-    font-size: 16px;
+    padding: 0;
   }
-  .jumbotron {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+.offcanvas-body li {
+    padding: .25rem;
+    font-size: 1.5ch;
+    cursor: pointer;
+}
+  
+.offcanvas-body li:hover{
+    font-weight: 600;
+  }
+  
+.offcanvas-body h2 {
+    margin-bottom: 4px;
+    padding: 0;
+  }
+  
+.offcanvas-body .first-day {
+    grid-column-start: var(--first-day-start, 0);
+  }
+  
+.offcanvas-body .day-name {
+    background: #eee;
+    font-weight: bold;
+    font-size: 12px;
+    margin-bottom: 2px;
+    padding: 4px;
     text-align: center;
   }
-  .company-profile {
-    background-color: transparent;
-    padding-bottom: 10px;
-  }
-  .contact-info{
-    padding-bottom: 10%;
-  }
-  .jumbotron h1 {
-    font-size: 36px;
-    color: #333;
-    margin-bottom: 20px;
-  }
   
-  .jumbotron p {
-    font-size: 18px;
-    color: #777;
-  }
-  
-  .contact-info {
-    margin-top: 40px;
-  }
-  
-  .contact-info h3 {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .contact-info p {
-    margin: 0;
-    font-size: 16px;
-  }
-  
-  /* Estilo para las secciones */
-  section {
-    padding: 4rem 0;
-  }
-  
-  /* Estilo para las tarjetas */
-  .card {
-    margin-bottom: 1.5rem;
-    background-color: #fff;
-    border: 1px solid rgba(0,0,0,.125);
-    border-radius: .25rem;
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
-    width: 30%;
-    margin-right: 20px;
-    display: inline-block;
-  }
-  
-  .card:hover {
-    box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,.3);
-  }
-  
-  .card-img-top {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-  
-  .card-body {
-    padding: 1.25rem;
-  }
-  
-  .card-title {
-    font-size: 1.25rem;
-    margin-bottom: .75rem;
-  }
-  
-  .card-text {
-    margin-bottom: 1.25rem;
-  }
-  
-  /* Estilo para la barra de navegación */
-  .navbar {
-    background-color: #fff;
-    box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15);
-  }
-  
-  .navbar-brand {
-    font-family: 'Montserrat', sans-serif;
-    font-weight: bold;
-    color: #007bff;
-  }
-  
-  .nav-link {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: bold;
-    color: #333;
-    margin-right: 1rem;
-  }
-  
-  .nav-link:hover {
-    color: #007bff;
-  }
-  .no-servicios-template {
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
-    width: 99%;
-
-  }
-  .no-empresa-template {
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    padding: 10px;
-    width: 100%;
-
-  }
-  footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #f5f5f5;
-    text-align: center;
-  }
-  .noServicios {
-    background-color: #f1f1f1;
-    border: 1px solid #ddd;
-    padding: 10px;
-    margin: 10px;
-    width: 99%;
-  }
-  
-  .carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .carousel-container {
+.offcanvas-body .header-calendar {
     display: flex;
-    flex-wrap: nowrap;
     justify-content: space-between;
-    transition: transform 0.3s ease-in-out;
+    align-items: center;
+    align-content: center;
   }
   
-  .carousel-item {
-    flex: 1 0 100%;
-    margin-right: 20px;
-    text-align: center;
-  }
-  
-  .carousel-item img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-  }
-  
-  .carousel-controls {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-  }
-  
-  .carousel-control {
-    background-color: rgba(255, 255, 255, 0.5);
-    border: none;
-    color: #000;
-    font-size: 20px;
-    height: 40px;
-    margin-right: 10px;
-    width: 40px;
-  }
-  
-  .carousel-control i {
-    position: relative;
-    top: 50%;
-    transform: translateY(-50%);
-  }
-  
-  .carousel-control:hover {
-    cursor: pointer;
-  }
-  .offcanvas {
+.offcanvas-body .header-calendar h1 {
     width: 100%;
-    transition: transform 0.3s ease-in-out;
+    font-size: 13px;
   }
   
-  .offcanvas:not(.show) {
-    transform: translateX(-100%);
+.offcanvas-body .header-calendar button {
+    cursor: pointer;
+    background-color: white;
+    border: 0;
   }
-  .offcanvas-body *{
-    outline: none !important
-  }
-  
-  .offcanvas-body .wrapper-calendar{
-    margin:1rem;
-    padding: .5rem;
-    border: solid 1px #eaeaea;
-    box-shadow: 0 0 10px #e4e4e4;
-  }
-  
-  .offcanvas-body div {
-      text-align: center;
-      width: 300px;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    }
-    
-  .offcanvas-body ol {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      margin: 0;
-      padding: 0;
-    }
-    
-  .offcanvas-body li {
-      padding: .25rem;
-      font-size: 1.5ch;
-      cursor: pointer;
-  }
-    
-  .offcanvas-body li:hover{
-      font-weight: 600;
-    }
-    
-  .offcanvas-body h2 {
-      margin-bottom: 4px;
-      padding: 0;
-    }
-    
-  .offcanvas-body .first-day {
-      grid-column-start: var(--first-day-start, 0);
-    }
-    
-  .offcanvas-body .day-name {
-      background: #eee;
-      font-weight: bold;
-      font-size: 12px;
-      margin-bottom: 2px;
-      padding: 4px;
-      text-align: center;
-    }
-    
-  .offcanvas-body .header-calendar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      align-content: center;
-    }
-    
-  .offcanvas-body .header-calendar h1 {
-      width: 100%;
-      font-size: 13px;
-    }
-    
-  .offcanvas-body .header-calendar button {
-      cursor: pointer;
-      background-color: white;
-      border: 0;
-    }
-    .equal-height {
-      display: flex;
-      flex-wrap: wrap;
-  }
-  
-  .equal-height > [class*='col-'] {
-      display: flex;
-      flex-direction: column;
-  }
-  
-  .equal-height > [class*='col-'] > * {
-      flex: 1;
-  }
-  
-    .schedule-container {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-    
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 2rem;
-    }
-    
-    th, td {
-      text-align: left;
-      padding: 0.5rem 1rem;
-      border-bottom: 1px solid #ccc;
-    }
-    
-    th {
-      background-color: #eee;
-    }
-    .schedule-container {
-      background-color: #f5f5f5;
-      padding: 20px;
-    }
-  
-    .table {
-      width: 100%;
-      border-collapse: collapse;
-      font-family: Arial, sans-serif;
-    }
-  
-    .table th,
-    .table td {
-      padding: 10px;
-      text-align: center;
-      border-bottom: 1px solid #ddd;
-    }
-  
-    .table th {
-      background-color: #73B0CD;
-      color: white;
-    }
-  
-    .table tbody tr:nth-child(even) {
-      background-color: #f9f9f9;
-    }
-  
-    .table tbody td {
-      color: #333;
-    }
-  
-    .table tbody tr:hover {
-      background-color: #A8DFF1;
-      color: white;
-    }
+  .equal-height {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.equal-height > [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+.equal-height > [class*='col-'] > * {
+    flex: 1;
+}
+#offcanvasResena .offcanvas-body{
+  background-image: url('../../assets/imgs/fondoComentarios.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}

@@ -16,10 +16,10 @@
             <ng-template let-product pTemplate="item">
               <div class="border-1 surface-border border-round m-2 text-center py-5 px-3" id="contenedor">
                 <div class="company-details">
-                  <div *ngFor="let empresa of datosEmpresa" class="company-info">
+                  <div class="company-info">
                     <div class="company-header">
-                      <h1 class="company-name">{{ empresa.nombre }}</h1>
-                      <h4 class="location">{{ empresa.ubicacion }}</h4>
+                      <h1 class="company-name">{{ product.nombre }}</h1>
+                      <h4 class="location">{{ product.ubicacion }}</h4>
                     </div>
                     <div class="reservation-details">
                       <h2 class="service-name">Servicio: {{ product.nombre_servicio }}</h2>
@@ -38,11 +38,12 @@
                       <p-button type="button" styleClass="p-button-danger p-button-rounded mr-2" icon="pi pi-times" (click)="eliminarReserva(product.id_Reserva)"></p-button>
                     </div>
                   </div>
-                </div>       
+                </div>
               </div>
             </ng-template>
           </p-carousel>
-        </ng-container>
+          
+        </ng-container>        
         <ng-container *ngIf="reservas.length === 0">
           <section style="padding-top: 7%;" class="hero">
             <h1>Haz tu primera reserva</h1>
